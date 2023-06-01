@@ -17,12 +17,9 @@ Currently, students only have a few options for online educational consulting se
 ### Q4: What does "DONE" means to your team 
 We classify "done" as:
 1. All tasks of a user story are completed as set by the acceptance criteria
-2.
-Functionality was verified by the developer and at least one other person.
-3.
-Any changes do not break other functionalities or features.
-4.
-PRs are reviewed by at least one other team member before.
+2. Functionality was verified by the developer and at least one other person.
+3. Any changes do not break other functionalities or features.
+4. PRs are reviewed by at least one other team member before.
 
 ----
 
