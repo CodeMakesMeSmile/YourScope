@@ -1,0 +1,129 @@
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\appsettings.Development.json
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\appsettings.json
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\yourscope-api.exe
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\yourscope-api.deps.json
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\yourscope-api.runtimeconfig.json
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\yourscope-api.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\yourscope-api.pdb
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\yourscope-api.csproj.AssemblyReference.cache
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\yourscope-api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\yourscope-api.AssemblyInfoInputs.cache
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\yourscope-api.AssemblyInfo.cs
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\yourscope-api.csproj.CoreCompileInputs.cache
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\yourscope-api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\yourscope-api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\staticwebassets\msbuild.yourscope-api.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\staticwebassets\msbuild.build.yourscope-api.props
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.yourscope-api.props
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.yourscope-api.props
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\staticwebassets.development.json
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\scopedcss\bundle\yourscope-api.styles.css
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\yourscope-api.csproj.CopyComplete
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\yourscope-api.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\refint\yourscope-api.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\yourscope-api.pdb
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\yourscope-api.genruntimeconfig.cache
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\obj\Debug\net7.0\ref\yourscope-api.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\MySqlConnector.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\Humanizer.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\yourscope-api\bin\Debug\net7.0\System.CodeDom.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\appsettings.Development.json
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\appsettings.json
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\yourscope-api.exe
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\yourscope-api.deps.json
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\yourscope-api.runtimeconfig.json
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\yourscope-api.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\yourscope-api.pdb
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Humanizer.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\MySqlConnector.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\System.CodeDom.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.csproj.AssemblyReference.cache
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.AssemblyInfoInputs.cache
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.AssemblyInfo.cs
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.csproj.CoreCompileInputs.cache
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\staticwebassets\msbuild.yourscope-api.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\staticwebassets\msbuild.build.yourscope-api.props
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.yourscope-api.props
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.yourscope-api.props
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\staticwebassets.development.json
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\scopedcss\bundle\yourscope-api.styles.css
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.csproj.CopyComplete
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\refint\yourscope-api.dll
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.pdb
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.genruntimeconfig.cache
+C:\Users\bacon\Documents\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\ref\yourscope-api.dll
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\appsettings.Development.json
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\appsettings.json
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\yourscope-api.exe
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\yourscope-api.deps.json
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\yourscope-api.runtimeconfig.json
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\yourscope-api.dll
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\yourscope-api.pdb
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Humanizer.dll
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\MySqlConnector.dll
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\bin\Debug\net7.0\System.CodeDom.dll
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.csproj.AssemblyReference.cache
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.AssemblyInfoInputs.cache
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.AssemblyInfo.cs
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.csproj.CoreCompileInputs.cache
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\staticwebassets\msbuild.yourscope-api.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\staticwebassets\msbuild.build.yourscope-api.props
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.yourscope-api.props
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.yourscope-api.props
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\staticwebassets.development.json
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\scopedcss\bundle\yourscope-api.styles.css
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.csproj.CopyComplete
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.dll
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\refint\yourscope-api.dll
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.pdb
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\yourscope-api.genruntimeconfig.cache
+C:\Users\Jason Su\Documents\UTSC Non-Github\CSCC01\final-project-s23-wenduo-sky\api\yourscope-api\obj\Debug\net7.0\ref\yourscope-api.dll

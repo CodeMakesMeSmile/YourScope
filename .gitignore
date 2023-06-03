@@ -1,0 +1,17 @@
+**/.DS_Store
+api/yourscope-api/*.suo
+api/yourscope-api/*.user
+api/yourscope-api/_ReSharper.*/
+api/yourscope-api/*.sdf
+api/yourscope-api/bin/
+api/yourscope-api/obj/
+api/yourscope-api/Debug/
+api/yourscope-api/Release/
+api/yourscope-api/*.opensdf
+api/yourscope-api/*.tlog
+api/yourscope-api/*.log
+api/yourscope-api/TestResult.xml
+api/yourscope-api/*.VisualState.xml
+api/yourscope-api/Version.cs
+api/yourscope-api/Version.h
+api/yourscope-api/Version.cpp
