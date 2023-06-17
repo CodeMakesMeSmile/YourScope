@@ -1,0 +1,76 @@
+.pad-12 {
+  padding: 12px;
+}
+
+.margin-30 {
+  margin: 0px 30px 0px 30px;
+}
+
+.item-card {
+  width: 600px;
+  margin: 12px;
+}
+
+.card-text {
+  text-decoration: none;
+  color: black;
+}
+
+.scrollspy-container { 
+  overflow: auto;
+  height: 500px;
+}
+
+.flex {
+  display: flex;
+}
+
+.centre {
+  align-items: center;
+  justify-content: space-around;
+}
+
+#bg {
+  background: rgb(110, 197, 239);
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: column;
+}
+
+.white {
+  color: white;
+}
+
+.navy {
+  color: navy;
+}
+
+.bg-navy {
+  background-color: rgb(61, 89, 149);
+}
+
+.button-sm {
+  color: white;
+  background-color: rgb(42, 61, 104);
+  border-radius: 20px;
+  padding: 6px 10px 6px 10px;
+  text-decoration: none;
+  margin-left: 10px;
+  font-size: 12px;
+  text-align: center;
+  text-justify: center;
+}
+
+#cont{
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+}
+
+#main-card{
+  flex: 1 1 auto;
+}
+
+.card-scrollable{
+  flex: 1 1 auto;
+}

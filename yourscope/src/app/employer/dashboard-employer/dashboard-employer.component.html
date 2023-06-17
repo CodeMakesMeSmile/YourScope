@@ -1,0 +1,28 @@
+<nav class="bg-navy pad-12 navbar navbar-expand-lg">
+  <a class="navbar-brand" href="#">
+    <img src="../../../assets/yourscope.png" width="100" height="30" alt="">
+  </a>
+</nav>
+<div id="bg">
+  <div>
+    <h2 class="pad-12 white">
+      Welcome back, John Fredson!
+    </h2>
+  </div>
+  <div class="card margin-30 shadow mb-5 rounded">
+    <div class="card-body">
+      <h4 class="card-title">My Job Postings</h4>
+      <div class="scrollspy-container">
+        <div data-spy="scroll" data-offset="0">
+          <div class="card item-card shadow bg-white rounded" *ngFor="let job of jobs">
+            <div class="card-body">
+              <a class="card-text" [href]="job.url">
+                {{job.title}}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

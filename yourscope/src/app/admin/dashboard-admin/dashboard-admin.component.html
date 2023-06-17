@@ -1,0 +1,55 @@
+<div id="cont">
+  <nav class="bg-navy pad-12 navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#">
+      <img src="../../../assets/yourscope.png" width="100" height="30" alt="">
+    </a>
+  </nav>
+  <div id="bg">
+    <div>
+      <h2 class="pad-12 white">
+        Welcome back, Ben Franklin!
+      </h2>
+    </div>
+    <div id="main-card" class="card margin-30 shadow mb-5 rounded">
+      <div class="card-body">
+        <h4 class="card-title">Admin Dashboard @ Wendat Village Public School</h4>
+        <div class="centre flex">
+          <div class="card">
+            <h5 class="card-header">
+              Upcoming Events
+              <a class="button-sm" href="admin/events">Manage</a>
+            </h5>
+            <div class="scrollspy-container">
+              <div data-spy="scroll" data-offset="0">
+                <div class="card item-card shadow bg-white rounded" *ngFor="let event of events">
+                  <div class="card-body">
+                    <a class="card-text" [href]="event.url">
+                      {{event.title}}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h5 class="card-header">
+              Offered Courses
+              <a class="button-sm" href="admin/courses">Manage</a>
+            </h5>
+            <div class="scrollspy-container">
+              <div data-spy="scroll" data-offset="0">
+                <div class="card item-card shadow bg-white rounded" *ngFor="let course of courses">
+                  <div class="card-body">
+                    <a class="card-text" [href]="course.url">
+                      {{course.code}} - {{course.name}}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

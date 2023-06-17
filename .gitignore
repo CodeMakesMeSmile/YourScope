@@ -1,10 +1,11 @@
 **/.DS_Store
+**/*.cache
 api/yourscope-api/*.suo
 api/yourscope-api/*.user
 api/yourscope-api/_ReSharper.*/
 api/yourscope-api/*.sdf
-api/yourscope-api/bin/
-api/yourscope-api/obj/
+**/bin/
+**/obj/
 api/yourscope-api/Debug/
 api/yourscope-api/Release/
 api/yourscope-api/*.opensdf
@@ -15,3 +16,13 @@ api/yourscope-api/*.VisualState.xml
 api/yourscope-api/Version.cs
 api/yourscope-api/Version.h
 api/yourscope-api/Version.cpp
+api/yourscope-api/.vs/
+yourscope/.angular/cache/
+yourscope/.firebase/*.cache/
+yourscope/node_modules/
+yourscope/public/
+api/yourscope-api/firebase-config.json
+/api/yourscope-api/appsettings.json
+api/yourscope-api/appsettings.json
+.vs
+.vscode

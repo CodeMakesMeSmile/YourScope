@@ -1,1 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "~@angular/cdk/overlay-prebuilt.css";
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+body{
+    margin: 0
+}
+
+.mdc-line-ripple{
+    visibility: hidden;
+}
+
+.mat-mdc-form-field-bottom-align {
+    height: 0;
+    visibility: hidden;
+}
+
+.ng-trigger-transformPanel {
+    background-color: white;
+    border: 1px solid #0d6efd;
+    color: #0d6efd !important;
+}
+
+.contains-mat-select-search {
+    background-color: white;
+    
+    input::placeholder {
+        content: "Search..." !important;
+    }
+}
+
+.mat-select-search-clear {
+    visibility: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: white; 
+}
+   
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #888;
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
