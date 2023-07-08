@@ -27,6 +27,7 @@
         public DateTime? Birthday { get; set; }
         public UserRole Role { get; set; }
         public required string Affiliation { get; set; }
+        public int? AffiliationID { get; set; }
         public UserGrade? Grade { get; set; }
 
     }

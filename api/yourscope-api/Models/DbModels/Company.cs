@@ -45,6 +45,7 @@ namespace yourscope_api.Models.DbModels
     public class Company
     {
         [Key]
+        public int CompanyID { get; set; }
         public required string CompanyName { get; set; }
         public required string Country { get; set; }
         public required string City { get; set; }

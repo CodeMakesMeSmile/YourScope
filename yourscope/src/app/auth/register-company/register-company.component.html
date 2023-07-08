@@ -3,15 +3,15 @@
     <p class="lead fs-3">Please enter company information</p>
     <div class="form-group py-2">
       <label for="company">Company Name</label>
-      <input formControlName="name" type="email" class="form-control" placeholder="Name" />
+      <input formControlName="name" type="email" class="form-control" placeholder="Name" [class.invalid-text-input]="!validName"/>
       </div>
     <div class="form-group py-2">
         <label for="email">Email address</label>
-        <input formControlName="email" type="email" class="form-control" placeholder="name@example.com" />
+        <input formControlName="email" type="email" class="form-control" placeholder="name@example.com" [class.invalid-text-input]="!validEmail"/>
     </div>
     <div class="form-group py-2">
         <label for="address">Address</label>
-        <input formControlName="addr" type="text" class="form-control" placeholder="Address">
+        <input formControlName="addr" type="text" class="form-control" placeholder="Address" [class.invalid-text-input]="!validAddress">
     </div>
     <div class="row py-2">
       <div class="col px-2">
@@ -20,11 +20,11 @@
       </div>
       <div class="col px-2">
           <label for="city">City</label>
-          <input formControlName="city" type="text" class="form-control" placeholder="City">
+          <input formControlName="city" type="text" class="form-control" placeholder="City" [class.invalid-text-input]="!validCity">
       </div>
       <div class="col px-2">
           <label for="country">Country</label>
-          <input formControlName="country" type="text" class="form-control" placeholder="Country">
+          <input formControlName="country" type="text" class="form-control" placeholder="Country" [class.invalid-text-input]="!validCountry">
       </div>
     </div>
     <div class="row py-2">
@@ -38,6 +38,8 @@
       </div>
     </div>
     <button type="submit" class="btn btn-primary btn-lg">Register</button>
+    <br />
+    <label class="formErrors">{{formErrorStr}}</label>
   </div>
 
   <div *ngIf="regState >= 1">

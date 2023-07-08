@@ -1,1 +1,58 @@
-<p>admin-events works!</p>
+
+<div id="cont" class="bg">
+    <nav class="bg-navy pad-12 navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">
+            <img src="../../../assets/yourscope.png" width="100" height="30" alt="">
+            <a class="button-lg" href="admin">Dashboard</a>
+        </a>
+    </nav>
+    <div id="bg" class="vh-100">
+        <div>
+          <h2 class="pad-12 white">
+            Your Events
+          </h2>
+        </div>
+        <div>
+            <a class="button-lg" href="admin/create-event">Add New Event</a>
+        </div>
+
+        <div id="main-card" class=" margin-30 shadow mb-5 rounded ">
+            <div class="scrollspy-container">
+                <div data-spy="scroll" data-offset="0" *ngIf=!empty>
+                    <div class="column" *ngFor="let event of events">
+                        <mat-card class="card ">
+                            <mat-card-header class="card-container">
+                              <mat-card-title>Title: {{event.title}}</mat-card-title>
+                              <mat-card-subtitle>Location: {{event.location}}</mat-card-subtitle>
+                              <mat-card-subtitle>Date: {{event.date}}</mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content style="text-align: center" *ngIf="event.expanded">
+                                <p>Description: {{event.description}}</p>
+                            </mat-card-content>
+                            <mat-card-footer >
+                                <mat-card-actions class="card-container">
+                                    <mat-card-content *ngIf="event.expanded">
+                                        <a class="button-lg" (click)="event.expanded=false">Collapse</a>
+                                        <a class="button-lg" (click)="deleteEvent(event.eventId)">Delete</a>
+                                    </mat-card-content>
+                                    <mat-card-content *ngIf="!event.expanded">
+                                        <a class="button-lg" (click)="event.expanded=true">Expand</a>
+                                        <a class="button-lg" (click)="deleteEvent(event.eventId)">Delete</a>
+                                    </mat-card-content>
+                                 </mat-card-actions>
+                            </mat-card-footer> 
+                          </mat-card>
+                    </div>
+                </div>
+                <div *ngIf=empty>
+                    <mat-card class="card ">
+                        <mat-card-header class="card-container">
+                            <mat-card-title>You have no scheduled events.</mat-card-title>
+                        </mat-card-header>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -8,6 +8,9 @@
   <div class="collapse navbar-collapse" [ngbCollapse]="collapsed">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item button-md">
+        <a class="nav-link white" href="student/profile">Profile</a>
+      </li>
+      <li class="nav-item button-md">
         <a class="nav-link white" href="student/courses">Course Planning</a>
       </li>
       <li class="nav-item button-md">
@@ -25,7 +28,7 @@
 <div id="bg">
   <div>
     <h2 class="pad-12 white">
-      Welcome back, Fred Johnson!
+      Welcome back, {{ name }}!
     </h2>
   </div>
   <div class="centre flex wrap">
@@ -41,9 +44,10 @@
               {{event.title | truncate:26}}
             </h5>
             <div class="card-body">
-              <h6 class="card-title">{{event.time | truncate:20}}</h6>
+              <h6 class="card-title">{{event.date | date:'MM/dd/yyyy, h:mma'}}</h6>
+              <h6 class="card-title">{{event.location | truncate:20}}</h6>
               <p class="card-text">
-                {{event.desc | truncate:260}}
+                {{event.description | truncate:225}}
               </p>
             </div>
           </div>
@@ -60,12 +64,12 @@
           <div data-spy="scroll" class="flex" data-offset="0" [style.width.px]="jobsWidth">
             <div class="card item-card shadow mb-5 bg-white rounded" *ngFor="let job of jobs">
               <h5 class="card-header">
-                {{job.title | truncate:26}}
+                {{job.jobTitle | truncate:25}}
               </h5>
               <div class="card-body">
-                <h6 class="card-title">{{job.company | truncate:20}}</h6>
+                <h6 class="card-title">{{job.companyName | truncate:20}}</h6>
                 <p class="card-text">
-                  {{job.desc | truncate:260}}
+                  {{job.description | truncate:260}}
                 </p>
               </div>
             </div>

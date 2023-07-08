@@ -6,9 +6,9 @@ namespace yourscope_api.service
     public interface IAccountsService
     {
         public bool CheckEmailRegistered(string email);
-        public Task<IActionResult> RegisterStudentMethod(UserRegistrationDto userInfo);
-        public Task<IActionResult> RegisterEmployerMethod(UserRegistrationDto userInfo);
-        public Task<IActionResult> LoginMethod(UserLoginDto loginInfo);
-        public Task<IActionResult> SendPasswordResetEmailMethod(string email);
+        public Task<ApiResponse> RegisterStudentMethod(UserRegistrationDto userInfo);
+        public Task<ApiResponse> RegisterEmployerMethod(UserRegistrationDto userInfo);
+        public Task<ApiResponse> LoginMethod(UserLoginDto loginInfo);
+        public Task<ApiResponse> SendPasswordResetEmailMethod(string email);
     }
 }

@@ -21,14 +21,19 @@ namespace yourscope_api.Migrations
 
             modelBuilder.Entity("yourscope_api.Models.DbModels.Company", b =>
                 {
-                    b.Property<string>("CompanyName")
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("CompanyID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CompanyName")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -52,7 +57,7 @@ namespace yourscope_api.Migrations
                     b.Property<int?>("UnitNumber")
                         .HasColumnType("int");
 
-                    b.HasKey("CompanyName");
+                    b.HasKey("CompanyID");
 
                     b.ToTable("Company");
                 });
@@ -63,6 +68,66 @@ namespace yourscope_api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("SchoolId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EventId");
+
+                    b.HasIndex("SchoolId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("yourscope_api.Models.DbModels.JobApplication", b =>
+                {
+                    b.Property<int>("JobApplicationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("JobPostingId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("JobApplicationId");
+
+                    b.HasIndex("JobPostingId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("JobApplications");
+                });
+
+            modelBuilder.Entity("yourscope_api.Models.DbModels.JobPosting", b =>
+                {
+                    b.Property<int>("JobPostingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ApplicationDeadline")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -71,22 +136,32 @@ namespace yourscope_api.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("EventId");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
-                    b.ToTable("Events");
+                    b.HasKey("JobPostingId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("JobPostings");
                 });
 
             modelBuilder.Entity("yourscope_api.Models.DbModels.School", b =>
                 {
-                    b.Property<string>("Name")
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("SchoolId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
                     b.Property<string>("Address")
                         .HasColumnType("longtext");
 
-                    b.HasKey("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
-                    b.ToTable("School");
+                    b.HasKey("SchoolId");
+
+                    b.ToTable("Schools");
                 });
 
             modelBuilder.Entity("yourscope_api.Models.DbModels.User", b =>
@@ -98,6 +173,9 @@ namespace yourscope_api.Migrations
                     b.Property<string>("Affiliation")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int?>("AffiliationID")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("Birthday")
                         .HasColumnType("datetime(6)");
@@ -126,6 +204,51 @@ namespace yourscope_api.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("yourscope_api.Models.DbModels.Event", b =>
+                {
+                    b.HasOne("yourscope_api.Models.DbModels.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId");
+
+                    b.HasOne("yourscope_api.Models.DbModels.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("School");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("yourscope_api.Models.DbModels.JobApplication", b =>
+                {
+                    b.HasOne("yourscope_api.Models.DbModels.JobPosting", "JobPosting")
+                        .WithMany()
+                        .HasForeignKey("JobPostingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("yourscope_api.Models.DbModels.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("JobPosting");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("yourscope_api.Models.DbModels.JobPosting", b =>
+                {
+                    b.HasOne("yourscope_api.Models.DbModels.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

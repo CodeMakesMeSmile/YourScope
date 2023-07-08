@@ -14,7 +14,7 @@
               </ngx-mat-select-search>
             </mat-option>
             <mat-option *ngFor="let company of filteredCompanies | async" [value]="companies">
-              {{company.name}}
+              {{company.companyName}}
             </mat-option>
           </mat-select>
         </mat-form-field>

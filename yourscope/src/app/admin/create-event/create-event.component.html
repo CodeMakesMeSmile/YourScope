@@ -1,0 +1,27 @@
+<div id="bg" class="d-flex justify-content-center align-items-center vh-100">
+    <div id="main-card" class="card text-center">
+      <div class="card-body p-auto">
+        <img id="logo" src="/assets/yourscope.png" alt="YourScope" />
+          <p class="lead fs-3">New Event</p>
+          <div class="form-group py-2">
+            <input type="text" class="form-control" placeholder="Event Title" type="text" [(ngModel)]="title">
+        </div>
+        <div class="form-group py-2">
+          <input type="text" class="form-control" placeholder="Event Date" type="date" [(ngModel)]="eventDate">
+        </div>
+        <div class="form-group py-2">
+            <input type="text" class="form-control" placeholder="Event Location" type="text" [(ngModel)]="location">
+          </div>
+        <div class="form-group py-2">
+            <textarea type="text" class="form-control" placeholder="Event Description" [(ngModel)]="description"></textarea>
+        </div>
+        <div class="form-group py-2">
+            <button (click)="save()" type="submit" class="btn btn-primary button-lg ">
+              Save
+            </button>
+            <button [routerLink]="['/admin/events']" class="btn button-lg">
+              Cancel
+            </button>
+          </div>
+    </div>
+  </div>

@@ -64,6 +64,13 @@ class CompanyObj {
   ]
 })
 export class RegisterEmployerComponent {
+  // Form validation
+  validFName: boolean = true;
+  validLName: boolean = true;
+  validEmail: boolean = true;
+  validPassword: boolean = true;
+  validCPassword: boolean = true;
+  formErrorStr: string = "";
 
   constructor(private api: APIService, private router: Router) { }
 
@@ -76,18 +83,91 @@ export class RegisterEmployerComponent {
     cpass: new FormControl()
   })
 
-  handleEmployerRegistration() {
+  validateAndSubmit(): void {
     let pass, cpass;
+    let checkExistsUrl = "https://localhost:7184/api/accounts/v1/check-registered/";
+    const emailRegEx: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
-    if (this.employerForm.get("fname")!.value == null) return;
-    if (this.employerForm.get("lname")!.value == null) return;
-    if (this.employerForm.get("email")!.value == null) return;
-    if (this.employerForm.get("pass")!.value != null && (this.employerForm.get("pass")!.value as string).length > 5) pass = this.employerForm.get("pass")!.value;
-    else return;
-    if (this.employerForm.get("cpass")!.value != null && (this.employerForm.get("cpass")!.value as string).length > 5) cpass = this.employerForm.get("cpass")!.value;
-    else return;
-    if (pass != cpass) {console.log(pass, cpass); return;}
+    // Required fields validation.
+    if (!this.employerForm.get("fname")!.value) {
+      if (!this.formErrorStr)
+        this.formErrorStr = "Missing highlighted required fields.";
+      this.validFName = false;
+    }
+    if (!this.employerForm.get("lname")!.value) {
+      if (!this.formErrorStr)
+        this.formErrorStr = "Missing highlighted required fields.";
+      this.validLName = false;
+    };
+    if (!this.employerForm.get("email")!.value ) {
+      if (!this.formErrorStr)
+        this.formErrorStr = "Missing highlighted required fields.";
+      this.validEmail = false;
+    }
+    else {
+      checkExistsUrl += this.employerForm.get("email")!.value;
+    };
+    // Email validation.
+    if (!emailRegEx.test(this.employerForm.get("email")!.value)) {
+      this.validEmail = false;
+      if (!this.formErrorStr)
+        this.formErrorStr = "Please enter a valid email.";
+    }
+    // Password validation.
+    if (this.employerForm.get("pass")!.value && (this.employerForm.get("pass")!.value as string).length > 5)
+      pass = this.employerForm.get("pass")!.value;
+    else if (!this.employerForm.get("pass")!.value) {
+      if (!this.formErrorStr)
+        this.formErrorStr = "Missing highlighted required fields.";
+      this.validPassword = false;
+    }
+    else {
+      if (!this.formErrorStr)
+        this.formErrorStr = "Password must be longer than 5 characters.";
+      this.validPassword = false;
+    }
+    if (this.employerForm.get("cpass")!.value)
+      cpass = this.employerForm.get("cpass")!.value;
+    else {
+      if (!this.formErrorStr)
+        this.formErrorStr = "Missing highlighted required fields.";
+      this.validCPassword = false;
+    };
+    if (pass != cpass) {
+      if (!this.formErrorStr)
+        this.formErrorStr = "Passwords do not match.";
+      this.validPassword = false;
+      this.validCPassword = false;
+    }
 
+    if (!(this.validFName && this.validLName && this.validEmail && this.validPassword && this.validCPassword))
+      return;
+
+    this.api.get(checkExistsUrl).subscribe({
+      next: res => {
+        let response = JSON.parse(JSON.stringify(res));
+
+        if (response.data) {
+          this.validEmail = false;
+          this.formErrorStr = "Email has already been registered.";
+        }
+        else {
+          this.postCompanyAndEmployerRegistration();
+        }
+      },
+      error: err => {
+        console.log(err);
+      }
+    })
+  }
+
+  handleEmployerRegistration() {
+    this.clearFormNotifications();
+
+    this.validateAndSubmit();
+  }
+
+  postCompanyAndEmployerRegistration(): void {
     const url = 'https://localhost:7184/api/accounts/v1/employer/register';
     const user = new UserObj(
       this.employerForm.get("email")!.value,
@@ -117,10 +197,8 @@ export class RegisterEmployerComponent {
         jsn.Type
       );
       this.api.post(company_url, company).subscribe(res => {
-        console.log(res);
         localStorage.removeItem("createCompany");
         this.api.post(url, user).subscribe(res => {
-          console.log(res);
           localStorage.removeItem("companyName");
           this.router.navigate(['/dashboardEmployer']);
         });
@@ -133,5 +211,14 @@ export class RegisterEmployerComponent {
         this.router.navigate(['/dashboardEmployer']);
       });
     }
+  }
+
+  clearFormNotifications() {
+    this.validFName = true;
+    this.validLName = true;
+    this.validEmail = true;
+    this.validPassword = true;
+    this.validCPassword = true;
+    this.formErrorStr = "";
   }
 }

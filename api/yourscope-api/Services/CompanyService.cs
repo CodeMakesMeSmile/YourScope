@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using yourscope_api.entities;
 using yourscope_api.Models.DbModels;
 
 namespace yourscope_api.service
@@ -8,24 +9,24 @@ namespace yourscope_api.service
         #region constructors and class fields
 
         public CompanyService() { }
-        
-        public bool CheckCompanyExists(string company)
-        {
-            using var context = new YourScopeContext();
 
-            List<Company> exist = context.Company.Where(comp => comp.CompanyName == company).ToList();
-            return exist.Count > 0;
-        }
+
         #endregion
 
-        public async Task<IActionResult> RegisterCompanyMethod(Company companyInfo)
+        public ApiResponse CheckCompanyExistsMethod(string company)
+        {
+
+            return new ApiResponse(StatusCodes.Status200OK, data: CheckCompanyExists(company), success: true);
+        }
+
+        public async Task<ApiResponse> RegisterCompanyMethod(Company companyInfo)
         {
             if (CheckCompanyExists(companyInfo.CompanyName))
-                return new BadRequestObjectResult($"{companyInfo.CompanyName} already exists!");
+                return new ApiResponse(StatusCodes.Status400BadRequest, message: $"{companyInfo.CompanyName} already exists!", success: false);
 
             await InsertCompanyIntoDb(companyInfo);
 
-            return new CreatedResult("Company successfully registered.", true);
+            return new ApiResponse(StatusCodes.Status201Created, "Company successfully registered.", true, success: true);
         }
 
         private static async Task<bool> InsertCompanyIntoDb(Company company)
@@ -43,6 +44,25 @@ namespace yourscope_api.service
                 return false;
             }
             return true;
+        }
+
+        public List<Company> GetCompanyList()
+        {
+            using var context = new YourScopeContext();
+            return context.Company.ToList();
+        }
+
+        public ApiResponse GetCompaniesMethod()
+        {
+            return new ApiResponse(StatusCodes.Status200OK, data: GetCompanyList(), success: true);
+        }
+
+        private static bool CheckCompanyExists(string company)
+        {
+            using var context = new YourScopeContext();
+
+            List<Company> exist = context.Company.Where(comp => comp.CompanyName == company).ToList();
+            return exist.Count > 0;
         }
     }
 }

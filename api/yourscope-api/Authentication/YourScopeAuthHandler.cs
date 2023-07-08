@@ -45,6 +45,7 @@ namespace yourscope_api.authentication
             List<Claim> claimsList = new()
             {
                 new Claim("uid", claims["user_id"].ToString() ?? throw new ArgumentNullException("user_id", "Missing user_id in auth token.")),
+                new Claim("userID", claims["userID"].ToString() ?? throw new ArgumentNullException("userID", "Missing userID in auth token.")),
                 new Claim("email", claims["email"].ToString() ?? throw new ArgumentNullException("email", "Missing email in auth token."))
             };
             // Custom claims.
@@ -52,6 +53,8 @@ namespace yourscope_api.authentication
                 claimsList.Add(new Claim("name", claims["name"].ToString()!));
             if (claims.ContainsKey("role"))
                 claimsList.Add(new Claim("role", claims["role"].ToString()!));
+            if (claims.ContainsKey("affiliationID"))
+                claimsList.Add(new Claim("affiliationID", claims["affiliationID"].ToString()!));
 
             List<ClaimsIdentity> identities = new() {new ClaimsIdentity(claimsList, "YourScopeType") };
             ClaimsPrincipal claimsPrincipal = new(identities);

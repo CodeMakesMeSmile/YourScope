@@ -12,9 +12,11 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { take, takeUntil } from 'rxjs/operators';
 import { RegisterEmployerComponent } from '../register-employer/register-employer.component';
 import { RegisterCompanyComponent } from '../register-company/register-company.component';
+import { APIService } from '../../services/api.service';
 
 interface Company {
-  name: string;
+  companyID: number;
+  companyName: string;
   phone: string;
   fax: string;
   email: string;
@@ -47,27 +49,14 @@ export class RegisterEmployerCompanyComponent implements AfterViewInit, OnDestro
   public regState: number = 0;
   public selected: string = "";
 
-  protected companies: Company[] = [ // Temporary data. currently no endpoint to return a query yet
-    {name:'company 1', phone:'', fax:'', email:'', type:'', unitNumber:0, address:'', city:'', country:''},
-    {name:'company 2', phone:'', fax:'', email:'', type:'', unitNumber:0, address:'', city:'', country:''},
-    {name:'Google Inc.', phone:'', fax:'', email:'', type:'', unitNumber:0, address:'', city:'', country:''},
-    {name:'Microsoft Corp.', phone:'', fax:'', email:'', type:'', unitNumber:0, address:'', city:'', country:''},
-    {name:'Microsoft Corp. 1', phone:'', fax:'', email:'', type:'', unitNumber:0, address:'', city:'', country:''},
-    {name:'Microsoft Corp. 2', phone:'', fax:'', email:'', type:'', unitNumber:0, address:'', city:'', country:''},
-    {name:'Microsoft Corp. 3', phone:'', fax:'', email:'', type:'', unitNumber:0, address:'', city:'', country:''},
-    {name:'Microsoft Corp. 4', phone:'', fax:'', email:'', type:'', unitNumber:0, address:'', city:'', country:''},
-    {name:'Microsoft Corp. 5', phone:'', fax:'', email:'', type:'', unitNumber:0, address:'', city:'', country:''},
-    {name:'Microsoft Corp. 6', phone:'', fax:'', email:'', type:'', unitNumber:0, address:'', city:'', country:''},
-    {name:'Microsoft Corp. 7', phone:'', fax:'', email:'', type:'', unitNumber:0, address:'', city:'', country:''},
-    {name:'Microsoft Corp. 8', phone:'', fax:'', email:'', type:'', unitNumber:0, address:'', city:'', country:''}
-  ];
+  protected companies: Company[] = [];
 
   public companyControl: FormControl = new FormControl();
   public companyFilter: FormControl = new FormControl();
   public filteredCompanies: ReplaySubject<any> = new ReplaySubject();
 
   protected _onDestroy = new Subject();
-  constructor() { }
+  constructor(private api: APIService) { }
 
   selectedCompany(event: MatSelectChange) {
     this.selected = event.source.triggerValue;
@@ -75,9 +64,11 @@ export class RegisterEmployerCompanyComponent implements AfterViewInit, OnDestro
   }
 
   ngOnInit() {
+    this.fetchAllCompanies();
+
     this.companyControl.setValue(this.companies[1]);
     this.filteredCompanies.next(this.companies.slice());
-  
+
     this.companyFilter.valueChanges
       .pipe(takeUntil(this._onDestroy))
       .subscribe(() => {
@@ -102,7 +93,7 @@ export class RegisterEmployerCompanyComponent implements AfterViewInit, OnDestro
     if (!this.companies) {
       return;
     }
-  
+
     let search = this.companyFilter.value;
     if (!search) {
       this.filteredCompanies.next(this.companies.slice());
@@ -110,12 +101,12 @@ export class RegisterEmployerCompanyComponent implements AfterViewInit, OnDestro
     } else {
       search = search.toLowerCase();
     }
-  
+
     this.filteredCompanies.next(
-      this.companies.filter(company => company.name.toLowerCase().indexOf(search) > -1)
+      this.companies.filter(company => company.companyName.toLowerCase().indexOf(search) > -1)
     );
   }
-  
+
   loadEmployerRegistration() {
     if (this.selected != "" && this.selected != null && this.selected != "Select Company") {
       localStorage.setItem("companyName", this.selected);
@@ -127,5 +118,24 @@ export class RegisterEmployerCompanyComponent implements AfterViewInit, OnDestro
 
   loadCompanyRegistration() {
     this.regState = 2;
+  }
+
+  fetchAllCompanies(): void {
+    const url = 'https://localhost:7184/api/company/v1';
+
+    this.api.get(url).subscribe({
+      next: res => {
+        let response = JSON.parse(JSON.stringify(res));
+        this.populateCompanyDropdown(response.data);
+      },
+      error: err => {
+        console.log(err);
+      }
+    })
+  }
+
+  populateCompanyDropdown(companies: Company[]) {
+    this.companies = companies;
+    this.filterCompanies();
   }
 }

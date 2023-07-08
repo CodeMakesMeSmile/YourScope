@@ -7,6 +7,13 @@ using FirebaseAdmin;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using yourscope_api.authentication;
+using yourscope_api.ServiceInterfaces;
+using yourscope_api.Services;
+using Microsoft.AspNetCore.Authorization;
+using yourscope_api.Authentication;
+using yourscope_api.middleware;
+using Newtonsoft.Json.Serialization;
+using System.Reflection;
 
 string YourScopePolicy = "YourScopePolicy";
 
@@ -20,10 +27,24 @@ builder.Configuration.AddEnvironmentVariables();
 
 #region Services Configuration
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(options =>
+        {
+            options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+        })
+    .ConfigureApiBehaviorOptions(options =>
+        {
+            options.SuppressModelStateInvalidFilter = true;
+        });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c => 
+    {
+        var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+        c.IncludeXmlComments(xmlPath);
+    }
+);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: YourScopePolicy,
@@ -40,7 +61,11 @@ builder.Services.AddRouting(builder => { builder.LowercaseUrls = true; });
 #region dependency injection
 builder.Services.AddTransient<IAccountsService, AccountsService>();
 builder.Services.AddTransient<ICompanyService, CompanyService>();
+builder.Services.AddTransient<IEventsService, EventsService>();
+builder.Services.AddTransient<IJobService, JobService>();
+builder.Services.AddTransient<ISchoolService, SchoolService>();
 builder.Services.AddSingleton(FirebaseApp.Create());
+builder.Services.AddSingleton<IAuthorizationMiddlewareResultHandler, YourScopeAuthorizationMiddleware>();
 #endregion
 
 #endregion
@@ -56,12 +81,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
 #region Middleware Configuration
 app.UseCors(YourScopePolicy);
+app.UseMiddleware<YourScopeStatusCodeMiddleware>();
 #endregion
 
 app.Run();
