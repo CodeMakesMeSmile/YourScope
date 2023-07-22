@@ -8,53 +8,90 @@ import { JwtService } from 'src/app/services/jwt.service';
   templateUrl: './dashboard-admin.component.html',
   styleUrls: ['./dashboard-admin.component.scss']
 })
-export class DashboardAdminComponent implements OnInit{
-  constructor(private hc: APIService, private cookie: CookieService, private jwtService: JwtService) { }
+export class DashboardAdminComponent implements OnInit {
+  events: any[] = [];
+  eventStates: boolean[] = [];
+  courses: any[] = [];
+  courseStates: boolean[] = [];
+  selectedEvent: any = {};
+  selectedCourse: any = {};
+  confirmEvent: boolean = false;
+  confirmCourse: boolean = false;
 
-  events = <any> [];
-  loginToken = this.cookie.get("loginToken");
-  decodedToken = this.jwtService.DecodeToken(this.loginToken);
-  empty = false;
+  constructor(private api: APIService, private cookie: CookieService, private jwt: JwtService) { }
+
+  token = this.jwt.DecodeToken(this.cookie.get("loginToken"));
   
   ngOnInit(): void {
-    this.hc.getEvents(0,10, undefined, this.decodedToken.userID).subscribe({
+    this.api.getEvents(20, 0, this.token.affiliationID, undefined).subscribe({
       next: res => {
         this.events = JSON.parse(JSON.stringify(res)).data;
-
-        if (this.events.length != 0){
-          for (let event in this.events){
-            let date = this.events[event].date;
-            date = new Date(date).toLocaleDateString('en-US'); 
-            this.events[event].date = date;
-          }
-        } else {
-          this.empty = true;
+        for (let i = 0; i < this.events.length; i++) {
+          this.eventStates.push(false);
         }
       }, 
       error: err => {
-        alert("Couldn't retrieve events" );
+        alert("Unable retrieve events." );
+      }
+    });
+    this.api.getCourses(this.token.affiliationID, undefined, undefined, undefined, 0, 20).subscribe({
+      next: (res: any) => {
+        this.courses = JSON.parse(JSON.stringify(res)).data;
+        for (let i = 0; i < this.courses.length; i++) {
+          this.courseStates.push(false);
+        }
+      },
+      error: err => {
+        alert("Unable to retrieve events.");
       }
     });
   }
 
-  courses = [
-    {code: 'CSCC01', name: 'Introduction to Software Engineering', url: '#'},
-    {code: 'CSCC01', name: 'Introduction to Software Engineering', url: '#'},
-    {code: 'CSCC01', name: 'Introduction to Software Engineering', url: '#'},
-    {code: 'CSCC01', name: 'Introduction to Software Engineering', url: '#'},
-    {code: 'CSCC01', name: 'Introduction to Software Engineering', url: '#'},
-    {code: 'CSCC01', name: 'Introduction to Software Engineering', url: '#'},
-    {code: 'CSCC01', name: 'Introduction to Software Engineering', url: '#'},
-    {code: 'CSCC01', name: 'Introduction to Software Engineering', url: '#'},
-    {code: 'CSCC01', name: 'Introduction to Software Engineering', url: '#'},
-    {code: 'CSCC01', name: 'Introduction to Software Engineering', url: '#'},
-    {code: 'CSCC01', name: 'Introduction to Software Engineering', url: '#'},
-    {code: 'CSCC01', name: 'Introduction to Software Engineering', url: '#'},
-    {code: 'CSCC01', name: 'Introduction to Software Engineering', url: '#'},
-    {code: 'CSCC01', name: 'Introduction to Software Engineering', url: '#'},
-    {code: 'CSCC01', name: 'Introduction to Software Engineering', url: '#'},
-    {code: 'CSCC01', name: 'Introduction to Software Engineering', url: '#'},
-    {code: 'CSCC01', name: 'Introduction to Software Engineering', url: '#'},
-    {code: 'CSCC01', name: 'Introduction to Software Engineering', url: '#'},
-  ];
+  toggleEventState(index: number): void {
+    this.eventStates[index] = !this.eventStates[index];
+  }
+
+  toggleCourseState(index: number): void {
+    this.courseStates[index] = !this.courseStates[index];
+  }
+
+  deleteEvent(e: any){
+    this.selectedEvent = e;
+    this.confirmEvent = true;
+  }
+
+  confirmEventDeletion(result: boolean) {
+    this.confirmEvent = false;
+    if (result) {
+      this.api.deleteEvent(this.selectedEvent.eventId).subscribe({
+        next: res => {
+          alert("Successfully deleted event.");
+          location.reload();
+        }, 
+        error: err => {
+          alert("Unable to delete event.");
+        }
+      });
+    }
+  }
+
+  deleteCourse(e: any){
+    this.selectedCourse = e;
+    this.confirmCourse = true;
+  }
+
+  confirmCourseDeletion(result: boolean) {
+    this.confirmCourse = false;
+    if (result) {
+      this.api.deleteCourse(this.selectedCourse.courseId).subscribe({
+        next: res => {
+          alert("Successfully deleted course.");
+          location.reload();
+        }, 
+        error: err => {
+          alert("Unable to delete event.");
+        }
+      });
+    }
+  }
 }

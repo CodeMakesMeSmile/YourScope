@@ -1,1 +1,63 @@
-<p>admin-courses works!</p>
+<app-navbar></app-navbar>
+<div id="bg">
+  <div>
+    <h2 class="pad-12 white">
+      School Courses
+    </h2>
+  </div>
+  <div>
+    <a class="button-sm" href="admin/create-course">Add Course</a>
+  </div>
+  <div class="centre flex wrap">
+    <div *ngIf="courses.length == 0" class="card pad-12">
+        <h5>There are no courses for this school.</h5>
+    </div>
+    <div class="scrollspy-container">
+      <div data-spy="scroll" class="content-box flex" data-offset="0">
+        <div class="card item-card shadow mb-5 bg-white rounded flex" *ngFor="let course of courses">
+          <div class="full-size">
+            <h5 class="card-header">
+              {{course.courseCode}}
+            </h5>
+            <div class="card-body">
+              <h6 class="card-title">{{course.name | truncate:30}}</h6>
+              <p class="card-text">
+                {{course.description | truncate:200}}
+              </p>
+            </div>
+            <div class="centre flex">
+              <div class="button-sm" (click)="loadPopup(course)">
+                More Info
+              </div>
+              <div class="button-d" (click)="deleteCourse(course)">
+                Delete
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <button class="page-link" (click)="onPageMove(false)">Previous</button>
+    </li>
+    <li class="page-item" *ngFor="let item of [].constructor(totalPages); let i = index">
+      <button class="page-link" (click)="onPageChange(i + 1)">{{ i + 1 }}</button>
+    </li>
+    <li class="page-item">
+      <button class="page-link" (click)="onPageMove(true)">Next</button>
+    </li>
+  </ul>
+</div>
+
+<div class="close-popup" (click)="closePopup2($event)" *ngIf="popup">
+  <div class="info-card">
+    <div class="close-button-bg">
+      <div class="close-button" (click)="closePopup1()">X</div>
+    </div>
+    <app-admin-course-details [course]="selected"></app-admin-course-details>
+  </div>
+</div>
+
+<confirmation-dialog *ngIf="confirm" (onClickEvent)="confirmDeletion($event)"/>

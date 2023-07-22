@@ -1,0 +1,6 @@
+<div class="dialogBox" [@inOutAnimation] *ngIf="visible">
+  <h2 class="headerDialog">Are you sure?</h2>
+  <br />
+  <button class="btn btn-success btnDialog" id="btnYes" (click)="onClickYes()">Yes</button>
+  <button class="btn btn-danger btnDialog" id="btnNo" (click)="onClickNo()">No</button>
+</div>

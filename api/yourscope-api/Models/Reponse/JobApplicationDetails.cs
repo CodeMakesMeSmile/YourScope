@@ -11,5 +11,9 @@ namespace yourscope_api.Models.Reponse
         public DateTime? Birthday { get; set; }
         public required string School { get; set; }
         public UserGrade? Grade { get; set; }
+        public CoverLetter? CoverLetter { get; set; }
+        public List<string> Skills { get; set; } = new List<string>();
+        public List<string> IntrestsHobbies { get; set; } = new List<string>();
+        public List<string> Awards { get; set; } = new List<string>();
     }
 }

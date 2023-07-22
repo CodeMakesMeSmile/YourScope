@@ -1,58 +1,64 @@
-
-<div id="cont" class="bg">
-    <nav class="bg-navy pad-12 navbar navbar-expand-lg">
-        <a class="navbar-brand" href="#">
-            <img src="../../../assets/yourscope.png" width="100" height="30" alt="">
-            <a class="button-lg" href="admin">Dashboard</a>
-        </a>
-    </nav>
-    <div id="bg" class="vh-100">
-        <div>
-          <h2 class="pad-12 white">
-            Your Events
-          </h2>
-        </div>
-        <div>
-            <a class="button-lg" href="admin/create-event">Add New Event</a>
-        </div>
-
-        <div id="main-card" class=" margin-30 shadow mb-5 rounded ">
-            <div class="scrollspy-container">
-                <div data-spy="scroll" data-offset="0" *ngIf=!empty>
-                    <div class="column" *ngFor="let event of events">
-                        <mat-card class="card ">
-                            <mat-card-header class="card-container">
-                              <mat-card-title>Title: {{event.title}}</mat-card-title>
-                              <mat-card-subtitle>Location: {{event.location}}</mat-card-subtitle>
-                              <mat-card-subtitle>Date: {{event.date}}</mat-card-subtitle>
-                            </mat-card-header>
-                            <mat-card-content style="text-align: center" *ngIf="event.expanded">
-                                <p>Description: {{event.description}}</p>
-                            </mat-card-content>
-                            <mat-card-footer >
-                                <mat-card-actions class="card-container">
-                                    <mat-card-content *ngIf="event.expanded">
-                                        <a class="button-lg" (click)="event.expanded=false">Collapse</a>
-                                        <a class="button-lg" (click)="deleteEvent(event.eventId)">Delete</a>
-                                    </mat-card-content>
-                                    <mat-card-content *ngIf="!event.expanded">
-                                        <a class="button-lg" (click)="event.expanded=true">Expand</a>
-                                        <a class="button-lg" (click)="deleteEvent(event.eventId)">Delete</a>
-                                    </mat-card-content>
-                                 </mat-card-actions>
-                            </mat-card-footer> 
-                          </mat-card>
-                    </div>
-                </div>
-                <div *ngIf=empty>
-                    <mat-card class="card ">
-                        <mat-card-header class="card-container">
-                            <mat-card-title>You have no scheduled events.</mat-card-title>
-                        </mat-card-header>
-                    </mat-card>
-                </div>
-            </div>
-        </div>
+<app-navbar></app-navbar>
+<div id="bg">
+  <div>
+    <h2 class="pad-12 white">
+      School Events
+    </h2>
+  </div>
+  <div>
+    <a class="button-sm" href="admin/create-event">Add Event</a>
+  </div>
+  <div class="centre flex wrap">
+    <div *ngIf="events.length == 0" class="card pad-12">
+        <h5>You have no scheduled events.</h5>
     </div>
+    <div class="scrollspy-container">
+      <div data-spy="scroll" class="content-box flex" data-offset="0">
+        <div class="card item-card shadow mb-5 bg-white rounded flex" *ngFor="let event of events">
+          <div class="full-size">
+            <h5 class="card-header">
+              {{event.title | truncate:25}}
+            </h5>
+            <div class="card-body">
+              <h6 class="card-title">{{event.date | date:'MM/dd/yyyy, h:mma'}}</h6>
+              <h6 class="card-title">{{event.location | truncate:30}}</h6>
+              <p class="card-text">
+                {{event.description | truncate:200}}
+              </p>
+            </div>
+            <div class="centre flex">
+              <div class="button-sm" (click)="loadPopup(event)">
+                More Info
+              </div>
+              <div class="button-d" (click)="deleteEvent(event)">
+                Delete
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <button class="page-link" (click)="onPageMove(false)">Previous</button>
+    </li>
+    <li class="page-item" *ngFor="let item of [].constructor(totalPages); let i = index">
+      <button class="page-link" (click)="onPageChange(i + 1)">{{ i + 1 }}</button>
+    </li>
+    <li class="page-item">
+      <button class="page-link" (click)="onPageMove(true)">Next</button>
+    </li>
+  </ul>
 </div>
 
+<div class="close-popup" (click)="closePopup2($event)" *ngIf="popup">
+  <div class="info-card">
+    <div class="close-button-bg">
+      <div class="close-button" (click)="closePopup1()">X</div>
+    </div>
+    <app-admin-event-details [event]="selected"></app-admin-event-details>
+  </div>
+</div>
+
+<confirmation-dialog *ngIf="confirm" (onClickEvent)="confirmDeletion($event)"/>

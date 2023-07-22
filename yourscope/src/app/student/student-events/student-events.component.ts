@@ -22,7 +22,6 @@ interface event {
 })
 
 export class StudentEventsComponent implements OnInit {
-  collapsed : boolean = false;
   popup : boolean = false; 
   selected : event = {eventId: -1, title: "", date: "", description: "", location: "", userId:  null, user:  null, schoolId:  null, school:  null};
   currentPage: number = 1;
@@ -59,8 +58,11 @@ export class StudentEventsComponent implements OnInit {
   }
 
   onPageMove(increment: boolean) {
+    if (this.totalPages == 0) {
+      return;
+    }
     if (increment) {
-      if (this.currentPage == this.totalPages) {
+      if (this.currentPage == this.totalPages ) {
         return;
       }
       this.currentPage++;
@@ -75,7 +77,7 @@ export class StudentEventsComponent implements OnInit {
 
   updatePage() {
     const token = this.jwt.DecodeToken(this.cookie.get("loginToken"));
-    this.api.getEvents((this.currentPage - 1) * 12, 12, token.affiliationID, undefined).subscribe({
+    this.api.getEvents(12, (this.currentPage - 1) * 12, token.affiliationID, undefined).subscribe({
       next: (res: any) => {
         this.events = res.data;
       },

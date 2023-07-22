@@ -106,6 +106,33 @@ namespace yourscope_api.Controllers
         }
 
         /// <summary>
+        /// Registers an admin account.
+        /// </summary>
+        /// <param name="userInfo">Account details for admin registration</param>
+        /// <returns>true if the user account was registered sucessfully, 400 if there was a problem with the request, 500 otherwise.</returns>
+        [ProducesResponseType(typeof(bool), 201)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
+        [HttpPost]
+        [Route("admin/register")]
+        public async Task<IActionResult> RegisterAdmin([FromBody] UserRegistrationDto userInfo)
+        {
+            if (!ModelState.IsValid)
+                return StatusCode(StatusCodes.Status400BadRequest, GenerateMissingFieldsResponse());
+
+            ApiResponse response;
+            try
+            {
+                response = await service.RegisterAdminMethod(userInfo);
+            }
+            catch (Exception ex)
+            {
+                response = new(StatusCodes.Status500InternalServerError, exception: ex);
+            }
+            return StatusCode(response.StatusCode, response);
+        }
+
+        /// <summary>
         /// Registers an employer account.
         /// </summary>
         /// <param name="email">A required body parameter (string) representing an email address.</param>
@@ -165,6 +192,27 @@ namespace yourscope_api.Controllers
                 response = new(StatusCodes.Status500InternalServerError, ex.Message, success: false, exception: ex);
                 return StatusCode(response.StatusCode, response);
             }
+        }
+
+        /// <summary>
+        /// Retrieves a user given their user ID.
+        /// </summary>
+        /// <param name="id">The ID of the user to be retrieved.</param>
+        /// <returns>A user object containing information about the retrieved user, 404 status if the user does not exist, or 500 status otherwise.</returns>
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetUserById(int id)
+        {
+            ApiResponse response;
+            try
+            {
+                response = await service.GetUserByIdMethod(id);
+            }
+            catch (Exception ex)
+            {
+                response = new(StatusCodes.Status500InternalServerError, exception: ex);
+            }
+            return StatusCode(response.StatusCode, response);
         }
 
         #region helpers

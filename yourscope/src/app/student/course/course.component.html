@@ -1,0 +1,5 @@
+<tr class="courseWrapper" (click)="onClick()">
+  <td *ngIf="course">{{course.courseCode+" - "+course.name | truncate:35}}</td>
+  <td *ngIf="!course"><img src="../../../assets/plus.png" class="addCourseIcon"></td>
+</tr>
+

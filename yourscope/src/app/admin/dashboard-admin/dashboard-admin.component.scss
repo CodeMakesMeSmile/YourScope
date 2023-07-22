@@ -59,6 +59,18 @@
   text-justify: center;
 }
 
+.button-d {
+  float: right;
+  color: white;
+  text-align: center;
+  width: 90px;
+  margin: 5px;
+  background-color: rgb(220, 53, 69);
+  border-radius: 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 #cont{
   height: 100vh;
   display: flex;
@@ -71,4 +83,16 @@
 
 .card-scrollable{
   flex: 1 1 auto;
+}
+
+.caret {
+  float: right;
+  width: inherit;
+  height: inherit;
+  padding: 5px;
+  text-align: center;
+}
+
+.pointer {
+  cursor: pointer;
 }

@@ -1,0 +1,40 @@
+.bg-navy {
+  background-color: rgb(61, 89, 149);
+}
+
+.pad-12 {
+  padding: 12px;
+}
+
+.white {
+  color: white;
+}
+
+.button-md {
+  color: white;
+  background-color: rgb(42, 61, 104);
+  border-radius: 20px;
+  padding: 0px 10px 0px 10px;
+  text-decoration: none;
+  margin-left: 20px;
+  text-align: center;
+  text-justify: center;
+}
+
+.logout-button-bg {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  right: 20px;
+}
+
+.logout-button {
+  float: right;
+  background-color: #243E6B;
+  border-radius: 12px;
+  width: inherit;
+  height: inherit;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+}

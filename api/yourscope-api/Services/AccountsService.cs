@@ -12,6 +12,7 @@ using FirebaseAdmin.Auth;
 using Newtonsoft.Json;
 using System.Text;
 using Newtonsoft.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
 
 namespace yourscope_api.service
 {
@@ -108,6 +109,24 @@ namespace yourscope_api.service
             return new ApiResponse(StatusCodes.Status201Created, "User successfully registered.", true, success: true);
         }
 
+        public async Task<ApiResponse> RegisterAdminMethod(UserRegistrationDto userInfo)
+        {
+            if (CheckEmailRegistered(userInfo.Email))
+                return new ApiResponse(StatusCodes.Status400BadRequest, $"{userInfo.Email} has already been registered!", success: false);
+
+            User user = ConvertRegistrationDtoToUser(userInfo, UserRole.Admin);
+
+            string uid = (await FirebaseRegister(userInfo)).User.Uid;
+
+            int userID = await InsertUserIntoDb(user);
+
+            var claims = GenerateCustomClaims(UserRole.Admin, userID, user);
+
+            await FirebaseAuth.GetAuth(FirebaseApp).SetCustomUserClaimsAsync(uid, claims);
+
+            return new ApiResponse(StatusCodes.Status201Created, "User successfully registered.", true, success: true);
+        }
+
         private async Task<UserCredential> FirebaseRegister(UserRegistrationDto userInfo)
         {
             var nameList = new List<string> { userInfo.FirstName.Trim() };
@@ -169,6 +188,16 @@ namespace yourscope_api.service
             return new ApiResponse(StatusCodes.Status201Created, data: true, success: true);
         }
 
+        public async Task<ApiResponse> GetUserByIdMethod(int id)
+        {
+            User? user = await GetUserById(id);
+
+            if (user is null)
+                return new ApiResponse(StatusCodes.Status404NotFound, $"User with ID {id} does not exist");
+
+            return new ApiResponse(StatusCodes.Status200OK, data: user, success: true);
+        }
+
         #region helpers
         private static User ConvertRegistrationDtoToUser(UserRegistrationDto userInfo, UserRole role)
         {
@@ -213,6 +242,15 @@ namespace yourscope_api.service
                 claims.Add("affiliationID", user.AffiliationID);
 
             return claims;
+        }
+
+        private static async Task<User?> GetUserById(int id)
+        {
+            using var context = new YourScopeContext();
+
+            User? user = await context.Users.Where(u => u.UserId == id).FirstOrDefaultAsync();
+
+            return user;
         }
         #endregion
     }

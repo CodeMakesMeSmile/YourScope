@@ -1,1 +1,26 @@
-<p>student-courses works!</p>
+<app-navbar></app-navbar>
+<!-- Background for page -->
+<div id="bg">
+  <!-- Title -->
+  <div>
+    <h2 class="pad-12 white">
+      Course Planning
+    </h2>
+  </div>
+
+  <!-- Schedule wrapper div -->
+  <div id="studentSchedule">
+    <!-- Loading gif for schedule -->
+    <div *ngIf="!scheduleLoaded" class="loadingGif"><img src="../../../assets/loading.gif"></div>
+    <app-year class="scheduleYearWrapper" *ngFor="let year of schedule.years" [year]="year" (onClickViewCourse)="onClickViewCourse($event)" (onClickAddCourse)="onClickAddCourse($event)"/>
+  </div>
+
+  <!-- Background for popups -->
+  <div class="overlayBackground" *ngIf="showAddCourse || showViewCourse" (click)="onClickBackground($event)">
+    <!-- View course overlay -->
+    <app-view-course *ngIf="showViewCourse" [course]="viewCourse" (onClickCloseEvent)="onClickClose()" [visible]="viewCourseDiv" [animationDuration]="animationDuration" (onCourseDeleted)="onCourseDeleted()"/>
+    <!-- Add course overlay -->
+    <app-add-course *ngIf="showAddCourse"/>
+  </div>
+</div>
+

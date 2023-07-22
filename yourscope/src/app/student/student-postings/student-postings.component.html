@@ -1,37 +1,14 @@
-<nav class="bg-navy pad-12 navbar navbar-expand-lg">
-  <a class="navbar-brand" href="#">
-    <img src="../../../assets/yourscope.png" width="100" height="30" alt="">
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation" (click)="collapsed = !collapsed">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" [ngbCollapse]="collapsed">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item button-md">
-        <a class="nav-link white" href="student/profile">Profile</a>
-      </li>
-      <li class="nav-item button-md">
-        <a class="nav-link white" href="student/courses">Course Planning</a>
-      </li>
-      <li class="nav-item button-md">
-        <a class="nav-link white" href="student/toolkit">Toolkit</a>
-      </li>
-      <li class="nav-item button-md">
-        <a class="nav-link white" href="student/postings">Job Search</a>
-      </li>
-      <li class="nav-item button-md">
-        <a class="nav-link white" href="student/events">School Events</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+<app-navbar></app-navbar>
 <div id="bg">
-  <div>
+  <div style="display:flex;">
     <h2 class="pad-12 white">
       Job Postings
     </h2>
+    <h4 style="color:rgb(228, 228, 228); margin-left: 24px; padding: 18px;">Applied:</h4>
+    <mat-slide-toggle (change)="toggleApplied()" [checked]="false"></mat-slide-toggle>
   </div>
   <div class="centre flex wrap">
+    <h2 *ngIf="this.jobs.length == 0">There are no job postings currently. Come back another time!</h2>
     <div class="scrollspy-container">
       <div data-spy="scroll" class="content-box flex" data-offset="0">
         <div class="card item-card shadow mb-5 bg-white rounded flex" *ngFor="let job of jobs">
@@ -71,6 +48,8 @@
     <div class="close-button-bg">
       <div class="close-button" (click)="closePopup1()">X</div>
     </div>
-    <app-student-posting-details [selected]="selected"></app-student-posting-details>
+    <app-student-posting-details *ngIf="!this.apply" [selected]="selected"></app-student-posting-details>
+    <div class="apply-button" *ngIf="!this.apply" (click)="loadApplication()">Apply Now!</div>
+    <app-student-application *ngIf="this.apply" [selected]="selected"></app-student-application>
   </div>
 </div>

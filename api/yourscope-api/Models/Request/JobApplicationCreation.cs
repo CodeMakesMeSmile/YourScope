@@ -4,5 +4,6 @@
     {
         public int jobPostingId { get; set; }
         public int userId { get; set; }
+        public int? CoverLetterId { get; set; }
     }
 }

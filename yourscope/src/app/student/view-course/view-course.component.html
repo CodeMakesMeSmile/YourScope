@@ -1,0 +1,19 @@
+<div class="divViewCourse" [@inOutAnimation] *ngIf="visible">
+  <h4>{{courseCode + " - " + courseName + " (" + courseType + ") "}}</h4>
+  <img src="../../../assets/closeBox.png" class="closeIcon" (click)="onClickCloseButton()">
+  <p class="subHeading">
+    <span class="bold">Credits:</span> {{courseCredits}}
+  </p>
+  <p class="subHeading">
+    <span class="bold">Discipline:</span> {{courseDiscipline}}
+  </p>
+  <p class="subHeading">
+    <span class="bold">Pre-requisites:</span> {{coursePrereqs}}
+  </p>
+  <hr />
+  <h5>Description</h5>
+  <p class="courseDescription">{{courseDescription}}</p>
+  <hr />
+  <button class="btn btn-danger btnDropCourse" (click)="onClickDropCourse()" [disabled]="disableDrop">Drop</button>
+</div>
+<confirmation-dialog *ngIf="showConfirmationDialog" (onClickEvent)="onConfirmationDialogClick($event)"/>

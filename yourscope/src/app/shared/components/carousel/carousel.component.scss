@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap');
+
+.carousel-wrapper {
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 40px;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+    font-family: 'Inter', sans-serif;
+}
+
+img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.picsum-img-wrapper {
+    max-height: 700px;
+}

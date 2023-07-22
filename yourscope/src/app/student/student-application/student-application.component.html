@@ -1,0 +1,56 @@
+<div class="inner-card">
+  <div class="inner-card-wrapper">
+    <div class="popup-title">
+      <h1>{{selected.jobTitle}}</h1>
+    </div>
+    <div style="display: flex; justify-content:space-between;">
+      <h3>{{selected.companyName}}</h3>
+      <h3>Apply By: {{selected.applicationDeadline | date:'MM/dd/yyyy, h:mma'}}</h3>
+    </div>
+    <div>
+      <div *ngIf="!this.create">
+        <h3>Select Cover Letter</h3>
+        <mat-form-field>
+          <mat-select [formControl]="coverControl" placeholder="Select One">
+            <mat-option>
+              <ngx-mat-select-search placeholderLabel="Search..." [formControl]="coverFilter">
+                <span ngxMatSelectNoEntriesFound>
+                  <button (click)="loadCreateCoverLetter()" mat-button color="primary">Add Cover Letter</button>
+                </span>
+              </ngx-mat-select-search>
+            </mat-option>
+            <mat-option (click)="selectedCoverLetter(cover)" *ngFor="let cover of filteredCovers | async" [value]="cover">
+              {{cover.intro.slice(0, 20)}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="this.create">
+        <h3>Create Cover Letter</h3>
+        <form [formGroup]="applicationForm" (ngSubmit)="submitConfirm()">
+          <div class="form-group py-2">
+            <label for="intro">Introduction</label>
+            <textarea formControlName="intro" type="text" class="form-control"></textarea>
+          </div>
+          <div class="form-group py-2">
+            <label for="intro">Pitch 1</label>
+            <textarea formControlName="salesPitch1" type="text" class="form-control"></textarea>
+          </div>
+          <div class="form-group py-2">
+            <label for="intro">Pitch 2</label>
+            <textarea formControlName="salesPitch2" type="text" class="form-control"></textarea>
+          </div>
+          <div class="form-group py-2">
+            <label for="intro">Pitch 3</label>
+            <textarea formControlName="salesPitch3" type="text" class="form-control"></textarea>
+          </div>
+          <div class="form-group py-2">
+            <label for="intro">Conclusion</label>
+            <textarea formControlName="conclusion" type="text" class="form-control"></textarea>
+          </div>
+        </form>
+      </div>
+      <button (click)="submitConfirm()" type="submit" class="btn btn-primary btn-lg">Submit Application</button>
+    </div>
+  </div>
+</div>

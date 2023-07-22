@@ -8,5 +8,6 @@ namespace yourscope_api.Models.DbModels
         public int SchoolId { get; set; }
         public required string Name { get; set; }
         public string? Address { get; set; }
+        public List<SchoolCourse> SchoolCourses { get; set; } = new();
     }
 }

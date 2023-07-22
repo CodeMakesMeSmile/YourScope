@@ -6,12 +6,15 @@ import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.compo
 import { AdminCoursesComponent } from './admin-courses/admin-courses.component';
 import { AdminEventsComponent } from './admin-events/admin-events.component';
 import { CreateEventComponent } from './create-event/create-event.component';
+import { CreateCourseComponent } from './create-course/create-course.component';
 
 const routes: Routes = [
   {   path: 'admin',   component: DashboardAdminComponent},
   {   path: 'admin/courses',   component: AdminCoursesComponent},
   {   path: 'admin/events',   component: AdminEventsComponent},
-  {   path: 'admin/create-event', component: CreateEventComponent}
+  {   path: 'admin/create-event', component: CreateEventComponent},
+  {   path: 'admin/create-course', component: CreateCourseComponent}
+  
 ];
 
 @NgModule({

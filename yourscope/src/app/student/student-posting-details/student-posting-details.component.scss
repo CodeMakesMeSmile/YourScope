@@ -2,8 +2,9 @@
   background-color: #F5F5F5;
   box-shadow: 0 4px 4px 0 #00000040 inset;
   width: calc(100% - 48px);
-  height: calc(100% - 48px);
+  height: calc(100% - 96px);
   margin: 24px auto;
+  margin-bottom: 18px;
   border-radius: 32px;
 }
 
@@ -22,8 +23,18 @@ h3 {
 }
 
 p {
+  overflow: scroll;
+  max-height: calc(100% - 160px);
   margin: 24px;
   font-size: 18px;
+
+  &::-webkit-scrollbar-track {
+    background-color: #00000000;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background-color: #00000000;
+  }
 }
 
 .button-lg {

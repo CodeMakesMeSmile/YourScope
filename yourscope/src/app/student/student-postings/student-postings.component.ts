@@ -9,11 +9,12 @@ import { JwtService } from 'src/app/services/jwt.service';
   styleUrls: ['./student-postings.component.scss']
 })
 export class StudentPostingsComponent implements OnInit {
-  collapsed: boolean = false;
   popup: boolean = false; 
+  apply: boolean = false;
   selected: any = {};
   currentPage: number = 1;
   totalPages: number = 0;
+  applied: boolean = false;
 
   constructor(private api: APIService, private cookie: CookieService, private jwt: JwtService) {}
 
@@ -24,10 +25,18 @@ export class StudentPostingsComponent implements OnInit {
 
   closePopup1() {
     this.popup = false;
+    this.apply = false;
   }
 
   closePopup2(t: MouseEvent) {
-    if ((t.target as Element).className == "close-popup") this.popup = false;
+    if ((t.target as Element).className == "close-popup") {
+      this.popup = false;
+      this.apply = false;
+    }
+  }
+
+  loadApplication() {
+    this.apply = true;
   }
 
   jobs: any[] = [];
@@ -45,6 +54,9 @@ export class StudentPostingsComponent implements OnInit {
   }
 
   onPageMove(increment: boolean) {
+    if (this.totalPages == 0) {
+      return;
+    }
     if (increment) {
       if (this.currentPage == this.totalPages) {
         return;
@@ -61,7 +73,7 @@ export class StudentPostingsComponent implements OnInit {
 
   updatePage() {
     const token = this.jwt.DecodeToken(this.cookie.get("loginToken"));
-    this.api.getJobs(12, (this.currentPage - 1) * 12, token.userID, undefined).subscribe({
+    this.api.getJobs(12, (this.currentPage - 1) * 12, token.userID, this.applied).subscribe({
       next: (res: any) => {
         this.jobs = res.data
       },
@@ -69,5 +81,10 @@ export class StudentPostingsComponent implements OnInit {
         alert("Unable to retrieve job postings.");
       }
     });
+  }
+
+  toggleApplied() {
+    this.applied = !this.applied;
+    this.ngOnInit();
   }
 }

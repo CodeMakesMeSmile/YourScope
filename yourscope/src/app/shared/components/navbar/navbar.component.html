@@ -1,0 +1,18 @@
+<nav class="bg-navy pad-12 navbar navbar-expand-lg">
+  <a class="navbar-brand" href="{{home}}">
+    <img src="../../../assets/yourscope.png" width="100" height="30" alt="">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation" (click)="collapsed = !collapsed">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" [ngbCollapse]="collapsed">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item button-md" *ngFor="let link of links">
+        <a class="nav-link white" href="{{link.href}}">{{link.label}}</a>
+      </li>
+    </ul>
+    <div class="logout-button-bg">
+      <img src="../../../assets/logout.svg" class="logout-button" (click)="logout()">
+    </div>
+  </div>
+</nav>

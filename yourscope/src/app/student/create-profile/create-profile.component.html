@@ -1,0 +1,77 @@
+<div id="bg" class="d-flex justify-content-center align-items-center vh-100">
+    <div id="main-card" class="card text-center">
+      <div class="card-body p-auto">
+          <p class="lead fs-3">Create Profile</p>
+          <div *ngIf="!add_exp">
+            <form [formGroup]="about_form">
+              <div class="form-group py-2 left">
+                <h5>Tell us about yourself</h5>
+                  <div class="form-group py-2">
+                      <p>Please list your skills seperated by commas</p>
+                      <input type="text" class="form-control" placeholder="Enter Skills" formControlName="skills">
+                  </div>
+                  <div class="form-group py-2">
+                    <p>Please list your intrests and hobbies seperated by commas</p>
+                    <input type="text" class="form-control" placeholder="Enter Intrests and Hobbies" formControlName="hobbies">
+                </div>
+                <div class="form-group py-2">
+                  <p>Please list your awards seperated by commas</p>
+                  <input type="text" class="form-control" placeholder="Enter Awards" formControlName="awards">
+                </div>
+              </div>
+            </form>
+            <div class="form-group py-2">
+              <button (click)=addExperience() href="" class="btn btn-primary">Add experience?</button>
+            </div>
+          </div>
+          <div *ngIf="add_exp">
+            <form [formGroup]="exp_form" >
+              <div class="form-group py-2 left">
+                  <h5>Tell us about your work experience</h5>
+                  <form >
+                      <p>Select the type of experience you have</p>
+                      <input type="radio" id="html" name="exp-type" value="Work">
+                      <label for="html">Work experience</label><br>
+                      <input type="radio" id="volunteer" name="exp-type" value="Volunteer">
+                      <label for="css">Volunteering experience</label><br>
+                  </form>
+                  <div class="form-group py-2">
+                      <p>Select start date</p>
+                      <input type="text" class="form-control" placeholder="Start Date" type="date" formControlName="start">
+                  </div>
+                  <div class="form-group py-2">
+                      <p>Select end date</p>
+                      <input type="text" class="form-control" placeholder="End Date" type="date" formControlName="end">
+                  </div>
+                  <div class="form-group py-2">
+                      <p>Enter the name of your position</p>
+                      <input type="text" class="form-control" placeholder="Position Name" type="text" formControlName="position">
+                  </div>
+                  <div class="form-group py-2">
+                      <p>Enter company name</p>
+                      <input type="text" class="form-control" placeholder="Company Name" type="text" formControlName="company">
+                  </div>
+                  <div class="form-group py-2">
+                      <p>Enter the location of the company</p>
+                      <input type="text" class="form-control" placeholder="Company Location" type="text" formControlName="location">
+                  </div>
+                  <div class="form-group py-2">
+                      <p>Describe your experience</p>
+                      <textarea type="text" class="form-control" placeholder="Job Description" formControlName="description"></textarea>
+                  </div>
+              </div>
+            </form>
+            <div class="form-group py-2">
+              <button (click)=addExperience() href="" class="btn btn-primary">Add another experience?</button>
+            </div>
+            <div class="form-group py-2">
+              <button (click)="add_exp=false" href="" class="btn btn-primary">Back</button>
+            </div>
+          </div>
+        <div class="form-group py-2">
+          <button type="submit" (click)="submitProfile()" class="btn btn-primary btn-lg">
+            Submit
+          </button>
+        </div>
+    </div>
+  </div>

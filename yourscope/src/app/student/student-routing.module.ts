@@ -5,6 +5,7 @@ import { StudentEventsComponent } from './student-events/student-events.componen
 import { StudentPostingsComponent } from './student-postings/student-postings.component';
 import { StudentCoursesComponent } from './student-courses/student-courses.component';
 import { StudentToolkitComponent } from './student-toolkit/student-toolkit.component';
+import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'student/courses', component: StudentCoursesComponent },
   { path: 'student/postings', component: StudentPostingsComponent },
   { path: 'student/events', component: StudentEventsComponent},
-  { path: 'student/profile', component: ProfileComponent}
+  { path: 'student/profile', component: ProfileComponent},
+  { path: 'student/create-profile', component: CreateProfileComponent}
 ];
 
 @NgModule({

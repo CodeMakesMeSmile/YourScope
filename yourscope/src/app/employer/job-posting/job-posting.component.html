@@ -1,0 +1,18 @@
+<div class="inner-card">
+  <div class="popup-title">
+    <div class="popup-title-display">
+      <h1>{{selection.jobTitle}}</h1>
+    </div>
+  </div>
+  <div style="display: flex; justify-content:space-between;">
+    <h3>{{selection.companyName}}</h3>
+    <h3>{{selection.applicationDeadline}}</h3>
+  </div>
+  <div class="centre flex wrap" style="height: calc(100% - 170px); position: relative;">
+    <div class="scrollspy-container">
+      <div data-spy="scroll" class="content-box flex" data-offset="0">
+        <p>{{selection.description}}</p>
+      </div>
+    </div>
+  </div>
+</div>

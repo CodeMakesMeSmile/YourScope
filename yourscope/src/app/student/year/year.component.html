@@ -1,0 +1,12 @@
+<div class="scheduleYearWrapper" id="{{this.scheduleYearPrefix+year.yearNumber}}">
+  <h4 class="scheduleYearHeading">{{"Grade " + grade}}</h4>
+  <div class="scheduleYear">
+    <table class="courseDisplay">
+      <app-course *ngFor="let i of courseIndices"
+        [course]="year.courses[i]"
+        (onClickCourse)="onClickCourse($event)"
+        (onClickAdd)="onClickAdd()"
+        [class.courseBottomBorder]="i != 7"/>
+    </table>
+  </div>
+</div>

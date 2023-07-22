@@ -14,6 +14,7 @@ using yourscope_api.Authentication;
 using yourscope_api.middleware;
 using Newtonsoft.Json.Serialization;
 using System.Reflection;
+using Newtonsoft.Json;
 
 string YourScopePolicy = "YourScopePolicy";
 
@@ -31,6 +32,7 @@ builder.Services.AddControllers()
     .AddNewtonsoftJson(options =>
         {
             options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
         })
     .ConfigureApiBehaviorOptions(options =>
         {
@@ -64,6 +66,8 @@ builder.Services.AddTransient<ICompanyService, CompanyService>();
 builder.Services.AddTransient<IEventsService, EventsService>();
 builder.Services.AddTransient<IJobService, JobService>();
 builder.Services.AddTransient<ISchoolService, SchoolService>();
+builder.Services.AddTransient<IProfileService, ProfileService>();
+builder.Services.AddTransient<IStudentService, StudentService>();
 builder.Services.AddSingleton(FirebaseApp.Create());
 builder.Services.AddSingleton<IAuthorizationMiddlewareResultHandler, YourScopeAuthorizationMiddleware>();
 #endregion

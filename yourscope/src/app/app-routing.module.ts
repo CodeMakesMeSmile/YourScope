@@ -16,6 +16,8 @@ import { DashboardAdminComponent } from './admin/dashboard-admin/dashboard-admin
 import { DashboardEmployerComponent } from './employer/dashboard-employer/dashboard-employer.component';
 import { PasswordResetComponent } from './auth/password-reset/password-reset.component';
 
+import { SharedModule } from './shared/shared.module';
+
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
@@ -28,10 +30,9 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    LandingComponent,
     LoginComponent,
     RegisterComponent,
-    ],
+  ],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
@@ -39,7 +40,8 @@ const routes: Routes = [
     RegisterEmployerComponent,
     RegisterEmployerCompanyComponent,
     RegisterCompanyComponent,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   exports: [
     RouterModule
