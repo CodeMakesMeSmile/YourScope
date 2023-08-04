@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { APIService } from '../../services/api.service';
-import { CookieService } from 'ngx-cookie-service';
-import { JwtService } from 'src/app/services/jwt.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 interface profile {
   profileId: number,
@@ -29,7 +28,7 @@ interface profile {
   styleUrls: ['./create-profile.component.scss']
 })
 export class CreateProfileComponent{
-  constructor(private formBuilder: FormBuilder, private cookie: CookieService, private api: APIService, private jwt: JwtService, private router: Router){}
+  constructor(private formBuilder: FormBuilder, private api: APIService, private router: Router, private toastr: ToastrService) {}
 
   add_exp = false;
   num_exp = 0;
@@ -61,14 +60,13 @@ export class CreateProfileComponent{
   }
 
   submitProfile(){
-    console.log("pain")
     this.api.createProfile(this.about_form.value.skills, this.about_form.value.hobbies, this.about_form.value.awards).subscribe({
       next: res => {
-        alert("Successfully added profile");
+        this.toastr.success("Successfully added profile.");
         this.router.navigate(['/student/profile'])
       }, 
       error: err => {
-        alert(err.error);
+        this.toastr.error("There was an internal error.");
       }
     });
   }

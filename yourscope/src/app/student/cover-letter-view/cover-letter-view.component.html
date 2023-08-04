@@ -1,0 +1,5 @@
+<cover-letter *ngFor="let cv of coverLetters" [coverLetter]="cv" (onClickDeleteEvent)="deleteCV($event)"/>
+<div *ngIf="coverLetters.length === 0 && loadingComplete">
+    <h5>You have no cover letters. Why not create one?</h5>
+</div>
+<img class="gifLoad" src="../../../assets/loading.gif" *ngIf="!loadingComplete">

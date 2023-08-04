@@ -4,15 +4,18 @@
       <img id="logo" src="/assets/yourscope.png" alt="YourScope" />
         <p class="lead fs-3">Log in</p>
         <div class="form-group py-2">
-          <input type="text" class="form-control" placeholder="Email" type="email" [(ngModel)]="email">
+          <input type="text" class="form-control" placeholder="Email" type="email" [(ngModel)]="email" [class.invalidField]="missingEmail">
       </div>
       <div class="form-group py-2">
-        <input type="text" class="form-control" placeholder="Password" type="password" [(ngModel)]="password">
+        <input type="text" class="form-control" placeholder="Password" type="password" [(ngModel)]="password" [class.invalidField]="missingPassword">
       </div>
       <div class="form-group py-2">
-        <button (click)="login()" type="submit" class="btn btn-primary btn-lg">
+        <label class="lblLogin">{{lblText}}</label>
+        <br />
+        <button (click)="login()" type="submit" class="btn btn-primary btn-lg btnLogin" [disabled]="disableLogin">
           Log in
         </button>
+        <div *ngIf="disableLogin" class="loadingGif"><img src="../../../assets/loading.gif"></div>
       </div>
       <div class="form-group py-2">
         <a [routerLink]="['/passwordReset']">Forgot Password?</a>

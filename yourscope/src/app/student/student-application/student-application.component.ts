@@ -107,9 +107,6 @@ export class StudentApplicationComponent implements OnInit {
       if (response.statusCode == 200) {
         this.populateCoverLetterDropdown(response.data);
       }
-      else {
-        console.log("Error", response.statusCode + ":", response.message);
-      }
     })
   }
 
@@ -157,7 +154,6 @@ export class StudentApplicationComponent implements OnInit {
   }
 
   createNewApplication() {
-    console.log(this.cov);
     let loginToken = this.cookie.get("loginToken");
     let decodedToken = this.jwtService.DecodeToken(loginToken);
     const url = 'https://localhost:7184/api/job/v1/application';

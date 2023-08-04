@@ -4,24 +4,25 @@
         <img id="logo" src="/assets/yourscope.png" alt="YourScope" />
           <p class="lead fs-3">New Event</p>
           <div class="form-group py-2">
-            <input type="text" class="form-control" placeholder="Event Title" type="text" [(ngModel)]="title">
+            <input type="text" class="form-control" placeholder="Event Title" type="text" [(ngModel)]="title" [class.invalid-field]="missingTitle">
         </div>
         <div class="form-group py-2">
-          <input type="text" class="form-control" placeholder="Event Date" type="date" [(ngModel)]="eventDate">
+          <input type="text" class="form-control" placeholder="Event Date" type="date" [(ngModel)]="eventDate" [class.invalid-field]="missingDate" min="{{today}}">
         </div>
         <div class="form-group py-2">
-            <input type="text" class="form-control" placeholder="Event Location" type="text" [(ngModel)]="location">
+            <input type="text" class="form-control" placeholder="Event Location" type="text" [(ngModel)]="location" [class.invalid-field]="missingLocation">
           </div>
         <div class="form-group py-2">
-            <textarea type="text" class="form-control" placeholder="Event Description" [(ngModel)]="description"></textarea>
+            <textarea type="text" class="form-control" placeholder="Event Description" [(ngModel)]="description" [class.invalid-field]="missingDesc"></textarea>
         </div>
         <div class="form-group py-2">
-            <button (click)="save()" type="submit" class="btn btn-primary button-lg ">
-              Save
-            </button>
-            <button [routerLink]="['/admin/events']" class="btn button-lg">
-              Cancel
-            </button>
-          </div>
+          <button (click)="submitForm()" type="submit" class="btn btn-primary button-lg ">
+            Save
+          </button>
+          <button [routerLink]="['/admin/events']" class="btn button-lg">
+            Cancel
+          </button>
+        </div>
+        <label class="lblText">{{lblText}}</label>
     </div>
   </div>

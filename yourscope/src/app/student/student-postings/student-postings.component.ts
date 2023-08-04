@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { APIService } from '../../services/api.service';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtService } from 'src/app/services/jwt.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-student-postings',
@@ -16,7 +17,7 @@ export class StudentPostingsComponent implements OnInit {
   totalPages: number = 0;
   applied: boolean = false;
 
-  constructor(private api: APIService, private cookie: CookieService, private jwt: JwtService) {}
+  constructor(private api: APIService, private cookie: CookieService, private jwt: JwtService, private toastr: ToastrService) {}
 
   loadPopup(e: any) {
     this.popup = true;
@@ -78,7 +79,7 @@ export class StudentPostingsComponent implements OnInit {
         this.jobs = res.data
       },
       error: err => {
-        alert("Unable to retrieve job postings.");
+        this.toastr.error("There was an internal error.");
       }
     });
   }

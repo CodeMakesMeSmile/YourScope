@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { APIService } from '../services/api.service';
 import { JwtService } from '../services/jwt.service';
-import { CookieService } from 'ngx-cookie-service'
+import { CookieService } from 'ngx-cookie-service';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,21 +16,31 @@ export class AuthService {
               private jwtService : JwtService,
               private cookieService: CookieService)  { }
 
-  login(email: string, password: string) {
-    this.service.getLogin(email, password).subscribe({
-      next: async res => {
-        let loginData = JSON.parse(JSON.stringify(res));
-        let loginToken = this.jwtService.DecodeToken(loginData.data);
-        this.cookieService.set('loginToken', `Bearer ${loginData.data}`);
+  async login(email: string, password: string): Promise<number | null> {
+    let response;
+    try {
+      response = await firstValueFrom(this.service.getLogin(email, password));
+    }
+    catch(err: any) {
+      // Logging the error.
+      console.log(err);
 
-        await this.setUserObject(loginToken);
+      // Returning the error status code or null  if not API error.
+      if (err.status)
+        return err.status;
+      else 
+        return null;
+    }
 
-        this.redirectToDashboard(loginToken);
-      }, 
-      error: err => {
-        alert(err.error);
-      }
-    });
+    let loginData = JSON.parse(JSON.stringify(response));
+    let loginToken = this.jwtService.DecodeToken(loginData.data);
+    this.cookieService.set('loginToken', `Bearer ${loginData.data}`);
+
+    await this.setUserObject(loginToken);
+
+    this.redirectToDashboard(loginToken);
+
+    return 201;
   }
 
   async logout(): Promise<void> {
@@ -52,15 +63,7 @@ export class AuthService {
   }
   
   passwordReset(email: string) {
-    this.service.passwordReset(email).subscribe({
-      next: () => {
-        alert("Email sent");
-        this.router.navigate(['/login']);
-      }, 
-      error: err => {
-        alert(err.error);
-      }
-    });
+    this.service.passwordReset(email);
   }
 
   redirectToDashboard(loginToken: any) {

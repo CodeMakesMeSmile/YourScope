@@ -83,8 +83,6 @@ export class LandingComponent {
       return false;
     }
 
-    console.log(this.user);
-
     return true;
   }
 

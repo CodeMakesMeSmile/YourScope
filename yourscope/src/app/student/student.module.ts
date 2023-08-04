@@ -17,6 +17,14 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { StudentApplicationComponent } from './student-application/student-application.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { StudentToolkitComponent } from './student-toolkit/student-toolkit.component';
+import { StudentCourseDetailsComponent } from './student-course-details/student-course-details.component';
+import { MissingPrereqComponent } from './missing-prereq/missing-prereq.component';
+import { CoverLetterViewComponent } from './cover-letter-view/cover-letter-view.component';
+import { CoverLetterComponent } from './cover-letter/cover-letter.component';
+import { PostSecondaryViewComponent } from './post-secondary-view/post-secondary-view.component';
+import { ProgramComponent } from './program/program.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -32,7 +40,14 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     AddCourseComponent,
     ProfileComponent,
     CreateProfileComponent,
-    StudentPostingDetailsComponent
+    StudentPostingDetailsComponent,
+    StudentCourseDetailsComponent,
+    MissingPrereqComponent,
+    CoverLetterViewComponent,
+    CoverLetterComponent,
+    StudentToolkitComponent,
+    PostSecondaryViewComponent,
+    ProgramComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +56,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSelectModule
   ]
 })
 export class StudentModule { }

@@ -14,14 +14,30 @@
   padding-right: 30px;
 }
 
+.divHeading {
+  vertical-align: middle;
+  padding: 0 !important;
+}
+
+.btnAddEvent, .h2Events {
+  display: inline-block;
+  margin: 0 !important;
+}
+
+.h2Events {
+  padding-left: 5%;
+  vertical-align: inherit;
+}
+
 .margin-30 {
   margin: 30px;
 }
 
 .item-card {
-  width: 360px;
-  height: 320px;
+  width: 300px;
+  height: 340px;
   margin: 20px !important;
+  overflow: hidden;
 }
 
 .card-header {
@@ -37,7 +53,8 @@
 .card-text {
   overflow: hidden;
   max-width: 360px;
-  max-height: 10.5em;
+  min-height: 7.5em;
+  max-height: 7.5em;
 }
 
 .card-content-1 {
@@ -60,9 +77,10 @@
 }
 
 .scrollspy-container { 
-  overflow: auto;
+  overflow: hidden;
   width: 90vw;
-  height: 90vh;
+  height: 75vh;
+  margin-bottom: 1%;
 }
 
 .flex {
@@ -91,7 +109,7 @@
 
 #bg {
   background: linear-gradient(333deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 30%, rgba(0,212,255,1) 100%);
-  padding-bottom: 40px;
+  height: 100vh;
 }
 
 .white {
@@ -122,7 +140,7 @@
 .button-sm {
   color: white;
   text-align: center;
-  width: 120px;
+  width: 100px !important;
   background-color: rgb(42, 61, 104);
   border-radius: 20px;
   padding: 10px;
@@ -131,6 +149,7 @@
   bottom: 15px;
   left: 120px;
   cursor: pointer;
+  font-size: 0.8em;
 }
 
 .button-d {
@@ -148,7 +167,7 @@
 }
 
 .close-popup {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;

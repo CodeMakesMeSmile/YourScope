@@ -5,36 +5,37 @@
           <p class="lead fs-3">New Course</p>
           <p>If you enter a course code that already exists, the course will be added, but the course information will not be updated.</p>
           <div class="form-group py-2">
-            <input type="text" class="form-control" placeholder="Course Code" [(ngModel)]="code">
+            <input type="text" class="form-control" placeholder="Course Code" [(ngModel)]="code" [class.invalid-field]="missingCode">
           </div>
           <div class="form-group py-2">
-            <input type="text" class="form-control" placeholder="Course Name" [(ngModel)]="name">
+            <input type="text" class="form-control" placeholder="Course Name" [(ngModel)]="name" [class.invalid-field]="missingName">
           </div>
           <div class="form-group py-2">
-            <input type="text" class="form-control" placeholder="Discipline" [(ngModel)]="discipline">
+            <input type="text" class="form-control" placeholder="Discipline" [(ngModel)]="discipline" [class.invalid-field]="missingDisc">
           </div>
           <div class="form-group py-2">
-            <input type="text" class="form-control" placeholder="Course Type" [(ngModel)]="type">
+            <input type="text" class="form-control" placeholder="Course Type" [(ngModel)]="type" [class.invalid-field]="missingType">
           </div>
           <div class="form-group py-2">
-            <input type="text" class="form-control" placeholder="Grade" [(ngModel)]="grade">
+            <input type="text" class="form-control" placeholder="Grade" [(ngModel)]="grade" [class.invalid-field]="missingGrade">
           </div>
           <div class="form-group py-2">
-            <input type="text" class="form-control" placeholder="Number of Credits" [(ngModel)]="credits">
+            <input type="text" class="form-control" placeholder="Number of Credits" [(ngModel)]="credits" [class.invalid-field]="missingCredits">
           </div>
           <div class="form-group py-2">
-            <textarea type="text" class="form-control" placeholder="Description" [(ngModel)]="description"></textarea>
+            <textarea type="text" class="form-control" placeholder="Description" [(ngModel)]="description" [class.invalid-field]="missingDesc"></textarea>
           </div>
           <div class="form-group py-2">
             <textarea type="text" class="form-control" placeholder="Prerequisites (comma seperated)" [(ngModel)]="prerequisites"></textarea>
           </div>
           <div class="form-group py-2">
-            <button (click)="save()" type="submit" class="btn btn-primary button-lg ">
+            <button (click)="submitForm()" type="submit" class="btn btn-primary button-lg ">
               Save
             </button>
             <button [routerLink]="['/admin/courses']" class="btn button-lg">
               Cancel
             </button>
           </div>
+          <label class="lblText">{{lblText}}</label>
   </div>
 </div>

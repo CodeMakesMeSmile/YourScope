@@ -144,3 +144,41 @@
   text-decoration: none;
   margin: 50px;
 }
+
+.close-popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #44444491;
+}
+
+.info-card {
+  background-color: #ffffff;
+  width: calc(100% - 500px);
+  height: calc(100% - 60px);
+  position: absolute;
+  left: 9vw;
+  top: 2vh;
+  border-radius: 32px;
+}
+
+.close-button-bg {
+  float: right;
+  margin-top: 6px;
+  margin-right: 6px;
+  width: 24px;
+  height: 24px;
+}
+
+.close-button {
+  float: right;
+  background-color: #243E6B;
+  border-radius: 12px;
+  width: inherit;
+  height: inherit;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+}

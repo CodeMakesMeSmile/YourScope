@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/services/api.service';
 import { JwtService } from 'src/app/services/jwt.service';
 
@@ -47,7 +48,7 @@ interface posting {
   styleUrls: ['./job-applicant.component.scss']
 })
 export class JobApplicantComponent {
-  constructor(private api: APIService, private cookie: CookieService, private jwt: JwtService) {}
+  constructor(private api: APIService, private toastr: ToastrService) {}
   
   applicants: applicant[] = [];
   eventStates: boolean[] = [];
@@ -72,14 +73,12 @@ export class JobApplicantComponent {
   };
 
   ngOnInit() {
-    console.log(this.selection.postingID);
     this.api.getJobApplicants(this.selection.postingID).subscribe({
       next: res => {
         this.applicants = JSON.parse(JSON.stringify(res)).data;
-        console.log(this.applicants);
       }, 
       error: err => {
-        alert("Couldn't retrieve jobs" );
+        this.toastr.error("There was an internal error.");
       }
     });
   }

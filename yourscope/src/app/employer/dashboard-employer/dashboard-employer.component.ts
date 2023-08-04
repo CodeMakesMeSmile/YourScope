@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/services/api.service';
 import { JwtService } from 'src/app/services/jwt.service';
 
@@ -51,7 +52,7 @@ export class DashboardEmployerComponent implements OnInit {
     applicationDeadline : ""
   }
 
-  constructor(private api: APIService, private cookie: CookieService, private jwt: JwtService) {}
+  constructor(private api: APIService, private cookie: CookieService, private jwt: JwtService, private toastr: ToastrService) {}
 
   closePopup1() {
     this.options = 0;
@@ -87,7 +88,6 @@ export class DashboardEmployerComponent implements OnInit {
     this.api.getJobPostings((p - 1) * this.load, this.load, undefined, undefined, decodedToken.userID).subscribe({
       next: res => {
         this.jobs = JSON.parse(JSON.stringify(res)).data;
-        console.log(res);
 
         for (let event in this.jobs){
             let date = this.jobs[event].applicationDeadline;
@@ -98,7 +98,7 @@ export class DashboardEmployerComponent implements OnInit {
         this.page[0] = p;
       }, 
       error: err => {
-        alert("Couldn't retrieve jobs" );
+        this.toastr.error("There was an internal error.");
       }
     });
   }
@@ -116,7 +116,9 @@ export class DashboardEmployerComponent implements OnInit {
       this.options = 4;
       this.loadPosting(1);
       this.page = [1, 1];
-      setTimeout(() => {console.log("Posting Deleted...");}, 2000);
+      setTimeout(() => {
+        this.toastr.success("Successfully deleted job posting.");
+      }, 2000);
       this.ngOnInit();
       this.options = 0;
     })

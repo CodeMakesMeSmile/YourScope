@@ -1,0 +1,9 @@
+<div class="dialogBox" [@inOutAnimation] *ngIf="visible">
+    <h2 class="headerDialog">You must be enrolled in at least one of the following prerequisite courses: </h2>
+    <h5 class="subHeading">
+        <span class="bold"></span> {{prerequisites}}
+    </h5>
+    <br>
+    <button class="btn btn-success btnDialog" id="btnYesBoth" (click)="onClickYes()"> I Understand </button>
+  </div>
+  

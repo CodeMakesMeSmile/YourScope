@@ -108,6 +108,27 @@ namespace yourscope_api.Controllers
             return StatusCode(response.StatusCode, response);
         }
 
+        /// <summary>
+        /// Get reccomeneded courses for student
+        /// </summary>
+        /// <param name="studentID">Id of student</param>
+        /// <param name="schoolId">Id of school of student</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("insight/courses/{studentID}")]
+        public async Task<IActionResult> GetReccomendedCourses(int studentID, int schoolId)
+        {
+            ApiResponse response;
+            try
+            {
+                response = await service.GetReccomendedCourses(studentID, schoolId);
+            }
+            catch (Exception ex)
+            {
+                response = new(StatusCodes.Status500InternalServerError, exception: ex);
+            }
+            return StatusCode(response.StatusCode, response);
+        }
     }
 }
 

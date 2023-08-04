@@ -132,6 +132,9 @@ namespace yourscope_api.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<int?>("ProfileId")
                         .HasColumnType("int");
 
@@ -358,6 +361,72 @@ namespace yourscope_api.Migrations
                     b.ToTable("SchoolCourse");
                 });
 
+            modelBuilder.Entity("yourscope_api.Models.DbModels.Tag", b =>
+                {
+                    b.Property<int>("TagId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("TagName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("TagId");
+
+                    b.ToTable("Tags");
+                });
+
+            modelBuilder.Entity("yourscope_api.Models.DbModels.UniProgram", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("GradeRange")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Prerequisites")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("UniversityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Website")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UniversityId");
+
+                    b.ToTable("UniPrograms");
+                });
+
+            modelBuilder.Entity("yourscope_api.Models.DbModels.University", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Universities");
+                });
+
             modelBuilder.Entity("yourscope_api.Models.DbModels.User", b =>
                 {
                     b.Property<int>("UserId")
@@ -544,6 +613,15 @@ namespace yourscope_api.Migrations
                     b.Navigation("School");
                 });
 
+            modelBuilder.Entity("yourscope_api.Models.DbModels.UniProgram", b =>
+                {
+                    b.HasOne("yourscope_api.Models.DbModels.University", null)
+                        .WithMany("UniPrograms")
+                        .HasForeignKey("UniversityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("yourscope_api.Models.DbModels.Year", b =>
                 {
                     b.HasOne("yourscope_api.Models.DbModels.Schedule", "Schedule")
@@ -577,6 +655,11 @@ namespace yourscope_api.Migrations
             modelBuilder.Entity("yourscope_api.Models.DbModels.School", b =>
                 {
                     b.Navigation("SchoolCourses");
+                });
+
+            modelBuilder.Entity("yourscope_api.Models.DbModels.University", b =>
+                {
+                    b.Navigation("UniPrograms");
                 });
 
             modelBuilder.Entity("yourscope_api.Models.DbModels.Year", b =>

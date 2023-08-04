@@ -1,0 +1,22 @@
+.headerDialog {
+    margin-top: 10%;
+    color: black;
+  }
+  
+  .dialogBox {
+    background-color: white;
+    position: fixed;
+    width: 40vw;
+    height: 40vh;
+    left: 25%;
+    top: 25%;
+    z-index: 3;
+    border-radius: 7px;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    -webkit-box-shadow: 1px 2px 19px 1px #000000;
+    box-shadow: 1px 2px 19px 1px #000000;
+  }
+  
+
+  

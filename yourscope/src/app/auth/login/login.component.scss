@@ -13,3 +13,26 @@
 #logo{
     width: 200px
 }
+
+.loadingGif img{
+    width: 30px;
+}
+
+.btnLogin {
+    margin-top: 1%;
+    display: inline-block;
+}
+
+.loadingGif {
+    margin-left: 2%;
+    display: inline-block;
+}
+
+.invalidField {
+    border-color: red !important;
+}
+
+.lblLogin {
+    color: red;
+    text-align: center;
+}

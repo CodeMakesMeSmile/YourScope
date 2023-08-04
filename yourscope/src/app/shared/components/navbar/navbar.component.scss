@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Varela+Round&display=swap');
+
 .bg-navy {
-  background-color: rgb(61, 89, 149);
+  background: rgb(255, 255, 255);
 }
 
 .pad-12 {
@@ -8,6 +10,18 @@
 
 .white {
   color: white;
+}
+
+nav {
+  font-family: 'Varela Round', sans-serif;
+}
+
+.logo-bg{
+  background-color: rgb(206, 229, 255);
+  border-radius: 20px;
+  padding: 0px 10px 0px 10px;
+  text-decoration: none;
+  margin-left: 20px;
 }
 
 .button-md {
@@ -37,4 +51,55 @@
   padding: 5px;
   text-align: center;
   cursor: pointer;
+}
+
+div.container
+{
+  font-family: Varela Round;
+  margin: 0 auto;
+	padding: 0.25em 3em;
+	text-align: center;
+}
+
+div.container a
+{
+    color: #243E6B;
+    font: 20px Varela Round;
+    margin: 0px 10px;
+    padding: 10px 10px;
+    
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+}
+
+/* Top and Bottom borders come in */
+div.topBotomBordersIn a:before, div.topBotomBordersIn a:after
+{
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    height: 2px;
+    background: #243E6B;
+    content: "";
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+div.topBotomBordersIn a:before
+{
+    top: 0px;
+    transform: translateY(-10px);
+}
+
+div.topBotomBordersIn a:after
+{
+    bottom: 0px;
+    transform: translateY(10px);
+}
+
+div.topBotomBordersIn a:hover:before, div.topBotomBordersIn a:hover:after
+{
+    opacity: 1;
+    transform: translateY(0px);
 }

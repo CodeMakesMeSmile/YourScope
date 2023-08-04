@@ -21,6 +21,11 @@ export class StudentCoursesComponent {
   viewCourseDiv = true;
   schedule: StudentSchedule = new StudentSchedule(-1, -1, []);
   viewCourse: YearCourse | null = null;
+  selectedYear: number = -1;
+  popup: boolean = false; 
+  confirm: boolean = false;
+  selected: any = {};
+
   // Constructor
   constructor(private api: APIService, private cookie: CookieService, private jwt: JwtService, private toastr: ToastrService) {}
   // Initialization
@@ -48,6 +53,8 @@ export class StudentCoursesComponent {
   }
   onClickAddCourse(yearNumber: number) {
     this.showAddCourse = true;
+    this.viewCourseDiv = true;
+    this.selectedYear = yearNumber;
   }
   onClickBackground(event: any) {
     if (event.target.classList.contains("overlayBackground")) {
@@ -72,6 +79,37 @@ export class StudentCoursesComponent {
     this.schedule = new StudentSchedule(-1, -1, []);
     this.scheduleLoaded = false;
     this.ngOnInit();
+  }
+  
+  onCourseAdded() {
+    // Toasting.
+    this.toastr.success("Successfully added course!");
+    // Closing the overlay.
+    this.closeOverlay();
+    // Reloading all the data.
+    this.schedule = new StudentSchedule(-1, -1, []);
+    this.scheduleLoaded = false;
+    this.showAddCourse = false;
+    this.popup = false;
+    this.ngOnInit();
+  }
+
+  loadPopup(e: any) {
+    this.popup = true;
+    this.selected = e;
+  }
+
+  closePopup1() {
+    this.popup = false;
+    this.showAddCourse = false;
+  }
+
+  closePopup2(t: MouseEvent) {
+    if ((t.target as Element).className == "close-popup") {
+      this.popup = false
+      this.showAddCourse = false;
+    };
+
   }
 }
 

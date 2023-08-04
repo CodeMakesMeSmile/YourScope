@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { APIService } from 'src/app/services/api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-course',
@@ -16,46 +17,126 @@ export class CreateCourseComponent {
   grade : number | string = '';
   credits : number | string = '';
   prerequisites : string = '';
+  // Form validation.
+  missingCode: boolean = false;
+  missingName: boolean = false;
+  missingDesc: boolean = false;
+  missingDisc: boolean = false;
+  missingType: boolean = false;
+  missingGrade: boolean = false;
+  missingCredits: boolean = false;
+  lblText: string = "";
   
-  constructor(private router : Router, private hc : APIService) { }
+  constructor(private router : Router, private hc : APIService, private toastr: ToastrService) { }
+
+  submitForm() {
+    // Validating the form input.
+    if (!this.validateForm()) return;
+    // Calling the save method.
+    this.save();
+  }
+
+  validateForm(): boolean {
+    // Clearing form validation.
+    this.clearFormValidation();
+
+    // Validating the form.
+    let valid: boolean = true;
+
+    // Existance of all fields.
+    if (!this.code) {
+      valid = false;
+      this.missingCode = true;
+      if (this.lblText.length == 0)
+        this.lblText = "Missing required fields.";
+    }
+    if (!this.name) {
+      valid = false;
+      this.missingName = true;
+      if (this.lblText.length == 0)
+        this.lblText = "Missing required fields.";
+    }
+    if (!this.description) {
+      valid = false;
+      this.missingDesc = true;
+      if (this.lblText.length == 0)
+        this.lblText = "Missing required fields.";
+    }
+    if (!this.discipline) {
+      valid = false;
+      this.missingDisc = true;
+      if (this.lblText.length == 0)
+        this.lblText = "Missing required fields.";
+    }
+    if (!this.type) {
+      valid = false;
+      this.missingType = true;
+      if (this.lblText.length == 0)
+        this.lblText = "Missing required fields.";
+    }
+    if (!this.credits) {
+      valid = false;
+      this.missingCredits = true;
+      if (this.lblText.length == 0)
+        this.lblText = "Missing required fields.";
+    }
+    if (!this.grade) {
+      valid = false;
+      this.missingGrade = true;
+      if (this.lblText.length == 0)
+        this.lblText = "Missing required fields.";
+    }
+
+    // Checking for number entries in credits and grade.
+    if (isNaN(+this.credits)) {
+      this.missingCredits = true;
+      if (this.lblText.length == 0)
+        this.lblText = "Invalid credits. Input must be a number.";
+    }
+    if (isNaN(+this.grade)) {
+      this.missingGrade = true;
+      if (this.lblText.length == 0)
+        this.lblText = "Invalid grade. Input must be a number.";
+    }
+
+    // Validation of grade and credit amount.
+    if (<number>this.credits < 1) {
+      valid = false;
+      this.missingCredits = true;
+      if (this.lblText.length == 0)
+        this.lblText = "Invalid credit amount. Must be positive.";
+    }
+    if (<number>this.grade < 9 || <number>this.grade > 12) {
+      valid = false;
+      this.missingGrade = true;
+      if (this.lblText.length == 0)
+        this.lblText = "Invalid grade. Value must be between 9 and 12.";
+    }
+
+    return valid;
+  }
+
+  clearFormValidation() {
+    this.missingCode = false;
+    this.missingName = false;
+    this.missingDesc = false;
+    this.missingDisc = false;
+    this.missingType = false;
+    this.missingGrade = false;
+    this.missingCredits = false;
+    this.lblText = "";
+  }
 
   save() {
-    if(this.code == '') {
-      alert('Please enter course code');
-      return;
-    }
-    if(this.description == '') {
-      alert('Please enter course description');
-      return;
-    }
-    if(this.name == '') {
-      alert('Please enter course name');
-      return;
-    }
-    if(this.discipline == '') {
-      alert('Please enter course discipline');
-      return;
-    }
-    if(this.type == '') {
-      alert('Please enter course type');
-      return;
-    }
-    if(this.credits == '' || <number>this.credits < 1) {
-      alert('Please enter a valid numnber of credits');
-      return;
-    }
-    if(this.grade == '' || <number>this.grade < 9) {
-      alert('Please enter a valid grade');
-      return;
-    }
-
     this.hc.createCourse(this.code, this.name, this.discipline, this.type, <number>this.grade, <number>this.credits, this.description, this.prerequisites).subscribe({
       next: res => {
-        alert("Successfully added course");
-        this.router.navigate(['/admin/courses']);
+        this.router.navigate(['/admin/courses']).then(() => {
+          this.toastr.success("Successfully added new course!");
+        });
       }, 
       error: err => {
-        alert(err.message);
+        console.log(err);
+        this.toastr.error("There was an internal error.");
       }
     });
   }

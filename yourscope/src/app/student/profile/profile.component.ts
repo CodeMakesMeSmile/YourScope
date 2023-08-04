@@ -44,8 +44,6 @@ export class ProfileComponent implements OnInit{
         this.num_experiences = this.student_profile.experiences.length;
         this.num_cover = this.student_profile.coverLetters.length;
 
-        console.log(this.student_profile);
-
         let date = this.student_profile.user.birthday;
         date = new Date(date).toLocaleDateString('en-US'); 
         this.student_profile.user.birthday = date;

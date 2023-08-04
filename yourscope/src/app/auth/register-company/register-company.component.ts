@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RegisterEmployerComponent } from '../register-employer/register-employer.component';
 import { APIService } from '../../services/api.service';
+import { ToastrService } from 'ngx-toastr';
 class CompanyObj {
   Name!: string;
   Country!: string;
@@ -50,7 +51,7 @@ export class RegisterCompanyComponent {
 
   public regState: number = 0;
 
-  constructor(private api: APIService) { }
+  constructor(private api: APIService, private toastr: ToastrService) { }
 
   public companyForm = new FormGroup({
     name: new FormControl(),
@@ -122,6 +123,7 @@ export class RegisterCompanyComponent {
       },
       error: err => {
         console.log(err);
+        this.toastr.error("There was an internal error.");
       }
     })
   }

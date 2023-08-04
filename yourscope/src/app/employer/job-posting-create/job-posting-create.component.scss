@@ -21,7 +21,7 @@
 }
 
 .long {
-  height: 360px;
+  height: 200px;
   text-align: left;
 }
 
@@ -46,4 +46,15 @@ label {
 
 ::-webkit-scrollbar-corner {
   background-color: #00000000;
+}
+
+.invalid-field {
+  border-color: red;
+}
+
+.lblText {
+  margin-top: 0;
+  width: 100%;
+  color: red;
+  text-align: center;
 }

@@ -61,9 +61,11 @@ namespace yourscope_api.Services
         {
             using var context = new YourScopeContext();
 
-            var experience = context.CoverLetters.First(q => q.CoverLetterId == coverLetterId);
+            // Performing soft deletion.
+            context.CoverLetters
+                .Where(q => q.CoverLetterId == coverLetterId)
+                .ExecuteUpdate(cv => cv.SetProperty(c => c.IsDeleted, true));
 
-            context.CoverLetters.Remove(experience);
             context.SaveChanges();
         }
 
@@ -87,6 +89,7 @@ namespace yourscope_api.Services
                 .Include(q => q.CoverLetters)
                 .Select(q => q.CoverLetters)
                 .First()
+                .Where(cv => !cv.IsDeleted)
                 .ToList();
         }
 

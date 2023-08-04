@@ -14,6 +14,7 @@ namespace yourscope_api.Models.DbModels
         public string? SalesPitch2 { get; set; } 
         public string? SalesPitch3 { get; set; } //Optional since students may not have 2-3 skills to pitch to employers, but they should have at least 2
         public required string Conclusion { get; set; }
-
+        [JsonIgnore]
+        public bool IsDeleted { get; set; } = false;
     }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { ToastrService } from 'ngx-toastr';
 import { APIService } from 'src/app/services/api.service';
 import { JwtService } from 'src/app/services/jwt.service';
 
@@ -16,13 +17,12 @@ export class AdminEventsComponent implements OnInit {
   currentPage: number = 1;
   totalPages: number = 0;
 
-  constructor(private api: APIService, private cookie: CookieService, private jwt: JwtService) { }
+  constructor(private api: APIService, private cookie: CookieService, private jwt: JwtService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     const token = this.jwt.DecodeToken(this.cookie.get("loginToken"));
     this.api.getEventCount(token.affiliationId, undefined).subscribe((res: any) => {
       this.totalPages = Math.ceil(res.data / 12);
-      console.log(this.totalPages);
     })
     this.updatePage();
   }
@@ -37,11 +37,11 @@ export class AdminEventsComponent implements OnInit {
     if (result) {
       this.api.deleteEvent(this.selected.eventId).subscribe({
         next: res => {
-          alert("Successfully deleted event.");
+          this.toastr.success("Successfully deleted event.");
           location.reload();
         }, 
         error: err => {
-          alert("Unable to delete event.");
+          this.toastr.error("There was an internal error.");
         }
       });
     }
@@ -90,7 +90,7 @@ export class AdminEventsComponent implements OnInit {
         this.events = res.data
       },
       error: err => {
-        alert("Unable to retrieve events.");
+        this.toastr.error("There was an internal error.");
       }
     });
   }

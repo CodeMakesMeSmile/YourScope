@@ -121,6 +121,19 @@ namespace yourscope_api.service
             return new ApiResponse(StatusCodes.Status200OK, data: result, success: result);
         }
 
+        public async Task<ApiResponse> GetReccomendedCourses(int studentId, int schoolId)
+        {
+            Schedule? schedule = await GetScheduleFromDB(studentId);
+
+            if (schedule is null)
+                return new ApiResponse(StatusCodes.Status404NotFound, $"Student with ID {studentId} does not have a schedule. Please call the schedule creation endpoint to create one.");
+
+            var result = GetSuggestedCourses(schedule, schoolId);
+
+            return new ApiResponse(StatusCodes.Status200OK, data: result, success: true);
+
+        }
+
         #region helpers
         private static async Task<Schedule?> GetScheduleFromDB(int studentID)
         {
@@ -200,6 +213,57 @@ namespace yourscope_api.service
             await context.SaveChangesAsync();
 
             return true;
+        }
+
+        private static HashSet<Course> GetSuggestedCourses(Schedule schedule, int schoolId)
+        {
+
+            HashSet<string> studentCourses = new HashSet<string>();
+
+            schedule.Years.ForEach(year =>
+            {
+                year.CourseYears.ForEach(courseId =>
+                {
+                    studentCourses.Add(courseId.Course.CourseCode.Substring(0, 5));
+                });
+            });
+
+            HashSet<Course> suggestedCourses = new HashSet<Course>();
+
+            List<Course> schoolCourses = GetCoursesFromSchool(schoolId);
+
+            foreach(Course course in schoolCourses)
+            {
+                //Don't suggest courses that students have already taken
+                var formattedCourse = course.CourseCode.Substring(0, 5);
+                if (studentCourses.Contains(formattedCourse)) continue;
+
+                //Get prereqs of course
+                var coursePrereqs = course.Prerequisites.Split(",", StringSplitOptions.RemoveEmptyEntries);
+
+                //Check if prereq to course is student course, then add to suggested courses
+                foreach (string prereq in coursePrereqs)
+                {
+                    var formattedPrereq = prereq.Substring(0, 5);
+                    if (studentCourses.Contains(formattedPrereq))
+                    {
+                        suggestedCourses.Add(course);
+                    }
+                }
+            }
+
+            return suggestedCourses;
+
+
+        }
+
+        private static List<Course> GetCoursesFromSchool(int schoolId)
+        {
+            using var context = new YourScopeContext();
+            return context.Courses
+                .Include(q => q.SchoolCourses)
+                .Where(q => q.SchoolCourses.Select(q => q.SchoolId).Contains(schoolId))
+                .ToList();
         }
         #endregion
     }

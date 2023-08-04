@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { APIService } from '../../services/api.service';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtService } from 'src/app/services/jwt.service';
+import { ToastrService } from 'ngx-toastr';
 
 interface event {
   eventId: number,
@@ -27,7 +28,7 @@ export class StudentEventsComponent implements OnInit {
   currentPage: number = 1;
   totalPages: number = 0;
 
-  constructor(private api: APIService, private cookie: CookieService, private jwt: JwtService) {}
+  constructor(private api: APIService, private cookie: CookieService, private jwt: JwtService, private toastr: ToastrService) {}
 
   loadPopup(e: event) {
     this.popup = true;
@@ -82,7 +83,7 @@ export class StudentEventsComponent implements OnInit {
         this.events = res.data;
       },
       error: err => {
-        alert("Unable to retrieve events.");
+        this.toastr.error("There was an internal error.");
       }
     });
   }

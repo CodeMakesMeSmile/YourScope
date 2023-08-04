@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { APIService } from '../../services/api.service';
 import { AuthService } from '../auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 class UserObj {
   Email!: string;
@@ -72,7 +73,7 @@ export class RegisterEmployerComponent {
   validCPassword: boolean = true;
   formErrorStr: string = "";
 
-  constructor(private api: APIService, private auth: AuthService) { }
+  constructor(private api: APIService, private auth: AuthService, private toastr: ToastrService) { }
 
   public employerForm = new FormGroup({
     fname: new FormControl(),
@@ -157,6 +158,7 @@ export class RegisterEmployerComponent {
       },
       error: err => {
         console.log(err);
+        this.toastr.error("There was an internal error.");
       }
     })
   }
@@ -206,7 +208,6 @@ export class RegisterEmployerComponent {
     }
     else {
       this.api.post(url, user).subscribe(res => {
-        console.log(res);
         localStorage.removeItem("companyName");
         this.auth.login(this.employerForm.get("email")!.value, this.employerForm.get("pass")!.value);
       });

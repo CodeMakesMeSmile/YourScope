@@ -41,13 +41,38 @@
   margin: 5px;
 }
 
+h5 {
+  margin-bottom: 0;
+}
+
+.empty {
+  text-align: center;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+.container {
+  margin-left: 1%;
+  width: 735px;
+  height: 400px;
+  padding: 2%;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
 .scrollspy-container { 
-  overflow: auto;
-  width: 640px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 700px;
 }
 
 .flex {
   display: flex;
+}
+
+.button-sm {
+  padding-top: 4px !important;
 }
 
 .wrap {

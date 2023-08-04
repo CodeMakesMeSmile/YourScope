@@ -1,1 +1,25 @@
-<p>student-toolkit works!</p>
+<app-navbar></app-navbar>
+<!-- Background div -->
+<div id="bg">
+  <!-- Title -->
+  <div>
+      <h2 class="pad-12 white">
+      Student Toolkit
+      </h2>
+  </div>
+<!-- Main content -->
+  <div id="main-card" class="card margin-30 shadow mb-5 rounded">
+      <div class="card-body">
+          <div class="centre flex">
+              <div class="card toolkit-card">
+                  <h5 class="card-header">Cover Letters</h5>
+                  <cover-letter-view />
+              </div>
+              <div class="card toolkit-card">
+                  <h5 class="card-header">Post-Secondary Programs</h5>
+                  <post-secondary-view />
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
