@@ -12,7 +12,10 @@
       <div class="card-body">
           <div class="centre flex">
               <div class="card toolkit-card">
-                  <h5 class="card-header">Cover Letters</h5>
+                  <div class="card-header">
+                    <h5 class="headingH5">Cover Letters</h5>
+                    <img class="btnCreateCoverLetter" src="assets/plus.svg" (click)="onClickCreateCV()"/>
+                </div>
                   <cover-letter-view />
               </div>
               <div class="card toolkit-card">
@@ -22,4 +25,35 @@
           </div>
       </div>
   </div>
+</div>
+<div class="overlay" *ngIf="displayCreateCoverLetter">
+    <div class="createCoverLetterDisplay">
+      <img src="assets/closeBox.png" class="btnClosePopup" (click)="onClickClosePopup()"/>
+      <h3>Create Cover Letter</h3>
+      <hr />
+      <form [formGroup]="formCV" (ngSubmit)="submitCV()">
+        <div class="form-group py-2">
+          <label for="intro">Introduction <span class="required">*</span></label>
+          <textarea formControlName="intro" type="text" class="form-control" [class.invalid-field]="missingIntro"></textarea>
+        </div>
+        <div class="form-group py-2">
+          <label for="intro">Paragraph 1</label>
+          <textarea formControlName="salesPitch1" type="text" class="form-control"></textarea>
+        </div>
+        <div class="form-group py-2">
+          <label for="intro">Paragraph 2</label>
+          <textarea formControlName="salesPitch2" type="text" class="form-control"></textarea>
+        </div>
+        <div class="form-group py-2">
+          <label for="intro">Paragraph 3</label>
+          <textarea formControlName="salesPitch3" type="text" class="form-control"></textarea>
+        </div>
+        <div class="form-group py-2">
+          <label for="intro">Conclusion</label>
+          <textarea formControlName="conclusion" type="text" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btnSubmit" [disabled]="clickedCreate">Create</button>
+        <label class="lblText">{{lblText}}</label>
+      </form>
+    </div>
 </div>

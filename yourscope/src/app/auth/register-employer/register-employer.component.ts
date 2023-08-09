@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { APIService } from '../../services/api.service';
 import { AuthService } from '../auth.service';
 import { ToastrService } from 'ngx-toastr';
+import settings from '../../../appsettings.json';
 
 class UserObj {
   Email!: string;
@@ -86,7 +87,7 @@ export class RegisterEmployerComponent {
 
   validateAndSubmit(): void {
     let pass, cpass;
-    let checkExistsUrl = "https://localhost:7184/api/accounts/v1/check-registered/";
+    let checkExistsUrl = settings.apiBaseURL+"api/accounts/v1/check-registered/";
     const emailRegEx: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
     // Required fields validation.
@@ -170,7 +171,7 @@ export class RegisterEmployerComponent {
   }
 
   postCompanyAndEmployerRegistration(): void {
-    const url = 'https://localhost:7184/api/accounts/v1/employer/register';
+    const url = settings.apiBaseURL+'api/accounts/v1/employer/register';
     const user = new UserObj(
       this.employerForm.get("email")!.value,
       this.employerForm.get("fname")!.value,
@@ -185,7 +186,7 @@ export class RegisterEmployerComponent {
 
     const createCompany = localStorage.getItem("createCompany");
     if (createCompany != null) {
-      const company_url = 'https://localhost:7184/api/company/v1/register';
+      const company_url = settings.apiBaseURL+'api/company/v1/register';
       const jsn = JSON.parse(createCompany);
       var company = new CompanyObj(
         jsn.Name,

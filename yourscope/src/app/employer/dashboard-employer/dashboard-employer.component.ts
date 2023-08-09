@@ -51,6 +51,7 @@ export class DashboardEmployerComponent implements OnInit {
     description : "",
     applicationDeadline : ""
   }
+  name: string = "";
 
   constructor(private api: APIService, private cookie: CookieService, private jwt: JwtService, private toastr: ToastrService) {}
 
@@ -127,6 +128,8 @@ export class DashboardEmployerComponent implements OnInit {
 
 
   ngOnInit() {
+    let token = this.jwt.DecodeToken(this.cookie.get("loginToken"));
+    this.name = token.name;
     this.load = Math.ceil((window.innerHeight - 300) / 75);
     this.api.jobCount().subscribe(res => {
       this.page[1] = Math.max(Math.ceil(Number(JSON.parse(JSON.stringify(res)).data) / this.load), 1);

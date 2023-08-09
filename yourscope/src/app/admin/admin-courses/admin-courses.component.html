@@ -8,9 +8,27 @@
   <div>
     <a class="button-sm" href="admin/create-course">Add Course</a>
   </div>
+  <div class="search">
+    <input placeholder="Course Code" class="search-bar" [(ngModel)]="filter.query">
+    <img class="information-button" src="assets/search.svg" (click)="applyQuery()">
+    <ng-multiselect-dropdown
+      [placeholder]="'Grade'"
+      [settings]="gradeSettings"
+      [data]="grades"
+      [(ngModel)]="selectedGrade"
+      (onSelect)="selectGrade($event)"
+      (onDeSelect)="unselectGrade($event)"></ng-multiselect-dropdown>
+    <ng-multiselect-dropdown
+      [placeholder]="'Disciplines'"
+      [settings]="disciplineSettings"
+      [data]="disciplines"
+      [(ngModel)]="selectedDisciplines"
+      (onSelect)="selectDiscipline($event)"
+      (onDeSelect)="unselectDiscipline($event)"></ng-multiselect-dropdown>
+  </div>
   <div class="centre flex wrap">
     <div *ngIf="courses.length == 0" class="card pad-12">
-        <h5>There are no courses for this school.</h5>
+        <h5>No courses available.</h5>
     </div>
     <div class="scrollspy-container">
       <div data-spy="scroll" class="content-box flex" data-offset="0">

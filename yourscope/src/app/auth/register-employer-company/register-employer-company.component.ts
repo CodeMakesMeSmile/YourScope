@@ -14,6 +14,7 @@ import { RegisterEmployerComponent } from '../register-employer/register-employe
 import { RegisterCompanyComponent } from '../register-company/register-company.component';
 import { APIService } from '../../services/api.service';
 import { ToastrService } from 'ngx-toastr';
+import settings from '../../../appsettings.json';
 
 interface Company {
   companyID: number;
@@ -123,7 +124,7 @@ export class RegisterEmployerCompanyComponent implements AfterViewInit, OnDestro
   }
 
   fetchAllCompanies(): void {
-    const url = 'https://localhost:7184/api/company/v1';
+    const url = settings.apiBaseURL+'api/company/v1';
 
     this.api.get(url).subscribe({
       next: res => {

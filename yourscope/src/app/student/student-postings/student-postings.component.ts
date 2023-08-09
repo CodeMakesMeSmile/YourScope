@@ -3,6 +3,7 @@ import { APIService } from '../../services/api.service';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtService } from 'src/app/services/jwt.service';
 import { ToastrService } from 'ngx-toastr';
+import settings from '../../../appsettings.json';
 
 @Component({
   selector: 'app-student-postings',
@@ -43,7 +44,7 @@ export class StudentPostingsComponent implements OnInit {
   jobs: any[] = [];
 
   ngOnInit() {
-    this.api.get('https://localhost:7184/api/job/v1/posting/count').subscribe((res: any) => {
+    this.api.get(settings.apiBaseURL+'api/job/v1/posting/count').subscribe((res: any) => {
       this.totalPages = Math.ceil(res.data / 12);
     })
     this.updatePage();

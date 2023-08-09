@@ -24,6 +24,21 @@
   margin: 12px;
 }
 
+.btnCreateCoverLetter {
+  float: right;
+  width: 20px;
+}
+
+.btnCreateCoverLetter:hover {
+  filter: invert(70%) sepia(96%) saturate(495%) hue-rotate(170deg) brightness(96%) contrast(95%);
+  cursor: pointer;
+}
+
+.headingH5 {
+  display: inline-block;
+  margin-bottom: 0 !important;
+}
+
 .card-content-1 {
   width: 260px;
   padding: 12px;
@@ -155,4 +170,80 @@
 
 .toolkit-div {
   vertical-align: top !important;
+}
+
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 3;
+}
+
+.coverLetterDisplay {
+  background-color: rgb(248, 248, 248);
+  height: 50vh;
+  width: 50vw;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  border-radius: 10px;
+  -webkit-box-shadow: -9px 12px 0px 0px rgba(0,0,0,0.62); 
+  box-shadow: -9px 12px 0px 0px rgba(0,0,0,0.62);
+  padding: 3%;
+  overflow-y: auto;
+}
+
+.createCoverLetterDisplay {
+  background-color: rgb(248, 248, 248);
+  height: 78vh;
+  width: 50vw;
+  position: absolute;
+  top: 5%;
+  left: 25%;
+  border-radius: 10px;
+  -webkit-box-shadow: -9px 12px 0px 0px rgba(0,0,0,0.62); 
+  box-shadow: -9px 12px 0px 0px rgba(0,0,0,0.62);
+  padding: 3%;
+  overflow-y: auto;
+}
+
+.btnSubmit {
+  font-weight: bold;
+  font-size: 1em;
+  overflow: hidden;
+  display: block;
+  width: 15%;
+  margin-left: auto !important;
+  margin-right: auto;
+}
+
+.btnClosePopup {
+  width: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: 0%;
+  margin-top: 0%;
+}
+
+.btnClosePopup:hover {
+  cursor: pointer;
+  filter: invert(70%) sepia(96%) saturate(495%) hue-rotate(170deg) brightness(96%) contrast(95%);
+}
+
+.required {
+  color: red;
+}
+
+.lblText {
+  color: red;
+  text-align: center !important;
+  margin-top: 1%;
+  width: 100% !important;
+}
+
+.invalid-field {
+  border-color: red;
 }

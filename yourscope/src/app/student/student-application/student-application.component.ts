@@ -12,6 +12,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { APIService } from 'src/app/services/api.service';
 import { JwtService } from 'src/app/services/jwt.service';
 import { environment } from 'src/environments/environment';
+import settings from '../../../appsettings.json';
 
 interface coverLetter {
   resumeId : number,
@@ -91,7 +92,7 @@ export class StudentApplicationComponent implements OnInit {
   fetchAllCoverLetters() {
     let loginToken = this.cookie.get("loginToken");
     let decodedToken = this.jwtService.DecodeToken(loginToken);
-    const url = 'https://localhost:7184/api/profile/v1/cover-letter';
+    const url = settings.apiBaseURL+'api/profile/v1/cover-letter';
     const options = {
       params: {'userId': decodedToken.userID },
       headers: new HttpHeaders({
@@ -118,7 +119,7 @@ export class StudentApplicationComponent implements OnInit {
   submitConfirm() {
     let loginToken = this.cookie.get("loginToken");
     let decodedToken = this.jwtService.DecodeToken(loginToken);
-    const url = 'https://localhost:7184/api/profile/v1/cover-letter';
+    const url = settings.apiBaseURL+'api/profile/v1/cover-letter';
     const options = {
       params: {'userId': decodedToken.userID },
       headers: new HttpHeaders({
@@ -156,7 +157,7 @@ export class StudentApplicationComponent implements OnInit {
   createNewApplication() {
     let loginToken = this.cookie.get("loginToken");
     let decodedToken = this.jwtService.DecodeToken(loginToken);
-    const url = 'https://localhost:7184/api/job/v1/application';
+    const url = settings.apiBaseURL+'api/job/v1/application';
     let body = {'jobPostingId': this.selected.postingID, 'userId': decodedToken.userID, 'coverLetterId': this.cov.coverLetterId };
     const options = {
       headers: new HttpHeaders({

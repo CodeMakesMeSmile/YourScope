@@ -4,6 +4,7 @@ import { APIService } from '../services/api.service';
 import { JwtService } from '../services/jwt.service';
 import { CookieService } from 'ngx-cookie-service';
 import { firstValueFrom } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,9 @@ export class AuthService {
   constructor(private router: Router,
               private service : APIService,
               private jwtService : JwtService,
-              private cookieService: CookieService)  { }
+              private cookieService: CookieService,
+              private api: APIService,
+              private toastr: ToastrService)  { }
 
   async login(email: string, password: string): Promise<number | null> {
     let response;
@@ -67,13 +70,22 @@ export class AuthService {
   }
 
   redirectToDashboard(loginToken: any) {
-    if(loginToken.role === 0){
-      this.router.navigate(['/dashboardStudent']);
-    }
-    else if(loginToken.role === 1){
+    if (loginToken.role === 0) {
+      this.api.getProfile(loginToken.userID).subscribe({
+        next: res => {
+            if (JSON.parse(JSON.stringify(res)).statusCode == 204) {
+            this.router.navigate(['/student/create-profile'])
+          } else {
+            this.router.navigate(['/dashboardStudent']);
+          }
+        },
+        error: err => {
+          this.toastr.error("There was an internal error.");
+        }
+      });
+    } else if (loginToken.role === 1) {
       this.router.navigate(['/dashboardAdmin']);
-    }
-    else{
+    } else {
       this.router.navigate(['/dashboardEmployer']);
     }
   }

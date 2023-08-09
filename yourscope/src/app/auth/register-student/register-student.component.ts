@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { APIService } from '../../services/api.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import settings from '../../../appsettings.json';
 
 class UserObj {
   Email!: string;
@@ -86,7 +87,7 @@ export class RegisterStudentComponent {
 
   validateAndSubmit(): void {
     let pass, cpass;
-    let checkExistsUrl = "https://localhost:7184/api/accounts/v1/check-registered/";
+    let checkExistsUrl = settings.apiBaseURL+"api/accounts/v1/check-registered/";
     const emailRegEx: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
     // Required fields validation.
@@ -196,7 +197,7 @@ export class RegisterStudentComponent {
   }
 
   postStudentRegistration() {
-    const url = 'https://localhost:7184/api/accounts/v1/student/register';
+    const url = settings.apiBaseURL+'api/accounts/v1/student/register';
     const user = new UserObj(
       this.studentForm.get("email")!.value,
       this.studentForm.get("fname")!.value,
@@ -219,7 +220,7 @@ export class RegisterStudentComponent {
   }
 
   fetchAllSchools() : void {
-    const url = 'https://localhost:7184/api/schools/v1';
+    const url = settings.apiBaseURL+'api/schools/v1';
     var component = this;
 
     this.api.get(url).subscribe({

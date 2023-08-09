@@ -5,6 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RegisterEmployerComponent } from '../register-employer/register-employer.component';
 import { APIService } from '../../services/api.service';
 import { ToastrService } from 'ngx-toastr';
+import settings from '../../../appsettings.json';
+
 class CompanyObj {
   Name!: string;
   Country!: string;
@@ -65,7 +67,7 @@ export class RegisterCompanyComponent {
   });
 
   validateAndSubmit(): void {
-    let checkExistsUrl = "https://localhost:7184/api/company/v1/check-company-exist/";
+    let checkExistsUrl = settings.apiBaseURL+"api/company/v1/check-company-exist/";
 
     const emailRegEx: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 

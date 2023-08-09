@@ -9,6 +9,7 @@ import { TruncatePipe } from '../pipes/truncate.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 @NgModule({
@@ -24,12 +25,14 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     NgbModule,
     BrowserAnimationsModule,
     NgbCollapse,
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   exports: [
     ConfirmationDialogComponent,
     CarouselComponent,
     TruncatePipe,
     NavbarComponent,
+    NgMultiSelectDropDownModule,
   ]
 })
 export class SharedModule { }

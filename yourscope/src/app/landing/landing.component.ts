@@ -110,7 +110,7 @@ export class LandingComponent {
 
   initCarouselElements(): void {
     this.carouselElements.push(new CarouselElement("../../assets/landing/carousel/01.jpg", "Students giving thumbs up", `"Your Success is Our Success"`, "- YourScope Team"));
-    this.carouselElements.push(new CarouselElement("../../assets/landing/carousel/02.jpg", "Student writing in a notebook", "Made For Highschool Students", "Helping You Keep Get Back on Track"));
+    this.carouselElements.push(new CarouselElement("../../assets/landing/carousel/02.jpg", "Student writing in a notebook", "Made For Highschool Students", "Helping You Get Back on Track"));
     this.carouselElements.push(new CarouselElement("../../assets/landing/carousel/03.jpg", "Students using a computer", "Powerful Tools to Help You Succeed", "Course Planner, Events Tracker, Job Board, and More!"));
   }
 
