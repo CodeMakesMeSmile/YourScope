@@ -1,0 +1,22 @@
+.badge {
+    border-radius: 20px;
+    color: #5aa9f8;
+    border-color: #2f6680;
+    border-style: solid;
+    border-width: 2px;
+    margin-right: 1%;
+    background-color: rgba(20, 35, 53, 0.85);
+    font-weight: 500;
+}
+
+.badge:hover {
+    cursor: pointer;
+}
+
+.disable {
+    cursor: default !important;
+}
+
+:host {
+    display: contents;
+}

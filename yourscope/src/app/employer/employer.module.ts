@@ -12,13 +12,15 @@ import { JobPostingComponent } from './job-posting/job-posting.component';
 import { JobPostingCreateComponent } from './job-posting-create/job-posting-create.component';
 import { JobApplicantComponent } from './job-applicant/job-applicant.component';
 
+import { BadgeComponent } from '../student/badge/badge.component';
+
 @NgModule({
   declarations: [
     DashboardEmployerComponent,
     EmployerPostingComponent,
     JobPostingComponent,
     JobPostingCreateComponent,
-    JobApplicantComponent,
+    JobApplicantComponent
   ],
   imports: [
     CommonModule,

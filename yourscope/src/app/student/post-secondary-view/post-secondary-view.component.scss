@@ -42,7 +42,7 @@ h5 {
 }
 
 .gifLoad {
-    margin-left: auto;
+    margin-left: 50%;
     margin-right: auto;
     margin-top: 5%;
     margin-bottom: 5%;
@@ -62,6 +62,11 @@ h5 {
     width: 40%;
 }
 
+.loadingGif {
+    width: 25px;
+    margin-left: 1%;
+}
+
 .information-button {
     width: 20px;
 }
@@ -74,6 +79,7 @@ h5 {
 .paginationButton {
     margin-left: 2%;
     margin-right: 2%;
+    width: 30px;
 }
 
 .disabled {

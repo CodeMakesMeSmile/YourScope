@@ -1,57 +1,61 @@
 .pad-12 {
-    padding: 12px;
-  }
-  
-  .margin-30 {
-    margin: 0px 30px 0px 30px;
-  }
-  
-  .left{
-    text-align: start;
-  }
-  .centre {
-    align-items: center;
-    justify-content: space-around;
-  }
+  padding: 12px;
+}
 
-  #bg {
-    background: rgb(2,0,36);
-    background: linear-gradient(333deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 30%, rgba(0,212,255,1) 100%);
-  }
-  
-  .white {
-    color: white;
-  }
-  
-  .navy {
-    color: navy;
-  }
-  
-  .bg-navy {
-    background-color: rgb(61, 89, 149);
-  }
+.margin-30 {
+  margin: 0px 30px 0px 30px;
+}
 
-  .button-lg {
-    color: white;
-    background-color: rgb(42, 61, 104);
-    border-radius: 20px;
-    padding: 6px 10px 6px 10px;
-    margin: 10px;
-    text-decoration: none;
-    font-size: 12px;
-    font-size: large;
-    text-align: center;
-    text-justify: center;
-    display: inline-block;
-  }
+.left{
+  text-align: start;
+}
+.centre {
+  align-items: center;
+  justify-content: space-around;
+}
+
+#bg {
+  background: rgb(2,0,36);
+  background: linear-gradient(333deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 30%, rgba(0,212,255,1) 100%);
+}
+
+.profileInputField {
+  margin-bottom: 2% !important;
+}
+
+.white {
+  color: white;
+}
+
+.navy {
+  color: navy;
+}
+
+.bg-navy {
+  background-color: rgb(61, 89, 149);
+}
+
+.button-lg {
+  color: white;
+  background-color: rgb(42, 61, 104);
+  border-radius: 20px;
+  padding: 6px 10px 6px 10px;
+  margin: 10px;
+  text-decoration: none;
+  font-size: 12px;
+  font-size: large;
+  text-align: center;
+  text-justify: center;
+  display: inline-block;
+}
 
 #main-card{
-    background: rgb(255, 255, 255);
-    border-radius: 20px;
-    box-shadow: 10px 10px rgba(0, 0, 0, 0.521);
-    width: min(500px, 90vh);
+  background: rgb(255, 255, 255);
+  border-radius: 20px;
+  box-shadow: 10px 10px rgba(0, 0, 0, 0.521);
+  width: min(500px, 90vh);
 }
 
 #logo{
-    width: 200px
+  width: 200px
 }

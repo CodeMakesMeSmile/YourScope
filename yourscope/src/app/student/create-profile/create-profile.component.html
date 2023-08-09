@@ -6,23 +6,26 @@
             <form [formGroup]="about_form">
               <div class="form-group py-2 left">
                 <h5>Tell us about yourself</h5>
-                  <div class="form-group py-2">
-                      <p>Please list your skills seperated by commas</p>
-                      <input type="text" class="form-control" placeholder="Enter Skills" formControlName="skills">
-                  </div>
-                  <div class="form-group py-2">
-                    <p>Please list your intrests and hobbies seperated by commas</p>
-                    <input type="text" class="form-control" placeholder="Enter Intrests and Hobbies" formControlName="hobbies">
+                <div class="form-group py-2">
+                    <p>Please list your skills seperated by commas</p>
+                    <input type="text" class="form-control profileInputField" placeholder="Enter Skills" formControlName="skills" [(ngModel)]="currSkill" (ngModelChange)="onChangeSkill()" (keydown)="onKeypress($event, BadgeType.Skill)">
+                    <app-badge *ngFor="let skill of skills" [bType]="BadgeType.Skill" [bValue]="skill" (onClickDeleteEvent)="deleteBadge($event)"/>
+                </div>
+                <div class="form-group py-2">
+                  <p>Please list your intrests and hobbies seperated by commas</p>
+                  <input type="text" class="form-control profileInputField" placeholder="Enter Intrests and Hobbies" formControlName="hobbies" [(ngModel)]="currIntHob" (ngModelChange)="onChangeIntHob()" (keydown)="onKeypress($event, BadgeType.InterestHobby)">
+                  <app-badge *ngFor="let intHob of interestsHobbies" [bType]="BadgeType.InterestHobby" [bValue]="intHob" (onClickDeleteEvent)="deleteBadge($event)"/>
                 </div>
                 <div class="form-group py-2">
                   <p>Please list your awards seperated by commas</p>
-                  <input type="text" class="form-control" placeholder="Enter Awards" formControlName="awards">
+                  <input type="text" class="form-control profileInputField" placeholder="Enter Awards" formControlName="awards" [(ngModel)]="currAward" (ngModelChange)="onChangeAward()" (keydown)="onKeypress($event, BadgeType.Award)">
+                  <app-badge *ngFor="let award of awards" [bType]="BadgeType.Award" [bValue]="award" (onClickDeleteEvent)="deleteBadge($event)"/>
                 </div>
               </div>
             </form>
-            <div class="form-group py-2">
+            <!-- <div class="form-group py-2">
               <button (click)=addExperience() href="" class="btn btn-primary">Add experience?</button>
-            </div>
+            </div> -->
           </div>
           <div *ngIf="add_exp">
             <form [formGroup]="exp_form" >
@@ -69,7 +72,7 @@
             </div>
           </div>
         <div class="form-group py-2">
-          <button type="submit" (click)="submitProfile()" class="btn btn-primary btn-lg">
+          <button [disabled]="clickedSubmit" type="submit" (click)="submitProfile()" class="btn btn-primary btn-lg">
             Submit
           </button>
         </div>

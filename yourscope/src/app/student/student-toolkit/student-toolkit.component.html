@@ -12,15 +12,19 @@
       <div class="card-body">
           <div class="centre flex">
               <div class="card toolkit-card">
-                  <div class="card-header">
+                <div class="card-header">
                     <h5 class="headingH5">Cover Letters</h5>
                     <img class="btnCreateCoverLetter" src="assets/plus.svg" (click)="onClickCreateCV()"/>
                 </div>
-                  <cover-letter-view />
+                <div class="card-body infoDiv">
+                    <cover-letter-view />
+                </div>
               </div>
-              <div class="card toolkit-card">
+              <div class="card toolkit-card infoDiv">
                   <h5 class="card-header">Post-Secondary Programs</h5>
-                  <post-secondary-view />
+                  <div class="card-body">
+                    <post-secondary-view />
+                  </div>
               </div>
           </div>
       </div>

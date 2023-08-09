@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { BadgeComponent } from './components/badge/badge.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     CarouselComponent,
     TruncatePipe,
     NavbarComponent,
+    BadgeComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +35,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     TruncatePipe,
     NavbarComponent,
     NgMultiSelectDropDownModule,
+    BadgeComponent
   ]
 })
 export class SharedModule { }

@@ -14,8 +14,11 @@
                 <div class="card-body">
                     <h6 class="card-title">Email: {{applicant.email}}</h6>
                     <h6 class="card-title">Awards: {{applicant.awards}} </h6>
-                    <h6 class="card-title">Interests and Hobbies: {{applicant.intrestsHobbies}}</h6>
-                    <h6 class="card-title">Skills:  {{applicant.skills}}</h6>
+                    <app-badge *ngFor="let award of applicant.awards" [bValue]="award" [disable]="true"/>
+                    <h6 class="card-title">Interests and Hobbies:</h6> 
+                    <app-badge *ngFor="let interest of applicant.intrestsHobbies" [bValue]="interest" [disable]="true"/>
+                    <h6 class="card-title">Skills:</h6> 
+                    <app-badge *ngFor="let skill of applicant.skills" [bValue]="skill" [disable]="true"/>
                     <h6 class="card-title">Cover Letter:</h6>
                     <div *ngIf="applicant.coverLetter">
                         <p class="card-text">

@@ -1,111 +1,84 @@
 <app-navbar></app-navbar>
 <div id="bg" class="vh-100">
-    <div>
+   <div>
       <h2 class="pad-12 white page-heading">
-      </h2> 
-    </div>
-    <div class="container">
-        <div class="main-body">
-              <div class="row gutters-sm">
-                <div class="col">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex flex-column align-items-center text-center">
-                          <h4>{{student_profile.user.firstName}} {{student_profile.user.lastName}}</h4>
-                          <p class="text-secondary mb-1">Grade {{student_profile.user.grade}} student</p>
-                          <p class="text-muted font-size-sm">{{student_profile.user.affiliation}}</p>
-                        </div>
-                    </div>
+      </h2>
+   </div>
+   <div class="container">
+      <div class="main-body">
+         <div class="row gutters-sm">
+            <div class="col">
+               <div class="card">
+                  <div class="card-body">
+                     <div class="d-flex flex-column align-items-center text-center">
+                        <h4>{{student_profile.user.firstName}} {{student_profile.user.lastName}}</h4>
+                        <p class="text-secondary mb-1">Grade {{student_profile.user.grade}} student</p>
+                        <p class="text-muted font-size-sm">{{student_profile.user.affiliation}}</p>
+                     </div>
                   </div>
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="row">
+               </div>
+               <div class="card">
+                  <div class="card-body">
+                     <div class="row">
                         <div class="col-sm">
-                          <h6 class="mb-0">Full Name</h6>
+                           <h6 class="mb-0">Full Name</h6>
                         </div>
                         <div class="col-sm text-secondary">
-                            {{student_profile.user.firstName}} {{student_profile.user.middleName}} {{student_profile.user.lastName}}
+                           {{student_profile.user.firstName}} {{student_profile.user.middleName}} {{student_profile.user.lastName}}
                         </div>
-                      </div>
-                      <hr>
-                      <div class="row">
+                     </div>
+                     <hr>
+                     <div class="row">
                         <div class="col-sm">
-                          <h6 class="mb-0">Email</h6>
+                           <h6 class="mb-0">Email</h6>
                         </div>
                         <div class="col-sm text-secondary">
-                            {{student_profile.user.email}}
+                           {{student_profile.user.email}}
                         </div>
-                      </div>
-                      <hr>
-                      <div class="row">
+                     </div>
+                     <hr>
+                     <div class="row">
                         <div class="col-sm">
-                          <h6 class="mb-0">Birthday</h6>
+                           <h6 class="mb-0">Birthday</h6>
                         </div>
                         <div class="col-sm text-secondary">
-                            {{student_profile.user.birthday}}
+                           {{student_profile.user.birthday}}
                         </div>
-                      </div>
-                      <hr>
-                      <div class="row">
+                     </div>
+                     <hr>
+                     <div class="row">
                         <div class="col-sm">
-                          <h6 class="mb-0">Skills</h6>
+                           <h6 class="mb-0">Skills</h6>
                         </div>
                         <div class="col-sm text-secondary">
-                            {{student_profile.skills}}
+                          <app-badge *ngFor="let skill of student_profile.skills.split(',')" [bValue]="skill" [disable]="true"/>
+                          <h6 *ngIf="!student_profile.skills.length">N/A</h6>
                         </div>
-                      </div>
-                      <hr>
-                      <div class="row" >
+                     </div>
+                     <hr>
+                     <div class="row" >
                         <div class="col-sm">
-                          <h6 class="mb-0">Intrests and Hobbies</h6>
+                           <h6 class="mb-0">Intrests and Hobbies</h6>
                         </div>
                         <div class="col-sm text-secondary">
-                            {{student_profile.intrestsHobbies}}
+                           <app-badge *ngFor="let interest of student_profile.intrestsHobbies.split(',')" [bValue]="interest" [disable]="true"/>
+                           <h6 *ngIf="!student_profile.intrestsHobbies.length">N/A</h6>
                         </div>
-                      </div>
-                      <hr>
-                      <div class="row">
+                     </div>
+                     <hr>
+                     <div class="row">
                         <div class="col-sm">
-                          <h6 class="mb-0">Awards</h6>
+                           <h6 class="mb-0">Awards</h6>
                         </div>
                         <div class="col-sm text-secondary">
-                            {{student_profile.awards}}
+                           <app-badge *ngFor="let award of student_profile.awards.split(',')" [bValue]="award" [disable]="true"/>
+                           <h6 *ngIf="!student_profile.awards.length">N/A</h6>
                         </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm">
-                            <h6 class="mb-0">Cover Letters</h6>
-                        </div>
-                        <div *ngIf="num_cover > 0">
-                            <div class="col-sm text-secondary" *ngFor="let cover_letter of student_profile.coverLetters">
-                                {{cover_letter}}
-                            </div>
-                        </div>
-                        <div *ngIf="num_experiences == 0">
-                            <div class="col-sm text-secondary">
-                                No cover letters found
-                            </div>
-                        </div>
-                    </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm">
-                                <h6 class="mb-0">Experience</h6>
-                            </div>
-                            <div *ngIf="num_experiences > 0">
-                                <div class="col-sm text-secondary" *ngFor="let experience of student_profile.experiences">
-                                    {{experience}}
-                                </div>
-                            </div>
-                            <div *ngIf="num_experiences == 0">
-                                <div class="col-sm text-secondary">
-                                    No experiences found
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-              </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
+         </div>
+      </div>
+   </div>
+</div>

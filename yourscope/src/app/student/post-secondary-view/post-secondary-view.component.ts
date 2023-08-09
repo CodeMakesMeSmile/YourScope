@@ -22,6 +22,7 @@ export class PostSecondaryViewComponent {
   universities: Array<University> = [
     {id: 1, name: 'University of Toronto'}
   ];
+  searched: boolean = false;
   // Search filters
   searchQuery: string | undefined;
   selectedUniversity: number | undefined;
@@ -51,15 +52,24 @@ export class PostSecondaryViewComponent {
     this.savedSearch = this.searchQuery;
     this.savedUni = this.selectedUniversity;
     try {
+      // Clearing current program list and indicating loading.
+      this.loadingComplete = false;
+      this.programs = [];
+      // Fetching new programs.
       this.programs = await this.api.getProgramWithFilters(this.searchQuery!, this.selectedUniversity, this.count, this.offset);
       let totalRecords = await this.api.countProgramWithFilters(this.searchQuery!, this.selectedUniversity);
       this.page[0] = 1;
       this.page[1] = Math.ceil(totalRecords/this.count);
     }
     catch(err) {
-      console.log(err);
+      console.error(err);
       this.toastr.error("An internal error occurred.");
     }
+    finally {
+      this.loadingComplete = true;
+      this.searched = true;
+    }
+    
   }
   formValidation(): boolean {
     // Clearing form validation from previous calls
