@@ -1,17 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LoginComponent } from './login.component';
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [LoginComponent]
-    });
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+<div id="bg" class="d-flex justify-content-center align-items-center vh-100">
+    <div id="main-card" class="card text-center">
+      <div class="card-body p-auto">
+        <img id="logo" src="/assets/yourscope.png" alt="YourScope" />
+          <p class="lead fs-3">Forgot Password</p>
+            <div class="form-group py-2">
+                <label>Enter your email address</label>
+                <input type="email" class="form-control" placeholder="Email" [(ngModel)]="email" [class.invalidField]="invalidEmail" [disabled]="emailSending">
+            </div>
+            <div class="form-group py-2">
+              <label [class.lblText]="!emailSending" class="lblInfo">{{lblText}}</label>
+              <br />
+              <button (click)="resetPassword()" type="submit" class="btn btn-primary btn-lg" [disabled]="emailSending">
+                Continue
+              </button>
+            </div>
+        </div>
+    </div>
+</div>
