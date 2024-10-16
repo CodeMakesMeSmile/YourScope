@@ -1,59 +1,152 @@
-<div class="divViewCourse" [@inOutAnimation] *ngIf="visible">
-  <div *ngIf="!selectedCourse">
-    <h2>Select a course</h2>
-    <div class="search">
-      <input placeholder="Search..." id="student-search-course" [(ngModel)]="search">
-      <mat-select class="select-discipline" placeholder="Discipline" [(ngModel)]="selectedDiscipline">
-        <mat-option *ngFor="let disc of disciplines" [value]="disc">{{disc}}</mat-option>
-      </mat-select>
-      <mat-select class="select-grade" placeholder="Grade" [(ngModel)]="selectedGrade">
-        <mat-option *ngFor="let grade of grades" [value]="grade.g">{{grade.g}}</mat-option>
-      </mat-select>
-      <button (click)="searchQuery()">Search</button>
-    </div>
-    <div *ngIf="recommendedCourses">
-      <h4>Based on your current courses, we recommended you take: </h4>
-      <h5>{{recommendedCourses}}</h5>
-    </div>
-    <img src="../../../assets/closeBox.png" class="closeIcon" (click)="onClickCloseButton()">
-    <div class="container-wrapper">
-      <div class="container container-item">
-        <div *ngFor="let course of offeredCourses; let i = index;" class="row">
-          <div class="col course-item" (click)="selectCourse(i)">
-            <h4 style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">{{course.name}}</h4>
-            <p class="subHeading">{{course.courseCode}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="course-pages">
-      <img class="cant-click" *ngIf="this.page == 1" src="assets/iconPrevious.svg">
-      <img *ngIf="this.page != 1" src="assets/iconPrevious.svg" (click)="prevPage()">
-      <p>{{this.page}} of {{this.maxPage}}</p>
-      <img class="cant-click" *ngIf="this.page == this.maxPage" src="assets/iconNext.svg">
-      <img *ngIf="this.page != this.maxPage" src="assets/iconNext.svg" (click)="nextPage()">
-    </div>
-  </div>
-  <div *ngIf="selectedCourse">
-    <h4>{{this.course.name}}</h4>
-    <img src="../../../assets/closeBox.png" class="closeIcon" (click)="onClickCloseButton()">
-    <p class="subHeading">
-      <span class="bold">Credits:</span> {{this.course.credits}}
-    </p>
-    <p class="subHeading">
-      <span class="bold">Discipline:</span> {{this.course.discipline}}
-    </p>
-    <p class="subHeading">
-      <span class="bold">Pre-requisites:</span> {{this.parsePrereqs(this.course.prerequisites)}}
-    </p>
-    <hr />
-    <h5>Description</h5>
-    <p class="courseDescription">{{this.course.description}}</p>
-    <hr />
-    <button class="btn btn-success btnAddCourse" (click)="addCourse()">Add</button>
-    <button class="btn btn-secondary btnAddCourse" (click)="returnToSearch()">Back</button>
-  </div>
-</div>
+:host {
+  display: contents;
+}
 
-<confirmation-dialog *ngIf="confirmNoPrereqs" (onClickEvent)="confirmAddition($event)"/>
-<app-missing-prereq *ngIf="confirmWithPrereqs">
+.divViewCourse {
+  position: fixed;
+  top: 25%;
+  left: 26%;
+  min-height: 46vh;
+  max-height: 56vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 45vw;
+  background-color: #EEEEEE;
+  border-radius: 5px;
+  padding: 1%;
+  padding-left: 2%;
+  padding-right: 2%;
+  -webkit-box-shadow: 1px 2px 19px 1px #000000;
+  box-shadow: 1px 2px 19px 1px #000000;
+  z-index: 2;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.subHeading {
+  margin-bottom: 0;
+  font-size: 0.85em;
+  display: inline-block;
+  margin-right: 8%;
+}
+
+.btnAddCourse {
+  font-weight: bold;;
+  float: right;
+}
+
+hr {
+  margin-top: 0;
+}
+
+.courseDescription {
+  min-height: 230px;
+}
+
+.closeIcon {
+  width: 15px;
+  position: absolute;
+  top: 2%;
+  right: 0%;
+}
+
+.closeIcon:hover {
+  cursor: pointer;
+}
+
+h5 {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+::-webkit-scrollbar-track {
+  background: #EEEEEE;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.container-item {
+  background-color: #F5F5F5;
+  border-radius: 15px;
+  box-shadow: inset 0px 4px 4px -2px #8b8b8b;
+}
+
+.container-wrapper {
+  height: 450px;
+  overflow-y: scroll;
+}
+
+.course-item {
+  height: 64px;
+  width: 480px;
+  margin: 5px;
+  border-radius: 10px;
+  border: solid 2px gray;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e6e6e6;
+  }
+}
+
+.course-pages {
+  display: flex;
+  justify-content: center;
+
+  img {
+    margin-top: 2px;
+    max-width: 30px;
+    max-height: 30px;
+    cursor: pointer;
+  }
+
+  p {
+    width: auto;
+    margin: 4px 8px;
+    white-space: nowrap;
+  }
+}
+
+.cant-click {
+  filter: invert(98%) sepia(74%) saturate(11%) hue-rotate(292deg) brightness(87%) contrast(91%);
+  cursor: default !important;
+}
+
+.search {
+  margin: 9px;
+  display: flex;
+  justify-content: space-between;
+  height: 32px;
+  margin: 6px;
+
+  input {
+    width: 40%;
+    border-radius: 12px;
+    border: solid 2px #8b8b8b;
+  }
+
+  button {
+    border-radius: 12px;
+    border: solid 2px #8b8b8b;
+  }
+}
+
+mat-select {
+  background-color: #F5F5F5;
+  border-radius: 12px;
+  height: 24px;
+  margin: 3px;
+}
+
+.select-discipline {
+  min-width: 128px;
+  width: 25%;
+  overflow: hidden;
+}
+
+.select-grade {
+  min-width: 64px;
+  width: 10%;
+}
