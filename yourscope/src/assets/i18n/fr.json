@@ -1,22 +1,14 @@
-<div id="bg" class="d-flex justify-content-center align-items-center vh-100">
-  <div id="main-card" class="card text-center">
-    <div class="card-body p-4">
-      <img id="logo" src="/assets/yourscope.png" alt="YourScope" />
+#bg{
+    background: rgb(2,0,36);
+    background: linear-gradient(333deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 30%, rgba(0,212,255,1) 100%);
+}
 
-      <div *ngIf="regState == 0" class="d-flex flex-column align-items-center">
-        <p class="lead fs-3">Create your YourScope Account.</p>
-        <button (click)="loadStudentRegistration()" class="btn btn-outline-primary btn-lg m-2">
-          I'm a Student
-        </button>
-        <button (click)="loadEmployerCompanyRegistration()" class="btn btn-outline-primary btn-lg m-2">
-          I'm an Employer
-        </button>
-      </div>
+#main-card{
+    background: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.521);
+}
 
-      <div *ngIf="regState >= 1" class="d-flex flex-column align-items-center">
-        <app-register-student *ngIf="regState == 1"></app-register-student>
-        <app-register-employer-company *ngIf="regState == 2"></app-register-employer-company>
-      </div>
-    </div>
-  </div>
-</div>
+#logo{
+    width: 200px
+}
