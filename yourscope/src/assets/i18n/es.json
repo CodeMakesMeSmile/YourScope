@@ -1,17 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { StudentEventsComponent } from './student-events.component';
-describe('StudentEventsComponent', () => {
-  let component: StudentEventsComponent;
-  let fixture: ComponentFixture<StudentEventsComponent>;
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [StudentEventsComponent]
-    });
-    fixture = TestBed.createComponent(StudentEventsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+<div class="inner-card">
+  <div class="popup-title">
+    <h1>{{selected.jobTitle}}</h1>
+  </div>
+  <div style="display: flex; justify-content:space-between;">
+    <h3>{{selected.companyName}}</h3>
+    <h3>Apply By: {{selected.applicationDeadline | date:'MM/dd/yyyy, h:mma'}}</h3>
+  </div>
+  <p>{{selected.description}}</p>
+</div>
