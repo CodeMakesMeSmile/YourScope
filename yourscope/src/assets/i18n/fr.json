@@ -1,17 +1,26 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { JobApplicantComponent } from './job-applicant.component';
-describe('JobApplicantComponent', () => {
-  let component: JobApplicantComponent;
-  let fixture: ComponentFixture<JobApplicantComponent>;
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [JobApplicantComponent]
-    });
-    fixture = TestBed.createComponent(JobApplicantComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+<div class="inner-card">
+  <div class="inner-card-wrapper">
+    <form class="card-details" [formGroup]="createJobPostingForm" (ngSubmit)="submitForm()" >
+      <div class="popup-title">
+        <h1>Create Job Posting</h1>
+      </div>
+      <div class="row py-2">
+        <div class="col py-2">
+          <label for="title">Job Title</label>
+          <input formControlName="title" type="text" class="form-control" placeholder="e.g. Senior Software Engineer" maxlength="maxTitle" [class.invalid-field]="missingTitle"/>
+        </div>
+        <div class="col py-2">
+          <label for="deadline">Select Deadline Date</label>
+          <input formControlName="deadline" type="date" class="form-control" [class.invalid-field]="missingDate" min="{{today}}">
+        </div>
+      </div>
+      <div class="form-group py-2">
+        <label for="desc">Job Description</label>
+        <textarea formControlName="desc" class="form-control long jobDesc" placeholder="Describe job details..." maxlength="maxDesc" [class.invalid-field]="missingDesc"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg">Create Posting</button>
+      <br />
+      <label class="lblText">{{lblText}}</label>
+    </form>
+  </div>
+</div>
