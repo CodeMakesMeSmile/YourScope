@@ -1,5 +1,31 @@
-<tr class="courseWrapper" (click)="onClick()">
-  <td *ngIf="course">{{course.courseCode+" - "+course.name | truncate:35}}</td>
-  <td *ngIf="!course"><img src="../../../assets/plus.png" class="addCourseIcon"></td>
-</tr>
+:host {
+  display: contents;
+}
 
+.addCourseIcon {
+  width: 25px;
+  margin-left: 45%;
+}
+
+td {
+  padding: 5%;
+  padding-top: 6%;
+  padding-bottom: 6%;
+}
+
+td:hover {
+  cursor: pointer;
+}
+
+.courseDisplay tr {
+  border-color: #E7E7E7;
+  border-style: solid;
+  border-width: 1px;
+  border-style: none;
+}
+
+tr {
+  border-bottom-style: inherit;
+  border-width: inherit;
+  border-color: inherit;
+}
