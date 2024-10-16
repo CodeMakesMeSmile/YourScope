@@ -1,88 +1,17 @@
-.pad-12 {
-    padding: 12px;
-  }
-  
-  .margin-30 {
-    margin: 0px 30px 0px 30px;
-  }
-  
-  .left{
-    text-align: start;
-  }
-  .centre {
-    align-items: center;
-    justify-content: space-around;
-  }
-
-  #bg {
-    background: rgb(2,0,36);
-    background: linear-gradient(333deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 30%, rgba(0,212,255,1) 100%);
-  }
-  
-  .white {
-    color: white;
-  }
-  
-  .navy {
-    color: navy;
-  }
-  
-  .bg-navy {
-    background-color: rgb(61, 89, 149);
-  }
-
-  .button-lg {
-    color: white;
-    background-color: rgb(42, 61, 104);
-    border-radius: 20px;
-    padding: 6px 10px 6px 10px;
-    margin: 10px;
-    text-decoration: none;
-    font-size: 12px;
-    font-size: large;
-    text-align: center;
-    text-justify: center;
-    display: inline-block;
-  }
-
-#main-card{
-    background: rgb(255, 255, 255);
-    border-radius: 20px;
-    box-shadow: 10px 10px rgba(0, 0, 0, 0.521);
-    width: min(500px, 90vh);
-}
-
-#logo{
-    width: 200px
-}
-
-body{
-    margin-top:20px;
-    color: #1a202c;
-    text-align: left;
-    background-color: #e2e8f0;    
-}
-.main-body {
-    padding: 15px;
-}
-.card {
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
-}
-
-.card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 0 solid rgba(0,0,0,.125);
-    border-radius: .25rem;
-}
-
-.card-body {
-    flex: 1 1 auto;
-    min-height: 1px;
-    padding: 1rem;
-}
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ProfileComponent } from './profile.component';
+describe('ProfileComponent', () => {
+  let component: ProfileComponent;
+  let fixture: ComponentFixture<ProfileComponent>;
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [ProfileComponent]
+    });
+    fixture = TestBed.createComponent(ProfileComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
