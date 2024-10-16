@@ -1,27 +1,81 @@
-.inner-card {
-  background-color: #F5F5F5;
-  box-shadow: 0 4px 4px 0 #00000040 inset;
-  width: calc(100% - 48px);
-  height: calc(100% - 48px);
-  margin: 24px auto;
-  border-radius: 32px;
-}
+<app-navbar></app-navbar>
+<div id="bg">
+  <div>
+    <h2 class="pad-12 white page-heading">
+      School Courses
+    </h2>
+  </div>
+  <div>
+    <a class="button-sm" href="admin/create-course">Add Course</a>
+  </div>
+  <div class="search">
+    <input placeholder="Course Code" class="search-bar" [(ngModel)]="filter.query">
+    <img class="information-button" src="assets/search.svg" (click)="applyQuery()">
+    <ng-multiselect-dropdown
+      [placeholder]="'Grade'"
+      [settings]="gradeSettings"
+      [data]="grades"
+      [(ngModel)]="selectedGrade"
+      (onSelect)="selectGrade($event)"
+      (onDeSelect)="unselectGrade($event)"></ng-multiselect-dropdown>
+    <ng-multiselect-dropdown
+      [placeholder]="'Disciplines'"
+      [settings]="disciplineSettings"
+      [data]="disciplines"
+      [(ngModel)]="selectedDisciplines"
+      (onSelect)="selectDiscipline($event)"
+      (onDeSelect)="unselectDiscipline($event)"></ng-multiselect-dropdown>
+  </div>
+  <div class="centre flex wrap">
+    <div *ngIf="courses.length == 0" class="card pad-12">
+        <h5>No courses available.</h5>
+    </div>
+    <div class="scrollspy-container">
+      <div data-spy="scroll" class="content-box flex" data-offset="0">
+        <div class="card item-card shadow mb-5 bg-white rounded flex" *ngFor="let course of courses">
+          <div class="full-size">
+            <h5 class="card-header">
+              {{course.courseCode}}
+            </h5>
+            <div class="card-body">
+              <h6 class="card-title">{{course.name | truncate:30}}</h6>
+              <p class="card-text">
+                {{course.description | truncate:200}}
+              </p>
+            </div>
+            <div class="centre flex">
+              <div class="button-sm" (click)="loadPopup(course)">
+                More Info
+              </div>
+              <div class="button-d" (click)="deleteCourse(course)">
+                Delete
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <button class="page-link" (click)="onPageMove(false)">Previous</button>
+    </li>
+    <li class="page-item" *ngFor="let item of [].constructor(totalPages); let i = index">
+      <button class="page-link" (click)="onPageChange(i + 1)">{{ i + 1 }}</button>
+    </li>
+    <li class="page-item">
+      <button class="page-link" (click)="onPageMove(true)">Next</button>
+    </li>
+  </ul>
+</div>
 
-.popup-title {
-  padding: 0 24px;
-  padding-top: 24px;
-}
+<div class="close-popup" (click)="closePopup2($event)" *ngIf="popup">
+  <div class="info-card">
+    <div class="close-button-bg">
+      <div class="close-button" (click)="closePopup1()">X</div>
+    </div>
+    <app-admin-course-details [course]="selected"></app-admin-course-details>
+  </div>
+</div>
 
-h1 {
-  padding-bottom: 12px;
-  border-bottom: solid 3px;
-}
-
-h3 {
-  margin: 6px 24px;
-}
-
-p {
-  margin: 24px;
-  font-size: 18px;
-}
+<confirmation-dialog *ngIf="confirm" (onClickEvent)="confirmDeletion($event)"/>
