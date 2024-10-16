@@ -1,12 +1,42 @@
-<div class="scheduleYearWrapper" id="{{this.scheduleYearPrefix+year.yearNumber}}">
-  <h4 class="scheduleYearHeading">{{"Grade " + grade}}</h4>
-  <div class="scheduleYear">
-    <table class="courseDisplay">
-      <app-course *ngFor="let i of courseIndices"
-        [course]="year.courses[i]"
-        (onClickCourse)="onClickCourse($event)"
-        (onClickAdd)="onClickAdd()"
-        [class.courseBottomBorder]="i != 7"/>
-    </table>
-  </div>
-</div>
+:host {
+  display: contents;
+}
+
+.scheduleYearWrapper {
+  display: inline-block;
+  margin-left: 2%;
+  margin-top: 1%;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  height: 88%;
+  width: 20%;
+
+}
+
+.scheduleYear {
+  white-space: break-spaces;
+  background-color: #F5F5F5;
+  height: 100%;
+  width: 100%;
+  margin-top: 1%;
+  border-radius: 15px;
+  -webkit-box-shadow: inset 0px 9px 8px -2px #4D4D4D;
+  box-shadow: inset 0px 9px 8px -2px #4D4D4D;
+  padding-top: 5%;
+  overflow-y: hidden;
+}
+
+.courseBottomBorder {
+  border-bottom-style: solid !important;
+  border-width: 1px;
+  border-color: #E2E2E2;
+}
+
+.scheduleYearHeading {
+  text-align: center;
+}
+
+.courseDisplay {
+  padding-left: 5%;
+  font-size: 1em;
+  width: 100%;
+}
