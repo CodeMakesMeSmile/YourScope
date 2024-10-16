@@ -1,63 +1,259 @@
-<app-navbar></app-navbar>
-<!-- Background div -->
-<div id="bg">
-  <!-- Title -->
-  <div>
-      <h2 class="pad-12 white">
-      Student Toolkit
-      </h2>
-  </div>
-<!-- Main content -->
-  <div id="main-card" class="card margin-30 shadow mb-5 rounded">
-      <div class="card-body">
-          <div class="centre flex">
-              <div class="card toolkit-card">
-                <div class="card-header">
-                    <h5 class="headingH5">Cover Letters</h5>
-                    <img class="btnCreateCoverLetter" src="assets/plus.svg" (click)="onClickCreateCV()"/>
-                </div>
-                <div class="card-body infoDiv">
-                    <cover-letter-view />
-                </div>
-              </div>
-              <div class="card toolkit-card infoDiv">
-                  <h5 class="card-header">Post-Secondary Programs</h5>
-                  <div class="card-body">
-                    <post-secondary-view />
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-<div class="overlay" *ngIf="displayCreateCoverLetter">
-    <div class="createCoverLetterDisplay">
-      <img src="assets/closeBox.png" class="btnClosePopup" (click)="onClickClosePopup()"/>
-      <h3>Create Cover Letter</h3>
-      <hr />
-      <form [formGroup]="formCV" (ngSubmit)="submitCV()">
-        <div class="form-group py-2">
-          <label for="intro">Introduction <span class="required">*</span></label>
-          <textarea formControlName="intro" type="text" class="form-control" [class.invalid-field]="missingIntro"></textarea>
-        </div>
-        <div class="form-group py-2">
-          <label for="intro">Paragraph 1</label>
-          <textarea formControlName="salesPitch1" type="text" class="form-control"></textarea>
-        </div>
-        <div class="form-group py-2">
-          <label for="intro">Paragraph 2</label>
-          <textarea formControlName="salesPitch2" type="text" class="form-control"></textarea>
-        </div>
-        <div class="form-group py-2">
-          <label for="intro">Paragraph 3</label>
-          <textarea formControlName="salesPitch3" type="text" class="form-control"></textarea>
-        </div>
-        <div class="form-group py-2">
-          <label for="intro">Conclusion</label>
-          <textarea formControlName="conclusion" type="text" class="form-control"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary btn-lg btnSubmit" [disabled]="clickedCreate">Create</button>
-        <label class="lblText">{{lblText}}</label>
-      </form>
-    </div>
-</div>
+.pad-12 {
+  padding: 12px;
+}
+
+.pad-left-30 {
+  padding-left: 30px;
+}
+
+.margin-left-10 {
+  margin-left: 10px;
+}
+
+.pad-right-30 {
+  padding-right: 30px;
+}
+
+.margin-30 {
+  margin: 30px;
+}
+
+.main-card {
+  height: fit-content !important;
+}
+
+.item-card {
+  width: 300px;
+  height: 300px;
+  margin: 12px;
+}
+
+.btnCreateCoverLetter {
+  float: right;
+  width: 20px;
+}
+
+.btnCreateCoverLetter:hover {
+  filter: invert(70%) sepia(96%) saturate(495%) hue-rotate(170deg) brightness(96%) contrast(95%);
+  cursor: pointer;
+}
+
+.headingH5 {
+  display: inline-block;
+  margin-bottom: 0 !important;
+}
+
+.infoDiv {
+  height: 780px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.card-content-1 {
+  width: 260px;
+  padding: 12px;
+}
+
+.card-content-2 {
+  width: 350px;
+  padding: 12px;
+}
+
+.card-internal {
+  background-color: rgb(246, 246, 246);
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px;
+}
+
+.scrollspy-container {
+  overflow: auto;
+  width: 640px;
+}
+
+.flex {
+  display: flex;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.centre {
+  align-items: center;
+  justify-content: space-around;
+}
+
+#bg {
+  background: rgb(110, 197, 239) !important;
+  display: block;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+}
+
+#studentSchedule {
+  background-color: white;
+  height: 75%;
+  width: 95%;
+  margin: auto;
+  overflow-x: scroll;
+  white-space: nowrap;
+  overflow-y: hidden;
+  border-radius: 8px;
+  padding: 0 !important;
+  -webkit-box-shadow: -8px 8px 0px -2px #3695B7;
+  box-shadow: -8px 8px 0px -2px #3695B7;
+  position: relative;
+}
+
+.white {
+  color: white;
+}
+
+.loadingGif {
+  width: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loadingGif img {
+  width: inherit;
+}
+
+.overlayBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.navy {
+  color: navy;
+}
+
+.bg-navy {
+  background-color: rgb(61, 89, 149);
+}
+
+.button-sm {
+  color: white;
+  background-color: rgb(42, 61, 104);
+  border-radius: 20px;
+  padding: 6px 10px 0px 10px;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 12px;
+  text-align: center;
+  text-justify: center;
+}
+
+.button-md {
+  color: white;
+  background-color: rgb(42, 61, 104);
+  border-radius: 20px;
+  padding: 0px 10px 0px 10px;
+  text-decoration: none;
+  margin-left: 20px;
+  text-align: center;
+  text-justify: center;
+}
+
+.button-lg {
+  color: white;
+  background-color: rgb(42, 61, 104);
+  border-radius: 20px;
+  padding: 5px 20px 5px 20px;
+  text-decoration: none;
+  margin: 50px;
+}
+
+.toolkit-card {
+  vertical-align: inherit !important;
+  margin-top: 1%;
+  width: 40%;
+}
+
+.toolkit-div {
+  vertical-align: top !important;
+}
+
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 3;
+}
+
+.coverLetterDisplay {
+  background-color: rgb(248, 248, 248);
+  height: 50vh;
+  width: 50vw;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  border-radius: 10px;
+  -webkit-box-shadow: -9px 12px 0px 0px rgba(0,0,0,0.62); 
+  box-shadow: -9px 12px 0px 0px rgba(0,0,0,0.62);
+  padding: 3%;
+  overflow-y: auto;
+}
+
+.createCoverLetterDisplay {
+  background-color: rgb(248, 248, 248);
+  height: 78vh;
+  width: 50vw;
+  position: absolute;
+  top: 5%;
+  left: 25%;
+  border-radius: 10px;
+  -webkit-box-shadow: -9px 12px 0px 0px rgba(0,0,0,0.62); 
+  box-shadow: -9px 12px 0px 0px rgba(0,0,0,0.62);
+  padding: 3%;
+  overflow-y: auto;
+}
+
+.btnSubmit {
+  font-weight: bold;
+  font-size: 1em;
+  overflow: hidden;
+  display: block;
+  width: 15%;
+  margin-left: auto !important;
+  margin-right: auto;
+}
+
+.btnClosePopup {
+  width: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: 0%;
+  margin-top: 0%;
+}
+
+.btnClosePopup:hover {
+  cursor: pointer;
+  filter: invert(70%) sepia(96%) saturate(495%) hue-rotate(170deg) brightness(96%) contrast(95%);
+}
+
+.required {
+  color: red;
+}
+
+.lblText {
+  color: red;
+  text-align: center !important;
+  margin-top: 1%;
+  width: 100% !important;
+}
+
+.invalid-field {
+  border-color: red;
+}
