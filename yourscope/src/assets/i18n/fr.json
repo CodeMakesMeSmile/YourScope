@@ -1,30 +1,18 @@
-<form>
-  <div *ngIf="regState == 0 || regState == 3" class="d-flex flex-column align-items-center">
-    <p class="lead fs-3">Please select your company</p>
-    <p class="error">{{regState == 3 ? "Please select a company" : ""}}</p>
-    <div class="form-group py-2">
-      <p>
-        <mat-form-field>
-          <mat-select (selectionChange)="selectedCompany($event)" [formControl]="companyControl" placeholder="Select Company">
-            <mat-option>
-              <ngx-mat-select-search placeholderLabel="Search..." [formControl]="companyFilter">
-                <span ngxMatSelectNoEntriesFound>
-                  <button (click)="loadCompanyRegistration()" mat-button color="primary">Add Company</button>
-                </span>
-              </ngx-mat-select-search>
-            </mat-option>
-            <mat-option *ngFor="let company of filteredCompanies | async" [value]="companies">
-              {{company.companyName}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </p>
-    </div>
-    <button (click)="loadEmployerRegistration()" type="submit" class="btn btn-primary btn-lg">Select</button>
-  </div>
+mat-form-field {
+  height: 40px;
+  width: 300px;
+  font-size: 1.25rem;
+  color: #0d6efd;
+  background-color: #d3d3d3;
+  border: 1px solid #0d6efd;
+  border-radius: 0.5rem;
 
-  <div *ngIf="regState >= 1" class="d-flex flex-column align-items-center">
-    <app-register-employer *ngIf="regState == 1"></app-register-employer>
-    <app-register-company *ngIf="regState == 2"></app-register-company>
-  </div>
-</form>
+  input {
+    background-color: white;
+  }
+}
+
+.error {
+  color: red;
+  margin: 0;
+}
