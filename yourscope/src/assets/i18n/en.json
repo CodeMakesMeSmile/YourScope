@@ -1,10 +1,59 @@
-<div class="inner-card">
-  <div class="popup-title">
-    <h1>{{selected.jobTitle}}</h1>
-  </div>
-  <div style="display: flex; justify-content:space-between;">
-    <h3>{{selected.companyName}}</h3>
-    <h3>Apply By: {{selected.applicationDeadline | date:'MM/dd/yyyy, h:mma'}}</h3>
-  </div>
-  <p>{{selected.description}}</p>
-</div>
+.inner-card {
+  background-color: #F5F5F5;
+  box-shadow: 0 4px 4px 0 #00000040 inset;
+  width: calc(100% - 48px);
+  height: calc(100% - 96px);
+  margin: 24px auto;
+  margin-bottom: 18px;
+  border-radius: 32px;
+}
+
+.popup-title {
+  padding: 0 24px;
+  padding-top: 24px;
+}
+
+h1 {
+  padding-bottom: 12px;
+  border-bottom: solid 3px;
+}
+
+h3 {
+  margin: 6px 24px;
+}
+
+p {
+  overflow: scroll;
+  max-height: calc(100% - 160px);
+  margin: 24px;
+  font-size: 18px;
+
+  &::-webkit-scrollbar-track {
+    background-color: #00000000;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background-color: #00000000;
+  }
+}
+
+.button-lg {
+  color: white;
+  text-align: center;
+  width: 120px;
+  background-color: rgb(42, 61, 104);
+  border-radius: 20px;
+  padding: 5px 0;
+  text-decoration: none;
+  bottom: 15px;
+  left: 120px;
+}
+
+.flex {
+  display: flex;
+}
+
+.centre {
+  align-items: center;
+  justify-content: space-around;
+}
