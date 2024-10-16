@@ -1,28 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap');
-
-.carousel-wrapper {
-    display:flex;
-    flex-direction:row;
-    justify-content:center;
-    align-items:center;
-}
-
-.carousel-caption {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 40px;
-    border-style: solid;
-    border-color: white;
-    border-width: 1px;
-    font-family: 'Inter', sans-serif;
-}
-
-img {
-    width: 100%;
-    height: 700px;
-    object-fit: cover;
-}
-
-.picsum-img-wrapper {
-    max-height: 700px;
-    min-height: 700px;
-}
+<div class="dialogBox" [@inOutAnimation] *ngIf="visible">
+  <h2 class="headerDialog">Are you sure?</h2>
+  <br />
+  <button class="btn btn-success btnDialog" id="btnYes" (click)="onClickYes()">Yes</button>
+  <button class="btn btn-danger btnDialog" id="btnNo" (click)="onClickNo()">No</button>
+</div>
