@@ -1,19 +1,68 @@
-<div class="divViewCourse" [@inOutAnimation] *ngIf="visible">
-  <h4>{{courseCode + " - " + courseName + " (" + courseType + ") "}}</h4>
-  <img src="../../../assets/closeBox.png" class="closeIcon" (click)="onClickCloseButton()">
-  <p class="subHeading">
-    <span class="bold">Credits:</span> {{courseCredits}}
-  </p>
-  <p class="subHeading">
-    <span class="bold">Discipline:</span> {{courseDiscipline}}
-  </p>
-  <p class="subHeading">
-    <span class="bold">Pre-requisites:</span> {{coursePrereqs}}
-  </p>
-  <hr />
-  <h5>Description</h5>
-  <p class="courseDescription">{{courseDescription}}</p>
-  <hr />
-  <button class="btn btn-danger btnDropCourse" (click)="onClickDropCourse()" [disabled]="disableDrop">Drop</button>
-</div>
-<confirmation-dialog *ngIf="showConfirmationDialog" (onClickEvent)="onConfirmationDialogClick($event)"/>
+:host {
+  display: contents;
+}
+
+.divViewCourse {
+  position: fixed;
+  top: 25%;
+  left: 26%;
+  min-height: 46vh;
+  max-height: 56vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 45vw;
+  background-color: #EEEEEE;
+  border-radius: 5px;
+  padding: 1%;
+  padding-left: 2%;
+  padding-right: 2%;
+  -webkit-box-shadow: 1px 2px 19px 1px #000000;
+  box-shadow: 1px 2px 19px 1px #000000;
+  z-index: 2;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.subHeading {
+  margin-bottom: 0;
+  font-size: 0.85em;
+  display: inline-block;
+  margin-right: 8%;
+}
+
+.btnDropCourse {
+  font-weight: bold;;
+  float: right;
+}
+
+hr {
+  margin-top: 0;
+}
+
+.courseDescription {
+  min-height: 230px;
+}
+
+.closeIcon {
+  width: 15px;
+  position: absolute;
+  top: 2%;
+  right: 0%;
+}
+
+.closeIcon:hover {
+  cursor: pointer;
+}
+
+h5 {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+::-webkit-scrollbar-track {
+  background: #EEEEEE;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
