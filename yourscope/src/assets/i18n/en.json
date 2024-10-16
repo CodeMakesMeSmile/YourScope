@@ -1,105 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Varela+Round&display=swap');
+<div class="divViewCourse" [@inOutAnimation] *ngIf="visible">
+  <div *ngIf="!selectedCourse">
+    <h2>Select a course</h2>
+    <div class="search">
+      <input placeholder="Search..." id="student-search-course" [(ngModel)]="search">
+      <mat-select class="select-discipline" placeholder="Discipline" [(ngModel)]="selectedDiscipline">
+        <mat-option *ngFor="let disc of disciplines" [value]="disc">{{disc}}</mat-option>
+      </mat-select>
+      <mat-select class="select-grade" placeholder="Grade" [(ngModel)]="selectedGrade">
+        <mat-option *ngFor="let grade of grades" [value]="grade.g">{{grade.g}}</mat-option>
+      </mat-select>
+      <button (click)="searchQuery()">Search</button>
+    </div>
+    <div *ngIf="recommendedCourses">
+      <h4>Based on your current courses, we recommended you take: </h4>
+      <h5>{{recommendedCourses}}</h5>
+    </div>
+    <img src="../../../assets/closeBox.png" class="closeIcon" (click)="onClickCloseButton()">
+    <div class="container-wrapper">
+      <div class="container container-item">
+        <div *ngFor="let course of offeredCourses; let i = index;" class="row">
+          <div class="col course-item" (click)="selectCourse(i)">
+            <h4 style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">{{course.name}}</h4>
+            <p class="subHeading">{{course.courseCode}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="course-pages">
+      <img class="cant-click" *ngIf="this.page == 1" src="assets/iconPrevious.svg">
+      <img *ngIf="this.page != 1" src="assets/iconPrevious.svg" (click)="prevPage()">
+      <p>{{this.page}} of {{this.maxPage}}</p>
+      <img class="cant-click" *ngIf="this.page == this.maxPage" src="assets/iconNext.svg">
+      <img *ngIf="this.page != this.maxPage" src="assets/iconNext.svg" (click)="nextPage()">
+    </div>
+  </div>
+  <div *ngIf="selectedCourse">
+    <h4>{{this.course.name}}</h4>
+    <img src="../../../assets/closeBox.png" class="closeIcon" (click)="onClickCloseButton()">
+    <p class="subHeading">
+      <span class="bold">Credits:</span> {{this.course.credits}}
+    </p>
+    <p class="subHeading">
+      <span class="bold">Discipline:</span> {{this.course.discipline}}
+    </p>
+    <p class="subHeading">
+      <span class="bold">Pre-requisites:</span> {{this.parsePrereqs(this.course.prerequisites)}}
+    </p>
+    <hr />
+    <h5>Description</h5>
+    <p class="courseDescription">{{this.course.description}}</p>
+    <hr />
+    <button class="btn btn-success btnAddCourse" (click)="addCourse()">Add</button>
+    <button class="btn btn-secondary btnAddCourse" (click)="returnToSearch()">Back</button>
+  </div>
+</div>
 
-.bg-navy {
-  background: rgb(255, 255, 255);
-}
-
-.pad-12 {
-  padding: 12px;
-}
-
-.white {
-  color: white;
-}
-
-nav {
-  font-family: 'Varela Round', sans-serif;
-}
-
-.logo-bg{
-  background-color: rgb(206, 229, 255);
-  border-radius: 20px;
-  padding: 0px 10px 0px 10px;
-  text-decoration: none;
-  margin-left: 20px;
-}
-
-.button-md {
-  color: white;
-  background-color: rgb(42, 61, 104);
-  border-radius: 20px;
-  padding: 0px 10px 0px 10px;
-  text-decoration: none;
-  margin-left: 20px;
-  text-align: center;
-  text-justify: center;
-}
-
-.logout-button-bg {
-  width: 35px;
-  height: 35px;
-  position: absolute;
-  right: 20px;
-}
-
-.logout-button {
-  float: right;
-  background-color: #243E6B;
-  border-radius: 12px;
-  width: inherit;
-  height: inherit;
-  padding: 5px;
-  text-align: center;
-  cursor: pointer;
-}
-
-div.container
-{
-  font-family: Varela Round;
-  margin: 0 auto;
-	padding: 0.25em 3em;
-	text-align: center;
-}
-
-div.container a
-{
-    color: #243E6B;
-    font: 20px Varela Round;
-    margin: 0px 10px;
-    padding: 10px 10px;
-    
-    position: relative;
-    z-index: 0;
-    cursor: pointer;
-}
-
-/* Top and Bottom borders come in */
-div.topBotomBordersIn a:before, div.topBotomBordersIn a:after
-{
-    position: absolute;
-    left: 0px;
-    width: 100%;
-    height: 2px;
-    background: #243E6B;
-    content: "";
-    opacity: 0;
-    transition: all 0.3s;
-}
-
-div.topBotomBordersIn a:before
-{
-    top: 0px;
-    transform: translateY(-10px);
-}
-
-div.topBotomBordersIn a:after
-{
-    bottom: 0px;
-    transform: translateY(10px);
-}
-
-div.topBotomBordersIn a:hover:before, div.topBotomBordersIn a:hover:after
-{
-    opacity: 1;
-    transform: translateY(0px);
-}
+<confirmation-dialog *ngIf="confirmNoPrereqs" (onClickEvent)="confirmAddition($event)"/>
+<app-missing-prereq *ngIf="confirmWithPrereqs">
