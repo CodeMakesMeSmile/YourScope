@@ -1,17 +1,45 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { EmployerPostingComponent } from './employer-posting.component';
-describe('EmployerPostingComponent', () => {
-  let component: EmployerPostingComponent;
-  let fixture: ComponentFixture<EmployerPostingComponent>;
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [EmployerPostingComponent]
-    });
-    fixture = TestBed.createComponent(EmployerPostingComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+<div class="popup-title">
+    <div class="popup-title-display">
+        <h2>Applicants</h2>
+    </div>
+</div>
+
+<div class="scrollspy-container">
+    <div data-spy="scroll" data-offset="0" *ngIf="applicants.length > 0">
+        <div class="card item-card shadow bg-white rounded" *ngFor="let applicant of applicants; let i = index" (click)="toggleEventState(i)" >
+            <h5 class="card-header">
+                {{applicant.firstName}} {{applicant.lastName}}
+            </h5>
+            <div *ngIf="eventStates[i]" class="card-body">
+                <div class="card-body">
+                    <h6 class="card-title">Email: {{applicant.email}}</h6>
+                    <h6 class="card-title">Awards: {{applicant.awards}} </h6>
+                    <app-badge *ngFor="let award of applicant.awards" [bValue]="award" [disable]="true"/>
+                    <h6 class="card-title">Interests and Hobbies:</h6> 
+                    <app-badge *ngFor="let interest of applicant.intrestsHobbies" [bValue]="interest" [disable]="true"/>
+                    <h6 class="card-title">Skills:</h6> 
+                    <app-badge *ngFor="let skill of applicant.skills" [bValue]="skill" [disable]="true"/>
+                    <h6 class="card-title">Cover Letter:</h6>
+                    <div *ngIf="applicant.coverLetter">
+                        <p class="card-text">
+                            {{applicant.coverLetter.intro}}  <br>
+                            {{applicant.coverLetter.salesPitch1}}  <br>
+                            {{applicant.coverLetter.salesPitch2}}  <br>
+                            {{applicant.coverLetter.salesPitch3}}  <br>
+                            {{applicant.coverLetter.conclusion}} <br>
+                        </p>
+                    </div>
+                    <div *ngIf="!applicant.coverLetter">
+                        <p class="card-text">
+                            Applicant did not provide a cover letter.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div  *ngIf="applicants.length == 0">
+        <h5 style="text-align: center;">There are currently no applicants for this job.</h5>
+    </div>
+</div>
+  
