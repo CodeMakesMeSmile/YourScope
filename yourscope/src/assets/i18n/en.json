@@ -1,38 +1,17 @@
-#bg{
-    background: rgb(2,0,36);
-    background: linear-gradient(333deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 30%, rgba(0,212,255,1) 100%);
-}
-
-#main-card{
-    background: rgb(255, 255, 255);
-    border-radius: 20px;
-    box-shadow: 10px 10px rgba(0, 0, 0, 0.521);
-    width: min(500px, 90vh);
-}
-
-#logo{
-    width: 200px
-}
-
-.loadingGif img{
-    width: 30px;
-}
-
-.btnLogin {
-    margin-top: 1%;
-    display: inline-block;
-}
-
-.loadingGif {
-    margin-left: 2%;
-    display: inline-block;
-}
-
-.invalidField {
-    border-color: red !important;
-}
-
-.lblLogin {
-    color: red;
-    text-align: center;
-}
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { LoginComponent } from './login.component';
+describe('LoginComponent', () => {
+  let component: LoginComponent;
+  let fixture: ComponentFixture<LoginComponent>;
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [LoginComponent]
+    });
+    fixture = TestBed.createComponent(LoginComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
