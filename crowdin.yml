@@ -1,0 +1,3 @@
+files:
+  - source: /yourscope/src/app
+    translation: /yourscope/src/assets/i18n/%two_letters_code%.json
