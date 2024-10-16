@@ -1,17 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MissingPrereqComponent } from './missing-prereq.component';
-describe('MissingPrereqComponent', () => {
-  let component: MissingPrereqComponent;
-  let fixture: ComponentFixture<MissingPrereqComponent>;
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [MissingPrereqComponent]
-    });
-    fixture = TestBed.createComponent(MissingPrereqComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+<div class="search">
+    <input placeholder="Search..." class="searchFilter" [(ngModel)]="searchQuery" [class.invalid-field]="missingSearch">
+    <mat-select class="select-university searchFilter" placeholder="All Universities" [(ngModel)]="selectedUniversity">
+        <mat-option [value]="null">All Universities</mat-option>
+        <mat-option *ngFor="let uni of universities" [value]="uni.id">{{uni.name}}</mat-option>
+    </mat-select>
+    <img class="information-button" src="assets/search.svg" (click)="searchPrograms()">
+    <br />
+    <label class="lblText">{{lblText}}</label>
+</div>
+<hr />
+<div *ngIf="programs.length === 0 && loadingComplete">
+    <h5 *ngIf="!searched">Enter a search query to find programs!</h5>
+    <h5 *ngIf="searched">No results found</h5>
+</div>
+<program *ngFor="let program of programs" [program]="program" [universityName]="getUniversityName(program.universityId)"/>
+<div class="pagination" *ngIf="programs.length != 0">
+    <img [class.disabled]="page[0] == 1" class="paginationButton" src="assets/iconPrevious.svg" (click)="prevPage()">
+    <p class="paginationText">{{page[0]}} of {{page[1]}}</p>
+    <img [class.disabled]="page[0] == page[1]" class="paginationButton" src="assets/iconNext.svg" (click)="nextPage()">
+</div>
+<img class="gifLoad" src="../../../assets/loading.gif" *ngIf="!loadingComplete">
