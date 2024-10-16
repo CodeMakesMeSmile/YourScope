@@ -1,26 +1,60 @@
-<div class="inner-card">
-  <div class="inner-card-wrapper">
-    <form class="card-details" [formGroup]="createJobPostingForm" (ngSubmit)="submitForm()" >
-      <div class="popup-title">
-        <h1>Create Job Posting</h1>
-      </div>
-      <div class="row py-2">
-        <div class="col py-2">
-          <label for="title">Job Title</label>
-          <input formControlName="title" type="text" class="form-control" placeholder="e.g. Senior Software Engineer" maxlength="maxTitle" [class.invalid-field]="missingTitle"/>
-        </div>
-        <div class="col py-2">
-          <label for="deadline">Select Deadline Date</label>
-          <input formControlName="deadline" type="date" class="form-control" [class.invalid-field]="missingDate" min="{{today}}">
-        </div>
-      </div>
-      <div class="form-group py-2">
-        <label for="desc">Job Description</label>
-        <textarea formControlName="desc" class="form-control long jobDesc" placeholder="Describe job details..." maxlength="maxDesc" [class.invalid-field]="missingDesc"></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary btn-lg">Create Posting</button>
-      <br />
-      <label class="lblText">{{lblText}}</label>
-    </form>
-  </div>
-</div>
+.inner-card {
+  background-color: #F5F5F5;
+  box-shadow: 0 4px 4px 0 #00000040 inset;
+  width: calc(100% - 48px);
+  height: calc(100% - 48px);
+  margin: 24px auto;
+  border-radius: 32px;
+}
+
+.inner-card-wrapper {
+  height: 100%;
+  width: 100%;
+  padding-top: 12px;
+  margin-bottom: 0;
+  overflow: scroll;
+}
+
+.card-details {
+  width: calc(100% - 48px);
+  margin: auto;
+}
+
+.long {
+  height: 200px;
+  text-align: left;
+}
+
+.btn {
+  display: block;
+  margin: auto;
+  margin-top: 36px;
+}
+
+h1 {
+  padding-bottom: 12px;
+  border-bottom: solid 3px;
+}
+
+label {
+  font-size: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #00000000;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: #00000000;
+}
+
+.invalid-field {
+  border-color: red;
+}
+
+.lblText {
+  margin-top: 0;
+  width: 100%;
+  color: red;
+  text-align: center;
+}
