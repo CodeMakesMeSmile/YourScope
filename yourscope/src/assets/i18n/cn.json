@@ -1,22 +1,17 @@
-.badge {
-    border-radius: 20px;
-    color: #5aa9f8;
-    border-color: #2f6680;
-    border-style: solid;
-    border-width: 2px;
-    margin-right: 1%;
-    background-color: rgba(20, 35, 53, 0.85);
-    font-weight: 500;
-}
-
-.badge:hover {
-    cursor: pointer;
-}
-
-.disable {
-    cursor: default !important;
-}
-
-:host {
-    display: contents;
-}
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BadgeComponent } from './badge.component';
+describe('BadgeComponent', () => {
+  let component: BadgeComponent;
+  let fixture: ComponentFixture<BadgeComponent>;
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [BadgeComponent]
+    });
+    fixture = TestBed.createComponent(BadgeComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
