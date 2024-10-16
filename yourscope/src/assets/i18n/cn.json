@@ -1,50 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-:host {
-    display: contents;
-}
-
-.posting-button-section {
-    float: right;
-}
-
-p {
-    display: inline-block;
-    margin-right: 0;
-    margin-bottom: 0;
-    max-width: 50%;
-}
-
-.job-postings:hover {
-    cursor: default;
-}
-
-.information-button {
-    margin-left: 5%;
-}
-
-.posting-button-section {
-    text-align: right;
-    width: 15%;
-    white-space: nowrap;
-}
-
-.information-button:hover {
-    cursor: pointer;
-    filter: invert(70%) sepia(96%) saturate(495%) hue-rotate(170deg) brightness(96%) contrast(95%);
-}
-
-h5 {
-    margin-top: 2%;
-    text-align: center;
-    font-family: 'Inter', sans-serif;
-    font-weight: light;
-}
-
-.gifLoad {
-    margin-left: 50%;
-    margin-right: auto;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    width: 5%;
-}
+<div class="card item-card shadow bg-white rounded coverLetterEntry" *ngIf="coverLetter">
+  <div class="job-postings card-body">
+      <p class="card-text" >{{coverLetter.intro | truncate:15}}</p>
+      <div class="posting-button-section">
+          <img class="information-button" src="assets/jobPostingDetails.svg" (click)="onClickDetails()">
+          <img class="information-button" src="assets/jobPostingDelete.svg" (click)="onClickDelete()">
+      </div>
+  </div>
+</div>
+<confirmation-dialog *ngIf="confirm" (onClickEvent)="onConfirmResult($event)"/>
+<div class="overlay" *ngIf="displayCoverLetter">
+    <div class="coverLetterDisplay">
+      <img src="assets/closeBox.png" class="btnClosePopup" (click)="onClickClosePopup()"/>
+      <h3>Cover Letter Viewer</h3>
+      <hr />
+      <p *ngIf="coverLetter?.intro">{{coverLetter?.intro}}</p>
+      <br />
+      <p *ngIf="coverLetter?.salesPitch1">{{coverLetter?.salesPitch1}}</p>
+      <br />
+      <p *ngIf="coverLetter?.salesPitch2">{{coverLetter?.salesPitch2}}</p>
+      <br />
+      <p *ngIf="coverLetter?.salesPitch3">{{coverLetter?.salesPitch3}}</p>
+      <br />
+      <p *ngIf="coverLetter?.conclusion">{{coverLetter?.conclusion}}</p>
+    </div>
+</div>
