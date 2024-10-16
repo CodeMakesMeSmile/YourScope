@@ -1,17 +1,30 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RegisterEmployerCompanyComponent } from './register-employer-company.component';
-describe('RegisterEmployerCompanyComponent', () => {
-  let component: RegisterEmployerCompanyComponent;
-  let fixture: ComponentFixture<RegisterEmployerCompanyComponent>;
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [RegisterEmployerCompanyComponent]
-    });
-    fixture = TestBed.createComponent(RegisterEmployerCompanyComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+<form [formGroup]="employerForm" (ngSubmit)="handleEmployerRegistration()" >
+    <p class="lead fs-3">Please enter your information</p>
+    <div class="row py-2">
+        <label>Full Name</label>
+        <div class="col px-2">
+            <input formControlName="fname" type="text" class="form-control" placeholder="First name" [class.invalid-text-input]="!validFName">
+        </div>
+        <div class="col px-2">
+            <input formControlName="mname" type="text" class="form-control" placeholder="Middle name (optional)">
+        </div>
+        <div class="col px-2">
+            <input formControlName="lname" type="text" class="form-control" placeholder="Last name" [class.invalid-text-input]="!validLName">
+        </div>
+    </div>
+    <div class="form-group py-2">
+        <label for="email">Email address</label>
+        <input formControlName="email" type="email" class="form-control" id="email" placeholder="name@example.com" [class.invalid-text-input]="!validEmail"/>
+    </div>
+    <div class="form-group py-2">
+        <label for="pass">Password</label>
+        <input formControlName="pass" type="password" class="form-control" id="pass" placeholder="Password..." [class.invalid-text-input]="!validPassword">
+    </div>
+    <div class="form-group py-2">
+        <label for="passConfirm">Confirm Password</label>
+        <input formControlName="cpass" type="password" class="form-control" id="passConfirm" placeholder="Confirm Password..." [class.invalid-text-input]="!validCPassword">
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg">Register</button>
+    <br />
+    <label class="formErrors">{{formErrorStr}}</label>
+</form>
