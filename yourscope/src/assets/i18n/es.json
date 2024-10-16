@@ -1,18 +1,17 @@
-mat-form-field {
-  height: 40px;
-  width: 300px;
-  font-size: 1.25rem;
-  color: #0d6efd;
-  background-color: #d3d3d3;
-  border: 1px solid #0d6efd;
-  border-radius: 0.5rem;
-
-  input {
-    background-color: white;
-  }
-}
-
-.error {
-  color: red;
-  margin: 0;
-}
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RegisterEmployerCompanyComponent } from './register-employer-company.component';
+describe('RegisterEmployerCompanyComponent', () => {
+  let component: RegisterEmployerCompanyComponent;
+  let fixture: ComponentFixture<RegisterEmployerCompanyComponent>;
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [RegisterEmployerCompanyComponent]
+    });
+    fixture = TestBed.createComponent(RegisterEmployerCompanyComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
