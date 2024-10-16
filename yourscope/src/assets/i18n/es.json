@@ -1,27 +1,184 @@
-<app-navbar></app-navbar>
-<!-- Background for page -->
-<div id="bg">
-  <!-- Title -->
-  <div>
-    <h2 class="pad-12 white page-heading">
-      Course Planning
-    </h2>
-  </div>
+.pad-12 {
+  padding: 12px;
+}
 
-  <!-- Schedule wrapper div -->
-  <div id="studentSchedule">
-    <!-- Loading gif for schedule -->
-    <div *ngIf="!scheduleLoaded" class="loadingGif"><img src="../../../assets/loading.gif"></div>
-    <app-year class="scheduleYearWrapper" *ngFor="let year of schedule.years" [year]="year" (onClickViewCourse)="onClickViewCourse($event)" (onClickAddCourse)="onClickAddCourse($event)"/>
-  </div>
+.pad-left-30 {
+  padding-left: 30px;
+}
 
-  <!-- Background for popups -->
-  <div class="overlayBackground" *ngIf="showAddCourse || showViewCourse" (click)="onClickBackground($event)">
-    <!-- View course overlay -->
-    <app-view-course *ngIf="showViewCourse" [course]="viewCourse" (onClickCloseEvent)="onClickClose()" [visible]="viewCourseDiv" [animationDuration]="animationDuration" (onCourseDeleted)="onCourseDeleted()"/>
-    <!-- Add course overlay -->
-    <app-add-course *ngIf="showAddCourse" (onClickCloseEvent)="onClickClose()" [visible]="viewCourseDiv" [animationDuration]="animationDuration" [yearNumber]="selectedYear" (onCourseAdded)="onCourseAdded()"/>
-  </div>
-</div>
+.margin-left-10 {
+  margin-left: 10px;
+}
 
+.pad-right-30 {
+  padding-right: 30px;
+}
 
+.margin-30 {
+  margin: 30px;
+}
+
+.item-card {
+  width: 300px;
+  height: 300px;
+  margin: 12px;
+}
+
+.card-content-1 {
+  width: 260px;
+  padding: 12px;
+}
+
+.card-content-2 {
+  width: 350px;
+  padding: 12px;
+}
+
+.card-internal {
+  background-color: rgb(246, 246, 246);
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px;
+}
+
+.scrollspy-container {
+  overflow: auto;
+  width: 640px;
+}
+
+.flex {
+  display: flex;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.centre {
+  align-items: center;
+  justify-content: space-around;
+}
+
+#bg {
+  background: rgb(110, 197, 239);
+  display: block;
+  height: 100vh;
+}
+
+#studentSchedule {
+  background-color: white;
+  height: 75%;
+  width: 95%;
+  margin: auto;
+  overflow-x: scroll;
+  white-space: nowrap;
+  overflow-y: hidden;
+  border-radius: 8px;
+  padding: 0 !important;
+  -webkit-box-shadow: -8px 8px 0px -2px #3695B7;
+  box-shadow: -8px 8px 0px -2px #3695B7;
+  position: relative;
+}
+
+.white {
+  color: white;
+}
+
+.loadingGif {
+  width: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loadingGif img {
+  width: inherit;
+}
+
+.overlayBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.navy {
+  color: navy;
+}
+
+.bg-navy {
+  background-color: rgb(61, 89, 149);
+}
+
+.button-sm {
+  color: white;
+  background-color: rgb(42, 61, 104);
+  border-radius: 20px;
+  padding: 6px 10px 0px 10px;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 12px;
+  text-align: center;
+  text-justify: center;
+}
+
+.button-md {
+  color: white;
+  background-color: rgb(42, 61, 104);
+  border-radius: 20px;
+  padding: 0px 10px 0px 10px;
+  text-decoration: none;
+  margin-left: 20px;
+  text-align: center;
+  text-justify: center;
+}
+
+.button-lg {
+  color: white;
+  background-color: rgb(42, 61, 104);
+  border-radius: 20px;
+  padding: 5px 20px 5px 20px;
+  text-decoration: none;
+  margin: 50px;
+}
+
+.close-popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #44444491;
+}
+
+.info-card {
+  background-color: #ffffff;
+  width: calc(100% - 500px);
+  height: calc(100% - 60px);
+  position: absolute;
+  left: 9vw;
+  top: 2vh;
+  border-radius: 32px;
+}
+
+.close-button-bg {
+  float: right;
+  margin-top: 6px;
+  margin-right: 6px;
+  width: 24px;
+  height: 24px;
+}
+
+.close-button {
+  float: right;
+  background-color: #243E6B;
+  border-radius: 12px;
+  width: inherit;
+  height: inherit;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+}
