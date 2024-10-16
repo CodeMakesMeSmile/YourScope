@@ -1,17 +1,137 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CreateProfileComponent } from './create-profile.component';
-describe('CreateProfileComponent', () => {
-  let component: CreateProfileComponent;
-  let fixture: ComponentFixture<CreateProfileComponent>;
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [CreateProfileComponent]
-    });
-    fixture = TestBed.createComponent(CreateProfileComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+<app-navbar></app-navbar>
+<div id="bg">
+  <div>
+    <h2 class="pad-12 white page-heading">
+      Welcome back, {{ name }}!
+    </h2>
+  </div>
+  <div class="centre flex wrap">
+    <div class="pad-12-left-30 navy">
+      <div class="flex">
+        <h5>Upcoming Events @ {{ schoolName }}</h5>
+        <a class="button-sm" href="student/events">View All</a>
+      </div>
+      <div class="card margin-30 shadow mb-5 bg-white rounded container">
+        <h2 class="empty" *ngIf="this.events.length == 0">There are currently no events.</h2>
+        <div class="scrollspy-container">
+          <div data-spy="scroll" class="flex" data-offset="0" [style.width.px]="eventsWidth">
+            <div class="card item-card shadow mb-5 bg-white rounded" *ngFor="let event of events">
+              <h5 class="card-header">
+                {{event.title | truncate:26}}
+              </h5>
+              <div class="card-body">
+                <h6 class="card-title">{{event.date | date:'MM/dd/yyyy, h:mma'}}</h6>
+                <h6 class="card-title">{{event.location | truncate:20}}</h6>
+                <p class="card-text">
+                  {{event.description | truncate:225}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pad-12-left-30 pad-12-right-30 navy">
+      <div class="flex">
+        <h5>Job Postings</h5>
+        <a class="button-sm" href="student/postings">View All</a>
+      </div>
+      <div class="card margin-30 shadow mb-5 bg-white rounded container">
+        <h2 class="empty" *ngIf="this.jobs.length == 0">There are currently no job postings.</h2>
+        <div class="margin-left-30 scrollspy-container">
+          <div data-spy="scroll" class="flex" data-offset="0" [style.width.px]="jobsWidth">
+            <div data-spy="scroll" class="flex" data-offset="0" [style.width.px]="jobsWidth">
+              <div class="card item-card shadow mb-5 bg-white rounded" *ngFor="let job of jobs">
+                <h5 class="card-header">
+                  {{job.jobTitle | truncate:25}}
+                </h5>
+                <div class="card-body">
+                  <h6 class="card-title">{{job.companyName | truncate:20}}</h6>
+                  <p class="card-text">
+                    {{job.description | truncate:260}}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="centre flex wrap">
+    <div class="card margin-30 shadow mb-5 bg-white rounded">
+      <div class="card-body">
+        <div class="flex">
+          <h5 class="card-title">Schedule</h5>
+          <a class="button-sm" href="student/courses">View All Courses</a>
+        </div>
+        <div class="flex">
+          <div class="card-content-2">
+            <h5 class="card-header text-center">
+              My Current Courses
+            </h5>
+            <div *ngIf="currentCourses.length > 0"></div>
+              <div class="card item-card-small shadow rounded" *ngFor="let course of currentCourses">
+                <h5 class="card-header">
+                  {{course.courseCode | truncate:25}}
+                </h5>
+                <div class="card-body">
+                  <h6 class="card-title">{{course.name | truncate:50}}</h6>
+                </div>
+              </div>
+            <div *ngIf="currentCourses.length == 0">
+              <p> You have no courses for this school year. </p>
+            </div>
+          </div>
+          <div class="card-content-2" >
+            <h5 class="card-header text-center">
+              My Next Year Courses
+            </h5>
+              <div *ngIf="nextCourses.length > 0">
+                <div class="card item-card-small shadow rounded flex" *ngFor="let course of nextCourses" >
+                  <h5 class="card-header">
+                    {{course.courseCode | truncate:25}}
+                  </h5>
+                  <div class="card-body">
+                    <h6 class="card-title">{{course.name | truncate:50}}</h6>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="nextCourses.length == 0">
+                <p> You have no courses planned for next year. </p>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card margin-30 shadow mb-5 rounded">
+      <div class="card-body">
+        <h5 class="card-title">YourScope Toolkit</h5>
+        <div class="flex">
+          <div class="card-content-2">
+            <div class="card-internal">
+              <h5>Post-Secondary Planning</h5>
+              <p>
+                Plan your post-secondary programs for a bright and measured future.
+              </p>
+              <div class="centre flex">
+                <a class="button-lg" href="student/toolkit">Get Started</a>
+              </div>
+            </div>
+          </div>
+          <div class="card-content-2">
+            <div class="card-internal">
+              <h5>Cover Letter Builder</h5>
+              <p>
+                Create your cover letter with minimal effort and assistance from YourScope.
+              </p>
+              <div class="centre flex">
+                <a class="button-lg" href="student/toolkit">Get Started</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
