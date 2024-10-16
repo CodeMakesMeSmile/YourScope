@@ -1,17 +1,85 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CreateEventComponent } from './create-event.component';
-describe('CreateEventComponent', () => {
-  let component: CreateEventComponent;
-  let fixture: ComponentFixture<CreateEventComponent>;
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [CreateEventComponent]
-    });
-    fixture = TestBed.createComponent(CreateEventComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+<div id="cont">
+  <app-navbar></app-navbar>
+  <div id="bg" class="vh-100">
+    <div>
+      <h2 class="pad-12 white page-heading">
+        Welcome back, {{token.name}}
+      </h2>
+    </div>
+    <div id="main-card" class="card margin-30 shadow mb-5 rounded">
+      <div class="card-body">
+        <h4 class="card-title">Admin Dashboard</h4>
+        <div class="centre flex">
+          <div class="card">
+            <h5 class="card-header">
+              Upcoming Events
+              <a class="button-sm" href="admin/events">Manage</a>
+            </h5>
+            <div class="scrollspy-container">
+              <div data-spy="scroll" data-offset="0" *ngIf="events.length > 0">
+                <div class="card item-card shadow bg-white rounded" *ngFor="let event of events; let i = index">
+                  <h6 class="pointer card-header" (click)="toggleEventState(i)">
+                    {{event.title | truncate:40}}
+                    <img *ngIf="!eventStates[i]" src="../../../assets/caretDown.svg" class="caret">
+                    <img *ngIf="eventStates[i]" src="../../../assets/caretUp.svg" class="caret">
+                  </h6>
+                  <div *ngIf="eventStates[i]" class="card-body">
+                    <h6 class="card-title">{{event.date | date:'MM/dd/yyyy, h:mma'}}</h6>
+                    <h6 class="card-title">{{event.location | truncate:30}}</h6>
+                    <div class="card-text">
+                      {{event.description | truncate:200}}
+                      <div class="button-d" (click)="deleteEvent(event)">Delete</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="events.length == 0">
+                <div class="card item-card shadow bg-white rounded">
+                  <div class="card-body">
+                    <p class="card-text">
+                       You have no scheduled events.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h5 class="card-header">
+              Offered Courses
+              <a class="button-sm" href="admin/courses">Manage</a>
+            </h5>
+            <div class="scrollspy-container">
+              <div data-spy="scroll" data-offset="0">
+                <div class="card item-card shadow bg-white rounded" *ngFor="let course of courses; let i = index">
+                  <h6 class="pointer card-header" (click)="toggleCourseState(i)">
+                    {{course.courseCode}} - {{course.name | truncate:50}}
+                    <img *ngIf="!courseStates[i]" src="../../../assets/caretDown.svg" class="caret">
+                    <img *ngIf="courseStates[i]" src="../../../assets/caretUp.svg" class="caret">
+                  </h6>
+                  <div *ngIf="courseStates[i]" class="card-body">
+                    <div class="card-text">
+                      {{course.description | truncate:200}}
+                      <div class="button-d" (click)="deleteCourse(course)">Delete</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="courses.length == 0">
+                <div class="card item-card shadow bg-white rounded">
+                  <div class="card-body">
+                    <p class="card-text">
+                       You have no courses.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<confirmation-dialog *ngIf="confirmEvent" (onClickEvent)="confirmEventDeletion($event)"/>
+<confirmation-dialog *ngIf="confirmCourse" (onClickEvent)="confirmCourseDeletion($event)"/>
