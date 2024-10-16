@@ -1,10 +1,27 @@
-<div class="inner-card">
-    <div class="popup-title">
-      <h1>{{selected.courseCode}}</h1>
-    </div>
-    <div style="display: flex; justify-content:space-between;">
-      <h3>{{selected.name}}</h3>
-    </div>
-    <p>Prerequisites: {{prerequisites}}</p>
-    <p>{{selected.description}}</p>
-  </div>
+.inner-card {
+    background-color: #F5F5F5;
+    box-shadow: 0 4px 4px 0 #00000040 inset;
+    width: calc(100% - 48px);
+    height: calc(100% - 48px);
+    margin: 24px auto;
+    border-radius: 32px;
+  }
+  
+  .popup-title {
+    padding: 0 24px;
+    padding-top: 24px;
+  }
+  
+  h1 {
+    padding-bottom: 12px;
+    border-bottom: solid 3px;
+  }
+  
+  h3 {
+    margin: 6px 24px;
+  }
+  
+  p {
+    margin: 24px;
+    font-size: 18px;
+  }
