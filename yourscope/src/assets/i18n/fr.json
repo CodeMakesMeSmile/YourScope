@@ -1,6 +1,23 @@
-<div class="dialogBox" [@inOutAnimation] *ngIf="visible">
-  <h2 class="headerDialog">Are you sure?</h2>
-  <br />
-  <button class="btn btn-success btnDialog" id="btnYes" (click)="onClickYes()">Yes</button>
-  <button class="btn btn-danger btnDialog" id="btnNo" (click)="onClickNo()">No</button>
-</div>
+.headerDialog {
+  margin-top: 10%;
+  color: black;
+}
+
+.dialogBox {
+  background-color: white;
+  position: fixed;
+  width: 20vw;
+  height: 20vh;
+  left: 40%;
+  top: 40%;
+  z-index: 3;
+  border-radius: 7px;
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  -webkit-box-shadow: 1px 2px 19px 1px #000000;
+  box-shadow: 1px 2px 19px 1px #000000;
+}
+
+#btnYes {
+  margin-right: 5%;
+}
