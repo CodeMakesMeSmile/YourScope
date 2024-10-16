@@ -1,57 +1,193 @@
-<app-navbar></app-navbar>
-<div id="bg">
-  <div>
-    <h2 class="pad-12 white page-heading">
-      Welcome back, {{name}}!
-    </h2>
-  </div>
-  <div class="card margin-30 shadow mb-5 rounded postings">
-    <div class="card-body">
-      <div class="justify-line">
-        <div class="job-pages">
-          <h4 class="card-title">My Job Postings</h4>
-          <img class="cant-click" *ngIf="this.page[0] == 1" src="assets/iconPrevious.svg">
-          <img *ngIf="this.page[0] != 1" src="assets/iconPrevious.svg" (click)="prevPage()">
-          <p>{{this.page[0]}} of {{this.page[1]}}</p>
-          <img class="cant-click" *ngIf="this.page[0] == this.page[1]" src="assets/iconNext.svg">
-          <img *ngIf="this.page[0] != this.page[1]" src="assets/iconNext.svg" (click)="nextPage()">
-        </div>
-        <a class="create-button" (click)="loadCreatePosting()">+</a>
-      </div>
-      <div class="scrollspy-container">
-        <div data-spy="scroll" data-offset="0">
-          <div class="card item-card shadow bg-white rounded" *ngFor="let job of jobs">
-            <div class="job-postings card-body">
-              <a class="card-text" >{{job.jobTitle}}</a>
-              <div class="posting-button-section">
-                <div class="button-view" (click)="loadJobPostingApplicants(job)">
-                  View Applicants
-                </div>
-                <img class="information-button" src="assets/jobPostingDetails.svg" (click)="loadJobPosting(job)">
-                <img class="information-button" src="assets/jobPostingDelete.svg" (click)="loadDeletePosting(job)">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div *ngIf="options >= 1" class="popup" (click)="closePopup2($event)">
-    <div class="info-card">
-      <div class="close-button-bg">
-        <div class="close-button" (click)="closePopup1()">X</div>
-      </div>
-      <app-job-posting class="popup-options" *ngIf="options == 1" [posting]="selection"></app-job-posting>
-      <app-job-posting-create class="popup-options" *ngIf="options == 2"></app-job-posting-create>
-      <app-job-applicant class="popup-options" *ngIf="options == 5" [posting]="selection"></app-job-applicant>
-      <div class="confirmDelete" *ngIf="options == 3">
-        <h1 style="margin:auto; margin-top:70px; margin-bottom:70px; text-align:center;">Are you sure you want to delete this posting?</h1>
-        <div style="display:flex; justify-content:space-evenly;">
-          <div class="yes-button" (click)="deletePosting()">Delete</div>
-          <div class="no-button" (click)="closePopup1()">Cancel</div>
-        </div>
-      </div>
-      <h1 *ngIf="options == 4">Posting Deleted...</h1>
-    </div>
-  </div>
-</div>
+.pad-12 {
+  padding: 12px;
+}
+
+.margin-30 {
+  margin: 0px 30px 0px 30px;
+}
+
+.item-card { 
+  margin: 12px;
+}
+
+.job-postings {
+  display: flex;
+  justify-content: space-between;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.postings {
+  height: calc(100vh - 200px);
+}
+
+.card-text {
+  text-decoration: none;
+  color: black;
+}
+
+.scrollspy-container { 
+  overflow: auto;
+  width: 100%;
+  height: calc(100% - 50px);
+}
+
+.flex {
+  display: flex;
+}
+
+#bg {
+  background: rgb(110, 197, 239);
+  height: calc(100vh - 67px);
+  padding-bottom: 40px;
+}
+
+.white {
+  color: white;
+}
+
+.navy {
+  color: navy;
+}
+
+.bg-navy {
+  background-color: rgb(61, 89, 149);
+}
+
+.justify-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.create-button {
+  text-decoration: none;
+  text-align: center;
+  line-height: 25px;
+  vertical-align: top;
+  width: 42px;
+  height: 42px;
+  font-size: 50px;
+  font-weight: 1000;
+  color: #5DA44B;
+  cursor: pointer;
+
+  &:hover {
+    color: #257212;
+  }
+}
+
+.popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #44444491;
+}
+
+.information-button {
+  cursor: pointer;
+
+  &:hover {
+    filter: invert(70%) sepia(96%) saturate(495%) hue-rotate(170deg) brightness(96%) contrast(95%); // This is crazy btw
+  }
+}
+
+.info-card {
+  background-color: #ffffff;
+  position: absolute;
+  left: 20vw;
+  top: 15vh;
+  width: 60vw;
+  height: 65vh;
+  border-radius: 8px;
+}
+
+.close-button-bg {
+  float: right;
+  margin-top: 6px;
+  margin-right: 6px;
+  width: 24px;
+  height: 24px;
+}
+
+.close-button {
+  float: right;
+  background-color: #243E6B;
+  border-radius: 12px;
+  width: inherit;
+  height: inherit;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.posting-button-section {
+  display: flex;
+  width: 220px;
+  justify-content: space-between;
+}
+
+.card-title {
+  white-space: nowrap;
+  margin-right: 24px;
+}
+
+.job-pages {
+  display: flex;
+  width: fit-content;
+
+  img {
+    margin-top: 2px;
+    max-width: 30px;
+    max-height: 30px;
+    cursor: pointer;
+  }
+
+  p {
+    margin: 4px 8px;
+    white-space: nowrap;
+  }
+}
+
+.cant-click {
+  filter: invert(98%) sepia(74%) saturate(11%) hue-rotate(292deg) brightness(87%) contrast(91%);
+  cursor: default !important;
+}
+
+.yes-button {
+  width: 90px;
+  height: 50px;
+  background-color: #243E6B;
+  line-height: 50px;
+  text-align: center;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.no-button {
+  width: 90px;
+  height: 50px;
+  background-color: rgb(94, 94, 94);
+  line-height: 50px;
+  text-align: center;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-view {
+  color: white;
+  text-align: center;
+  width: 150px;
+  height: 20px;
+  background-color: rgb(42, 61, 104);
+  border-radius: 20px;
+  padding: 0px 0px 10px 0px;
+  margin: 3px ;
+  font-size: 90%;
+}
