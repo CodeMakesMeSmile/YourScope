@@ -1,45 +1,116 @@
-<div class="popup-title">
-    <div class="popup-title-display">
-        <h2>Applicants</h2>
-    </div>
-</div>
-
-<div class="scrollspy-container">
-    <div data-spy="scroll" data-offset="0" *ngIf="applicants.length > 0">
-        <div class="card item-card shadow bg-white rounded" *ngFor="let applicant of applicants; let i = index" (click)="toggleEventState(i)" >
-            <h5 class="card-header">
-                {{applicant.firstName}} {{applicant.lastName}}
-            </h5>
-            <div *ngIf="eventStates[i]" class="card-body">
-                <div class="card-body">
-                    <h6 class="card-title">Email: {{applicant.email}}</h6>
-                    <h6 class="card-title">Awards: {{applicant.awards}} </h6>
-                    <app-badge *ngFor="let award of applicant.awards" [bValue]="award" [disable]="true"/>
-                    <h6 class="card-title">Interests and Hobbies:</h6> 
-                    <app-badge *ngFor="let interest of applicant.intrestsHobbies" [bValue]="interest" [disable]="true"/>
-                    <h6 class="card-title">Skills:</h6> 
-                    <app-badge *ngFor="let skill of applicant.skills" [bValue]="skill" [disable]="true"/>
-                    <h6 class="card-title">Cover Letter:</h6>
-                    <div *ngIf="applicant.coverLetter">
-                        <p class="card-text">
-                            {{applicant.coverLetter.intro}}  <br>
-                            {{applicant.coverLetter.salesPitch1}}  <br>
-                            {{applicant.coverLetter.salesPitch2}}  <br>
-                            {{applicant.coverLetter.salesPitch3}}  <br>
-                            {{applicant.coverLetter.conclusion}} <br>
-                        </p>
-                    </div>
-                    <div *ngIf="!applicant.coverLetter">
-                        <p class="card-text">
-                            Applicant did not provide a cover letter.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div  *ngIf="applicants.length == 0">
-        <h5 style="text-align: center;">There are currently no applicants for this job.</h5>
-    </div>
-</div>
+.pad-12 {
+    padding: 12px;
+  }
   
+  .margin-30 {
+    margin: 0px 30px 0px 30px;
+  }
+  
+  .item-card {
+    width: 500px;
+    margin: 12px;
+    cursor: pointer;
+    display: inline-flex;
+  }
+
+  .card-title {
+    margin-top: 2%;
+  }
+  
+  .card-text {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .scrollspy-container {
+    overflow: auto;
+    width: calc(100% - 48px);
+    height: 80%;
+}
+  
+  .flex {
+    display: flex;
+  }
+  
+  .centre {
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  #bg {
+    background: rgb(2,0,36);
+    background: linear-gradient(333deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 30%, rgba(0,212,255,1) 100%);
+  }
+  
+  .white {
+    color: white;
+  }
+  
+  .navy {
+    color: navy;
+  }
+  
+  .bg-navy {
+    background-color: rgb(61, 89, 149);
+  }
+  
+  .button-sm {
+    color: white;
+    background-color: rgb(42, 61, 104);
+    border-radius: 20px;
+    padding: 6px 10px 6px 10px;
+    text-decoration: none;
+    margin-left: 10px;
+    font-size: 12px;
+    text-align: center;
+    text-justify: center;
+  }
+  
+  
+  #main-card{
+    flex: 1 1 auto;
+  }
+  
+  .card-scrollable{
+    flex: 1 1 auto;
+  }
+
+  .popup-title {
+    padding: 2px 24px;
+    padding-top: 22px;
+}
+
+.popup-title-display {
+    position: relative;
+    width: 100%;
+    height: 70px;
+    overflow-y: scroll;
+    overflow-x:  overlay;
+    padding: 0;
+    padding-bottom: 12px;
+    border-bottom: solid 3px;
+    scrollbar-width: none;
+
+    h1 {
+        position: absolute;
+        width: max-content;
+        max-height: 60px;
+    }
+
+    &::-webkit-scrollbar-track {
+        height: 0;
+        width: 0;
+        background-color: #00000000;
+    }
+
+    &::-webkit-scrollbar-corner {
+        height: 0;
+        width: 0;
+        background-color: #00000000;
+    }
+
+    &::-webkit-scrollbar {
+        height: 0;
+        width: 0;
+    }
+}
