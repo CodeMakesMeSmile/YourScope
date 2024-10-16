@@ -1,20 +1,105 @@
-<nav class="bg-navy pad-12 navbar navbar-expand-lg ">
-  <a class="navbar-brand" href="{{home}}">
-    <img  src="../../../assets/yourscope.png" width="140" height="40" alt="">
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation" (click)="collapsed = !collapsed">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse " [ngbCollapse]="collapsed">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item " *ngFor="let link of links">
-        <div class="container topBotomBordersIn">
-          <a class="nav-link white" href="{{link.href}}">{{link.label}}</a>
-        </div>
-      </li>
-    </ul>
-    <div class="logout-button-bg">
-      <img src="../../../assets/logout.svg" class="logout-button" (click)="logout()">
-    </div>
-  </div>
-</nav>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Varela+Round&display=swap');
+
+.bg-navy {
+  background: rgb(255, 255, 255);
+}
+
+.pad-12 {
+  padding: 12px;
+}
+
+.white {
+  color: white;
+}
+
+nav {
+  font-family: 'Varela Round', sans-serif;
+}
+
+.logo-bg{
+  background-color: rgb(206, 229, 255);
+  border-radius: 20px;
+  padding: 0px 10px 0px 10px;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.button-md {
+  color: white;
+  background-color: rgb(42, 61, 104);
+  border-radius: 20px;
+  padding: 0px 10px 0px 10px;
+  text-decoration: none;
+  margin-left: 20px;
+  text-align: center;
+  text-justify: center;
+}
+
+.logout-button-bg {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  right: 20px;
+}
+
+.logout-button {
+  float: right;
+  background-color: #243E6B;
+  border-radius: 12px;
+  width: inherit;
+  height: inherit;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+div.container
+{
+  font-family: Varela Round;
+  margin: 0 auto;
+	padding: 0.25em 3em;
+	text-align: center;
+}
+
+div.container a
+{
+    color: #243E6B;
+    font: 20px Varela Round;
+    margin: 0px 10px;
+    padding: 10px 10px;
+    
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+}
+
+/* Top and Bottom borders come in */
+div.topBotomBordersIn a:before, div.topBotomBordersIn a:after
+{
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    height: 2px;
+    background: #243E6B;
+    content: "";
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+div.topBotomBordersIn a:before
+{
+    top: 0px;
+    transform: translateY(-10px);
+}
+
+div.topBotomBordersIn a:after
+{
+    bottom: 0px;
+    transform: translateY(10px);
+}
+
+div.topBotomBordersIn a:hover:before, div.topBotomBordersIn a:hover:after
+{
+    opacity: 1;
+    transform: translateY(0px);
+}
