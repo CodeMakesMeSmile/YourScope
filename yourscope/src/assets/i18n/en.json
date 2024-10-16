@@ -1,96 +1,99 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <!-- Logo -->
-  <a class="navbar-brand" href="">
-    <img src="../../app/../assets/yourscope.png" width="220" height="50" class="d-inline-block align-middle" alt="">
-    <span class="headingNavBar">Education Planner</span>
-  </a>
-  <!-- Links -->
-  <button (click)="collapsed = !collapsed" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav" [ngbCollapse]="collapsed">
-    <ul class="navbar-nav ms-auto">
-      <li class="nav-item" *ngIf="!loggedIn">
-        <a class="btn btn-primary btn-md active" role="button" href="/login">Login</a>
-      </li>
-      <li class="nav-item" *ngIf="!loggedIn">
-        <a class="btn btn-primary btn-md active" role="button" href="/register">Register</a>
-      </li>
-      <li class="nav-item" *ngIf="loggedIn">
-        <a class="btn btn-primary btn-md active" role="button" (click)="onClickDashboard()">Dashboard</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-<app-carousel [elements]="carouselElements"/>
-<div class="mission">
-  <h1 class="headingMission">Our Mission</h1>
-  <p class="parMission">
-    At YourScope, we know that every student has the potential to succeed, and we want to 
-    do everything we can to make that happen. Our service provides students with a course 
-    planner, an events tracker, and an internal job board for students looking to find work early! 
-    We strive to make your high school experience as smooth and enjoyable as possible.
-  </p>
-</div>
-<div class="courseImg">
-  <table>
-    <tr>
-      <td>
-        <img src="../../assets/landing/course01.png" data-aos="fade-up">
-      </td>
-      <td>
-        <img src="../../assets/landing/course02.png" data-aos="fade-up">
-      </td>
-    </tr>
-  </table>
-</div>
-<br />
-<div class="split" data-aos="zoom-in">
-  <table>
-    <tr>
-      <td>
-        <h2>Perfect For Students and Employers</h2>
-        <br />
-        <p>
-          Our service provides employers with a platform to seek young and talented new workers, 
-          giving students an opportunity to gain valuable life skills and workplace experience 
-          before they even graduate high school. Employers can register a YourScope account 
-          and can share job postings on the network, reaching many talented people looking for work. 
-          With YourScope, searching for applicants has never been easier!
-        </p>
-      </td>
-      <td>
-        <img src="../../assets/landing/career.png">
-      </td>
-    </tr>
-  </table>
-</div>
-<br />
-<div class="split" data-aos="zoom-in">
-  <table>
-    <tr>
-      <td>
-        <img src="../../assets/landing/school.png" class="imgSchool">
-      </td>
-      <td>
-        <h2 class="rightAlign">Partnering With Schools</h2>
-        <p class="rightAlign">
-          YourScope partners with schools all across Ontario in order to ensure accurate information 
-          regarding offered courses and upcoming events are provided to students. When a school partners 
-          with YourScope, an admin account will be created for them which can be used to monitor and 
-          update offered courses and events.
-      </td>
-    </tr>
-  </table>
-</div>
-<br />
-<!-- Footer -->
-<footer class="text-center text-lg-start bg-light text-muted">
-  <!-- Copyright -->
-  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-    © 2023 Copyright:
-    <a class="text-reset fw-bold" href="">YourScope Education Planning (Wenduo Sky)</a>
-  </div>
-  <!-- Copyright -->
-</footer>
-<!-- Footer -->
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.navbar-brand {
+    font-style: italic;
+}
+
+nav {
+    font-family: 'Inter', sans-serif;
+    font-weight: 200;
+    padding-right: 1%;
+    padding-left: 1%;
+}
+
+.headingNavBar {
+    vertical-align: center;
+    text-align: center;
+}
+
+nav ul li {
+    margin-left: 6%;
+}
+nav ul {
+    margin-right: 1%;
+}
+
+.headingMission {
+    font-weight: 900;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+}
+
+.parMission {
+    margin-top: 1%;
+    font-weight: 200;
+    width: 75%;
+    margin-left: 13%;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.mission {
+    margin-top: 7%;
+}
+
+.courseImg img {
+    width: 80%;
+    border-radius: 10px;
+    -webkit-box-shadow: -9px 10px 0px -1px #B5B5B5; 
+    box-shadow: -9px 10px 0px -1px #B5B5B5;
+}
+
+.courseImg td {
+    padding-bottom: 5%;
+    text-align: center;
+}
+
+.courseImg {
+    width: 100%;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    overflow: hidden;
+}
+
+.split {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Inter', sans-serif;
+}
+
+.split td {
+    vertical-align: top;
+    padding: 8%;
+    width: 50%;
+    overflow: hidden;
+}
+
+.split img {
+    text-align: center;
+    width: 75%;
+}
+
+.split p {
+    line-height: 240%;
+}
+
+.split h2 {
+    font-weight: bolder;
+}
+
+.rightAlign {
+    text-align: right;
+}
+
+.imgSchool {
+    width: 100% !important;
+}
