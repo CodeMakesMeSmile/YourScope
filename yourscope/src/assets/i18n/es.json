@@ -1,17 +1,12 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BadgeComponent } from './badge.component';
-describe('BadgeComponent', () => {
-  let component: BadgeComponent;
-  let fixture: ComponentFixture<BadgeComponent>;
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [BadgeComponent]
-    });
-    fixture = TestBed.createComponent(BadgeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+<ngb-carousel>
+	<ng-template ngbSlide *ngFor="let element of elements">
+		<div class="picsum-img-wrapper">
+			<img [src]="element.imagePath" alt="{{element.imageAlt}}" />
+		</div>
+		<div class="carousel-caption">
+			<h3>{{element.captionHeading}}</h3>
+			<p>{{element.captionSubheading}}</p>
+		</div>
+	</ng-template>
+</ngb-carousel>
+	
