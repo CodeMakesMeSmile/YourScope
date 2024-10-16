@@ -1,23 +1,20 @@
-.headerDialog {
-  margin-top: 10%;
-  color: black;
-}
-
-.dialogBox {
-  background-color: white;
-  position: fixed;
-  width: 20vw;
-  height: 20vh;
-  left: 40%;
-  top: 40%;
-  z-index: 3;
-  border-radius: 7px;
-  text-align: center;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  -webkit-box-shadow: 1px 2px 19px 1px #000000;
-  box-shadow: 1px 2px 19px 1px #000000;
-}
-
-#btnYes {
-  margin-right: 5%;
-}
+<nav class="bg-navy pad-12 navbar navbar-expand-lg ">
+  <a class="navbar-brand" href="{{home}}">
+    <img  src="../../../assets/yourscope.png" width="140" height="40" alt="">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation" (click)="collapsed = !collapsed">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse " [ngbCollapse]="collapsed">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item " *ngFor="let link of links">
+        <div class="container topBotomBordersIn">
+          <a class="nav-link white" href="{{link.href}}">{{link.label}}</a>
+        </div>
+      </li>
+    </ul>
+    <div class="logout-button-bg">
+      <img src="../../../assets/logout.svg" class="logout-button" (click)="logout()">
+    </div>
+  </div>
+</nav>
