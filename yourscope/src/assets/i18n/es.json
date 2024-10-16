@@ -1,26 +1,48 @@
-<div class="card item-card shadow bg-white rounded coverLetterEntry" *ngIf="coverLetter">
-  <div class="job-postings card-body">
-      <p class="card-text" >{{coverLetter.intro | truncate:15}}</p>
-      <div class="posting-button-section">
-          <img class="information-button" src="assets/jobPostingDetails.svg" (click)="onClickDetails()">
-          <img class="information-button" src="assets/jobPostingDelete.svg" (click)="onClickDelete()">
-      </div>
-  </div>
-</div>
-<confirmation-dialog *ngIf="confirm" (onClickEvent)="onConfirmResult($event)"/>
-<div class="overlay" *ngIf="displayCoverLetter">
-    <div class="coverLetterDisplay">
-      <img src="assets/closeBox.png" class="btnClosePopup" (click)="onClickClosePopup()"/>
-      <h3>Cover Letter Viewer</h3>
-      <hr />
-      <p *ngIf="coverLetter?.intro">{{coverLetter?.intro}}</p>
-      <br />
-      <p *ngIf="coverLetter?.salesPitch1">{{coverLetter?.salesPitch1}}</p>
-      <br />
-      <p *ngIf="coverLetter?.salesPitch2">{{coverLetter?.salesPitch2}}</p>
-      <br />
-      <p *ngIf="coverLetter?.salesPitch3">{{coverLetter?.salesPitch3}}</p>
-      <br />
-      <p *ngIf="coverLetter?.conclusion">{{coverLetter?.conclusion}}</p>
-    </div>
-</div>
+:host {
+  display: contents;
+}
+
+.coverLetterEntry {
+  width: 96% !important;
+}
+
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 3;
+}
+
+.coverLetterDisplay {
+  background-color: rgb(248, 248, 248);
+  height: 50vh;
+  width: 50vw;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  border-radius: 10px;
+  -webkit-box-shadow: -9px 12px 0px 0px rgba(0,0,0,0.62); 
+  box-shadow: -9px 12px 0px 0px rgba(0,0,0,0.62);
+  padding: 3%;
+  overflow-y: auto;
+}
+
+.btnClosePopup {
+  width: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: 0%;
+  margin-top: 0%;
+}
+
+.btnClosePopup:hover {
+  cursor: pointer;
+  filter: invert(70%) sepia(96%) saturate(495%) hue-rotate(170deg) brightness(96%) contrast(95%);
+}
+
+.coverLetterDisplay p {
+  margin-bottom: 2%;
+}
