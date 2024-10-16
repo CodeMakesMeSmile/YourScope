@@ -1,17 +1,63 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { StudentPostingsComponent } from './student-postings.component';
-describe('StudentPostingsComponent', () => {
-  let component: StudentPostingsComponent;
-  let fixture: ComponentFixture<StudentPostingsComponent>;
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [StudentPostingsComponent]
-    });
-    fixture = TestBed.createComponent(StudentPostingsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+<app-navbar></app-navbar>
+<!-- Background div -->
+<div id="bg">
+  <!-- Title -->
+  <div>
+      <h2 class="pad-12 white">
+      Student Toolkit
+      </h2>
+  </div>
+<!-- Main content -->
+  <div id="main-card" class="card margin-30 shadow mb-5 rounded">
+      <div class="card-body">
+          <div class="centre flex">
+              <div class="card toolkit-card">
+                <div class="card-header">
+                    <h5 class="headingH5">Cover Letters</h5>
+                    <img class="btnCreateCoverLetter" src="assets/plus.svg" (click)="onClickCreateCV()"/>
+                </div>
+                <div class="card-body infoDiv">
+                    <cover-letter-view />
+                </div>
+              </div>
+              <div class="card toolkit-card infoDiv">
+                  <h5 class="card-header">Post-Secondary Programs</h5>
+                  <div class="card-body">
+                    <post-secondary-view />
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="overlay" *ngIf="displayCreateCoverLetter">
+    <div class="createCoverLetterDisplay">
+      <img src="assets/closeBox.png" class="btnClosePopup" (click)="onClickClosePopup()"/>
+      <h3>Create Cover Letter</h3>
+      <hr />
+      <form [formGroup]="formCV" (ngSubmit)="submitCV()">
+        <div class="form-group py-2">
+          <label for="intro">Introduction <span class="required">*</span></label>
+          <textarea formControlName="intro" type="text" class="form-control" [class.invalid-field]="missingIntro"></textarea>
+        </div>
+        <div class="form-group py-2">
+          <label for="intro">Paragraph 1</label>
+          <textarea formControlName="salesPitch1" type="text" class="form-control"></textarea>
+        </div>
+        <div class="form-group py-2">
+          <label for="intro">Paragraph 2</label>
+          <textarea formControlName="salesPitch2" type="text" class="form-control"></textarea>
+        </div>
+        <div class="form-group py-2">
+          <label for="intro">Paragraph 3</label>
+          <textarea formControlName="salesPitch3" type="text" class="form-control"></textarea>
+        </div>
+        <div class="form-group py-2">
+          <label for="intro">Conclusion</label>
+          <textarea formControlName="conclusion" type="text" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btnSubmit" [disabled]="clickedCreate">Create</button>
+        <label class="lblText">{{lblText}}</label>
+      </form>
+    </div>
+</div>
