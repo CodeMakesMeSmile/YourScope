@@ -1,85 +1,98 @@
-<div id="cont">
-  <app-navbar></app-navbar>
-  <div id="bg" class="vh-100">
-    <div>
-      <h2 class="pad-12 white page-heading">
-        Welcome back, {{token.name}}
-      </h2>
-    </div>
-    <div id="main-card" class="card margin-30 shadow mb-5 rounded">
-      <div class="card-body">
-        <h4 class="card-title">Admin Dashboard</h4>
-        <div class="centre flex">
-          <div class="card">
-            <h5 class="card-header">
-              Upcoming Events
-              <a class="button-sm" href="admin/events">Manage</a>
-            </h5>
-            <div class="scrollspy-container">
-              <div data-spy="scroll" data-offset="0" *ngIf="events.length > 0">
-                <div class="card item-card shadow bg-white rounded" *ngFor="let event of events; let i = index">
-                  <h6 class="pointer card-header" (click)="toggleEventState(i)">
-                    {{event.title | truncate:40}}
-                    <img *ngIf="!eventStates[i]" src="../../../assets/caretDown.svg" class="caret">
-                    <img *ngIf="eventStates[i]" src="../../../assets/caretUp.svg" class="caret">
-                  </h6>
-                  <div *ngIf="eventStates[i]" class="card-body">
-                    <h6 class="card-title">{{event.date | date:'MM/dd/yyyy, h:mma'}}</h6>
-                    <h6 class="card-title">{{event.location | truncate:30}}</h6>
-                    <div class="card-text">
-                      {{event.description | truncate:200}}
-                      <div class="button-d" (click)="deleteEvent(event)">Delete</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div *ngIf="events.length == 0">
-                <div class="card item-card shadow bg-white rounded">
-                  <div class="card-body">
-                    <p class="card-text">
-                       You have no scheduled events.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <h5 class="card-header">
-              Offered Courses
-              <a class="button-sm" href="admin/courses">Manage</a>
-            </h5>
-            <div class="scrollspy-container">
-              <div data-spy="scroll" data-offset="0">
-                <div class="card item-card shadow bg-white rounded" *ngFor="let course of courses; let i = index">
-                  <h6 class="pointer card-header" (click)="toggleCourseState(i)">
-                    {{course.courseCode}} - {{course.name | truncate:50}}
-                    <img *ngIf="!courseStates[i]" src="../../../assets/caretDown.svg" class="caret">
-                    <img *ngIf="courseStates[i]" src="../../../assets/caretUp.svg" class="caret">
-                  </h6>
-                  <div *ngIf="courseStates[i]" class="card-body">
-                    <div class="card-text">
-                      {{course.description | truncate:200}}
-                      <div class="button-d" (click)="deleteCourse(course)">Delete</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div *ngIf="courses.length == 0">
-                <div class="card item-card shadow bg-white rounded">
-                  <div class="card-body">
-                    <p class="card-text">
-                       You have no courses.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<confirmation-dialog *ngIf="confirmEvent" (onClickEvent)="confirmEventDeletion($event)"/>
-<confirmation-dialog *ngIf="confirmCourse" (onClickEvent)="confirmCourseDeletion($event)"/>
+.pad-12 {
+  padding: 12px;
+}
+
+.margin-30 {
+  margin: 0px 30px 0px 30px;
+}
+
+.item-card {
+  width: 600px;
+  margin: 12px;
+}
+
+.card-text {
+  text-decoration: none;
+  color: black;
+}
+
+.scrollspy-container { 
+  overflow: auto;
+  height: 500px;
+}
+
+.flex {
+  display: flex;
+}
+
+.centre {
+  align-items: center;
+  justify-content: space-around;
+}
+
+#bg {
+  background: rgb(2,0,36);
+  background: linear-gradient(333deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 30%, rgba(0,212,255,1) 100%);
+}
+
+.white {
+  color: white;
+}
+
+.navy {
+  color: navy;
+}
+
+.bg-navy {
+  background-color: rgb(61, 89, 149);
+}
+
+.button-sm {
+  color: white;
+  background-color: rgb(42, 61, 104);
+  border-radius: 20px;
+  padding: 6px 10px 6px 10px;
+  text-decoration: none;
+  margin-left: 10px;
+  font-size: 12px;
+  text-align: center;
+  text-justify: center;
+}
+
+.button-d {
+  float: right;
+  color: white;
+  text-align: center;
+  width: 90px;
+  margin: 5px;
+  background-color: rgb(220, 53, 69);
+  border-radius: 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#cont{
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+}
+
+#main-card{
+  flex: 1 1 auto;
+}
+
+.card-scrollable{
+  flex: 1 1 auto;
+}
+
+.caret {
+  float: right;
+  width: inherit;
+  height: inherit;
+  padding: 5px;
+  text-align: center;
+}
+
+.pointer {
+  cursor: pointer;
+}
