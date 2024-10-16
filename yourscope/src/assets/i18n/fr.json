@@ -1,12 +1,24 @@
-import { TestBed } from '@angular/core/testing';
-import { AuthService } from './auth.service';
-describe('AuthService', () => {
-  let service: AuthService;
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(AuthService);
-  });
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+<div id="bg" class="d-flex justify-content-center align-items-center vh-100">
+  <div id="main-card" class="card text-center">
+    <div class="card-body p-auto">
+      <img id="logo" src="/assets/yourscope.png" alt="YourScope" />
+        <p class="lead fs-3">Log in</p>
+        <div class="form-group py-2">
+          <input type="email" class="form-control" placeholder="Email" [(ngModel)]="email" [class.invalidField]="missingEmail">
+      </div>
+      <div class="form-group py-2">
+        <input type="password" class="form-control" placeholder="Password" [(ngModel)]="password" [class.invalidField]="missingPassword">
+      </div>
+      <div class="form-group py-2">
+        <label class="lblLogin">{{lblText}}</label>
+        <br />
+        <button (click)="login()" type="submit" class="btn btn-primary btn-lg btnLogin" [disabled]="disableLogin">
+          Log in
+        </button>
+        <div *ngIf="disableLogin" class="loadingGif"><img src="../../../assets/loading.gif"></div>
+      </div>
+      <div class="form-group py-2">
+        <a [routerLink]="['/passwordReset']">Forgot Password?</a>
+    </div>
+  </div>
+</div>
