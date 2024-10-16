@@ -1,17 +1,48 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { PasswordResetComponent } from './password-reset.component';
-describe('PasswordResetComponent', () => {
-  let component: PasswordResetComponent;
-  let fixture: ComponentFixture<PasswordResetComponent>;
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [PasswordResetComponent]
-    });
-    fixture = TestBed.createComponent(PasswordResetComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+<form [formGroup]="companyForm" (ngSubmit)="handleCompanyRegistration()">
+  <div *ngIf="regState == 0">
+    <p class="lead fs-3">Please enter company information</p>
+    <div class="form-group py-2">
+      <label for="company">Company Name</label>
+      <input formControlName="name" type="email" class="form-control" placeholder="Name" [class.invalid-text-input]="!validName"/>
+      </div>
+    <div class="form-group py-2">
+        <label for="email">Email address</label>
+        <input formControlName="email" type="email" class="form-control" placeholder="name@example.com" [class.invalid-text-input]="!validEmail"/>
+    </div>
+    <div class="form-group py-2">
+        <label for="address">Address</label>
+        <input formControlName="addr" type="text" class="form-control" placeholder="Address" [class.invalid-text-input]="!validAddress">
+    </div>
+    <div class="row py-2">
+      <div class="col px-2">
+        <label for="unit">Unit #</label>
+        <input formControlName="unit" type="number" class="form-control" placeholder="Unit # (optional)">
+      </div>
+      <div class="col px-2">
+          <label for="city">City</label>
+          <input formControlName="city" type="text" class="form-control" placeholder="City" [class.invalid-text-input]="!validCity">
+      </div>
+      <div class="col px-2">
+          <label for="country">Country</label>
+          <input formControlName="country" type="text" class="form-control" placeholder="Country" [class.invalid-text-input]="!validCountry">
+      </div>
+    </div>
+    <div class="row py-2">
+      <div class="col px-2">
+        <label for="tel">Phone</label>
+        <input formControlName="tel" type="tel" class="form-control" placeholder="Phone (optional)">
+      </div>
+      <div class="col px-2">
+        <label for="fax">Fax</label>
+        <input formControlName="fax" type="tel" class="form-control" placeholder="Fax (optional)">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg">Register</button>
+    <br />
+    <label class="formErrors">{{formErrorStr}}</label>
+  </div>
+
+  <div *ngIf="regState >= 1">
+    <app-register-employer *ngIf="regState == 1"></app-register-employer>
+  </div>
+</form>
