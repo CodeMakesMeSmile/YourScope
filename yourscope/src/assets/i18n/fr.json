@@ -1,17 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RegisterStudentComponent } from './register-student.component';
-describe('RegisterStudentComponent', () => {
-  let component: RegisterStudentComponent;
-  let fixture: ComponentFixture<RegisterStudentComponent>;
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [RegisterStudentComponent]
-    });
-    fixture = TestBed.createComponent(RegisterStudentComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+<div id="bg" class="d-flex justify-content-center align-items-center vh-100">
+  <div id="main-card" class="card text-center">
+    <div class="card-body p-4">
+      <img id="logo" src="/assets/yourscope.png" alt="YourScope" />
+
+      <div *ngIf="regState == 0" class="d-flex flex-column align-items-center">
+        <p class="lead fs-3">Create your YourScope Account.</p>
+        <button (click)="loadStudentRegistration()" class="btn btn-outline-primary btn-lg m-2">
+          I'm a Student
+        </button>
+        <button (click)="loadEmployerCompanyRegistration()" class="btn btn-outline-primary btn-lg m-2">
+          I'm an Employer
+        </button>
+      </div>
+
+      <div *ngIf="regState >= 1" class="d-flex flex-column align-items-center">
+        <app-register-student *ngIf="regState == 1"></app-register-student>
+        <app-register-employer-company *ngIf="regState == 2"></app-register-employer-company>
+      </div>
+    </div>
+  </div>
+</div>
