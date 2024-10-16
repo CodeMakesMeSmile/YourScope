@@ -1,55 +1,205 @@
-<app-navbar></app-navbar>
-<div id="bg">
-  <div style="display:flex;">
-    <h2 class="pad-12 white page-heading">
-      Job Postings
-    </h2>
-    <h4 style="color:rgb(228, 228, 228); margin-left: 24px; padding: 18px;">Applied:</h4>
-    <mat-slide-toggle (change)="toggleApplied()" [checked]="false"></mat-slide-toggle>
-  </div>
-  <div class="centre flex wrap">
-    <h2 *ngIf="this.jobs.length == 0">There are no job postings currently. Come back another time!</h2>
-    <div class="scrollspy-container">
-      <div data-spy="scroll" class="content-box flex" data-offset="0">
-        <div class="card item-card shadow mb-5 bg-white rounded flex" *ngFor="let job of jobs">
-          <div class="full-size">
-            <h5 class="card-header">
-              {{job.jobTitle | truncate:25}}
-            </h5>
-            <div class="card-body">
-              <h6 class="card-title">{{job.companyName | truncate:20}}</h6>
-              <p class="card-text">
-                {{job.description | truncate:260}}
-              </p>
-            </div>
-            <div class="button-lg" (click)="loadPopup(job)">
-              Apply
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <ul class="pagination justify-content-center">
-    <li class="page-item">
-      <button class="page-link" (click)="onPageMove(false)">Previous</button>
-    </li>
-    <li class="page-item" *ngFor="let item of [].constructor(totalPages); let i = index">
-      <button class="page-link" (click)="onPageChange(i + 1)">{{ i + 1 }}</button>
-    </li>
-    <li class="page-item">
-      <button class="page-link" (click)="onPageMove(true)">Next</button>
-    </li>
-  </ul>
-</div>
+.pad-12 {
+  padding: 12px;
+}
 
-<div class="close-popup" (click)="closePopup2($event)" *ngIf="popup">
-  <div class="info-card">
-    <div class="close-button-bg">
-      <div class="close-button" (click)="closePopup1()">X</div>
-    </div>
-    <app-student-posting-details *ngIf="!this.apply" [selected]="selected"></app-student-posting-details>
-    <div class="apply-button" *ngIf="!this.apply" (click)="loadApplication()">Apply Now!</div>
-    <app-student-application *ngIf="this.apply" [selected]="selected"></app-student-application>
-  </div>
-</div>
+.pad-left-30 {
+  padding-left: 30px;
+}
+
+.margin-left-10 {
+  margin-left: 10px;
+}
+
+.pad-right-30 {
+  padding-right: 30px;
+}
+
+.margin-30 {
+  margin: 30px;
+}
+
+.item-card {
+  width: 360px;
+  height: 320px;
+  margin: 20px !important;
+}
+
+.card-header {
+  overflow: hidden;
+  max-width: 360px;
+}
+
+.card-title {
+  overflow: hidden;
+  max-width: 360px;
+}
+
+.card-text {
+  overflow: hidden;
+  max-width: 360px;
+  max-height: 10.5em;
+}
+
+.card-content-1 {
+  width: 260px;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.card-content-2 {
+  width: 350px;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.card-internal {
+  background-color: rgb(246, 246, 246);
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px;
+}
+
+.scrollspy-container { 
+  overflow: auto;
+  width: 90vw;
+  height: calc(100vh - 240px);
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-view {
+  width: 400px;
+}
+
+.full-size {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.centre {
+  align-items: center;
+  justify-content: space-around;
+}
+
+#bg {
+  background: rgb(110, 197, 239);
+  height: calc(100vh - 67px);
+}
+
+.white {
+  color: white;
+}
+
+.navy {
+  color: navy;
+}
+
+.bg-navy {
+  background-color: rgb(61, 89, 149);
+}
+
+.button-lg {
+  position: absolute;
+  color: white;
+  text-align: center;
+  width: 120px;
+  background-color: rgb(42, 61, 104);
+  border-radius: 20px;
+  padding: 5px 0;
+  text-decoration: none;
+  bottom: 15px;
+  left: 120px;
+  cursor: pointer;
+}
+
+.apply-button {
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+  width: 120px;
+  background-color: rgb(42, 61, 104);
+  border-radius: 20px;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.close-popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #44444491;
+}
+
+.info-card {
+  background-color: #ffffff;
+  position: absolute;
+  left: 20vw;
+  top: 15vh;
+  width: 60vw;
+  height: 60vh;
+  border-radius: 8px;
+}
+
+.button-md {
+  color: white;
+  background-color: rgb(42, 61, 104);
+  border-radius: 20px;
+  padding: 0px 10px 0px 10px;
+  text-decoration: none;
+  margin-left: 20px;
+  text-align: center;
+  text-justify: center;
+}
+
+.close-button-bg {
+  width: 100%;
+  height: 0;
+}
+
+.close-button {
+  width: 24px;
+  height: 24px;
+  margin-top: 6px;
+  margin-right: 6px;
+  float: right;
+  background-color: #243E6B;
+  border-radius: 12px;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.content-box {
+  margin: auto;
+}
+
+.switch {
+  display: flex;
+  --button-width: 3.5em;
+  --button-height: 2em;
+  --toggle-diameter: 1.5em;
+  --button-toggle-offset: calc((var(--button-height) - var(--toggle-diameter)) / 2);
+  --toggle-shadow-offset: 10px;
+  --toggle-wider: 3em;
+  --color-grey: #cccccc;
+  --color-green: #4296f4;
+}
+
+mat-slide-toggle {
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 849px) {.content-box { width: 400px; }}
+@media screen and (min-width: 850px) and (max-width: 1299px) {.content-box { width: 800px; }}
+@media screen and (min-width: 1300px) and (max-width: 1699px) {.content-box { width: 1200px; }}
+@media screen and (min-width: 1700px) {.content-box { width: 1600px; }}
