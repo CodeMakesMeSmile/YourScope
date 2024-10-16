@@ -1,15 +1,19 @@
-<div class="card item-card shadow bg-white rounded programEntry" *ngIf="program">
-    <h6 class="card-header">{{program.name}}</h6>
-    <div class="job-postings card-body">
-        <span class="bold">Post-Secondary Institution: </span>{{universityName}}
-        <br />
-        <span class="bold">Grade Range: </span>{{program.gradeRange}}
-        <br />
-        <span class="bold">Prerequisites: </span>{{program.prerequisites}}
-        <br />
-        <span class="bold">Language: </span>{{program.language}}
-        <br />
-        <a href="{{program.website}}">Link to Website</a>
-    </div>
-  </div>
-  
+:host {
+  display: contents;
+}
+
+.programEntry {
+  width: 96% !important;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.card-body {
+  font-size: 0.8em;
+}
