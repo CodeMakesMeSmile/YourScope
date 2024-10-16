@@ -1,84 +1,88 @@
-<app-navbar></app-navbar>
-<div id="bg" class="vh-100">
-   <div>
-      <h2 class="pad-12 white page-heading">
-      </h2>
-   </div>
-   <div class="container">
-      <div class="main-body">
-         <div class="row gutters-sm">
-            <div class="col">
-               <div class="card">
-                  <div class="card-body">
-                     <div class="d-flex flex-column align-items-center text-center">
-                        <h4>{{student_profile.user.firstName}} {{student_profile.user.lastName}}</h4>
-                        <p class="text-secondary mb-1">Grade {{student_profile.user.grade}} student</p>
-                        <p class="text-muted font-size-sm">{{student_profile.user.affiliation}}</p>
-                     </div>
-                  </div>
-               </div>
-               <div class="card">
-                  <div class="card-body">
-                     <div class="row">
-                        <div class="col-sm">
-                           <h6 class="mb-0">Full Name</h6>
-                        </div>
-                        <div class="col-sm text-secondary">
-                           {{student_profile.user.firstName}} {{student_profile.user.middleName}} {{student_profile.user.lastName}}
-                        </div>
-                     </div>
-                     <hr>
-                     <div class="row">
-                        <div class="col-sm">
-                           <h6 class="mb-0">Email</h6>
-                        </div>
-                        <div class="col-sm text-secondary">
-                           {{student_profile.user.email}}
-                        </div>
-                     </div>
-                     <hr>
-                     <div class="row">
-                        <div class="col-sm">
-                           <h6 class="mb-0">Birthday</h6>
-                        </div>
-                        <div class="col-sm text-secondary">
-                           {{student_profile.user.birthday}}
-                        </div>
-                     </div>
-                     <hr>
-                     <div class="row">
-                        <div class="col-sm">
-                           <h6 class="mb-0">Skills</h6>
-                        </div>
-                        <div class="col-sm text-secondary">
-                          <app-badge *ngFor="let skill of student_profile.skills.split(',')" [bValue]="skill" [disable]="true"/>
-                          <h6 *ngIf="!student_profile.skills.length">N/A</h6>
-                        </div>
-                     </div>
-                     <hr>
-                     <div class="row" >
-                        <div class="col-sm">
-                           <h6 class="mb-0">Intrests and Hobbies</h6>
-                        </div>
-                        <div class="col-sm text-secondary">
-                           <app-badge *ngFor="let interest of student_profile.intrestsHobbies.split(',')" [bValue]="interest" [disable]="true"/>
-                           <h6 *ngIf="!student_profile.intrestsHobbies.length">N/A</h6>
-                        </div>
-                     </div>
-                     <hr>
-                     <div class="row">
-                        <div class="col-sm">
-                           <h6 class="mb-0">Awards</h6>
-                        </div>
-                        <div class="col-sm text-secondary">
-                           <app-badge *ngFor="let award of student_profile.awards.split(',')" [bValue]="award" [disable]="true"/>
-                           <h6 *ngIf="!student_profile.awards.length">N/A</h6>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</div>
+.pad-12 {
+    padding: 12px;
+  }
+  
+  .margin-30 {
+    margin: 0px 30px 0px 30px;
+  }
+  
+  .left{
+    text-align: start;
+  }
+  .centre {
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  #bg {
+    background: rgb(2,0,36);
+    background: linear-gradient(333deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 30%, rgba(0,212,255,1) 100%);
+  }
+  
+  .white {
+    color: white;
+  }
+  
+  .navy {
+    color: navy;
+  }
+  
+  .bg-navy {
+    background-color: rgb(61, 89, 149);
+  }
+
+  .button-lg {
+    color: white;
+    background-color: rgb(42, 61, 104);
+    border-radius: 20px;
+    padding: 6px 10px 6px 10px;
+    margin: 10px;
+    text-decoration: none;
+    font-size: 12px;
+    font-size: large;
+    text-align: center;
+    text-justify: center;
+    display: inline-block;
+  }
+
+#main-card{
+    background: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.521);
+    width: min(500px, 90vh);
+}
+
+#logo{
+    width: 200px
+}
+
+body{
+    margin-top:20px;
+    color: #1a202c;
+    text-align: left;
+    background-color: #e2e8f0;    
+}
+.main-body {
+    padding: 15px;
+}
+.card {
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1rem;
+}
